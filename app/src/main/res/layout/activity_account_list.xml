@@ -6,12 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+    <com.loh.skint.ui.base.view.SkintToolbar
         android:id="@+id/toolbar"
+        style="@style/Toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:theme="@style/Theme.AppCompat.Light"/>
+        android:layout_height="?attr/actionBarSize"/>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/empty_container"

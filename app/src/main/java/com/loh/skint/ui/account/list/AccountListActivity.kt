@@ -10,6 +10,7 @@ class AccountListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
+        supportActionBar?.setTitle(R.string.title_account_list)
     }
 
     override fun getLayoutRes(): Int = R.layout.activity_account_list
