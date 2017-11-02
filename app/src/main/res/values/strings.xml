@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Skint</string>
+    <string name="empty_accounts_list_empty">You have no accounts here</string>
+    <string name="empty_accounts_list_subtitle">Tap the \'+\' button below on the right to add a new account.</string>
+</resources>

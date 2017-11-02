@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        applicationId "com.loh.skint"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    // support libs
+    implementation deps.support.annotations
+    implementation deps.support.appCompat
+    implementation deps.support.cardView
+    implementation deps.support.constraintLayout
+    implementation deps.support.design
+    implementation deps.support.recyclerView
+    implementation deps.support.v4
+    implementation deps.support.paging
+
+    // kotlin
+    implementation deps.kotlin
+
+    implementation deps.requery.core
+    implementation deps.requery.kotlin
+    implementation deps.requery.android
+    kapt deps.requery.compiler
+
+    // butterknife
+    implementation deps.butterknife.runtime
+    kapt deps.butterknife.apt
+
+    // dagger
+    kapt deps.dagger.compiler
+    kapt deps.dagger.processor
+    implementation deps.dagger.android
+
+    // glide
+    kapt deps.glide.compiler
+    implementation deps.glide.annotations
+    implementation deps.glide.core
+
+    // leak canary
+    debugImplementation deps.leakCanary.debug
+    releaseImplementation deps.leakCanary.release
+
+    // rx
+    implementation deps.rx.core
+    implementation deps.rx.android
+
+    // stetho
+    implementation deps.stetho
+
+    // timber
+    implementation deps.timber
+
+    // test
+    testImplementation deps.test.junit
+    testImplementation deps.test.mockito
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso
+}
