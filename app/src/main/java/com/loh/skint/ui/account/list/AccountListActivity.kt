@@ -36,7 +36,7 @@ class AccountListActivity : BaseActivity(), View {
         recycler_view.adapter = listAdapter
     }
 
-    override fun renderAccounts(accounts: ArrayList<Account>) {
+    override fun renderAccounts(accounts: List<Account>) {
         recycler_view.visibility = VISIBLE
         empty_container.visibility = GONE
         listAdapter.setAccounts(accounts)

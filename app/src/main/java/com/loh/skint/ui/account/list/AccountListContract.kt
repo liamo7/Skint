@@ -5,7 +5,7 @@ import com.loh.skint.ui.base.presenter.MvpPresenter
 import com.loh.skint.ui.model.Account
 
 interface View : MvpView {
-    fun renderAccounts(accounts: ArrayList<Account>)
+    fun renderAccounts(accounts: List<Account>)
     fun renderEmptyState()
 }
 

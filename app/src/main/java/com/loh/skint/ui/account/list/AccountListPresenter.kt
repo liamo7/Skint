@@ -1,28 +1,26 @@
 package com.loh.skint.ui.account.list
 
+import com.loh.skint.domain.mapper.AccountMapper
+import com.loh.skint.domain.repository.AccountRepository
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
-import com.loh.skint.ui.model.Account
-import java.util.*
+import timber.log.Timber
 import javax.inject.Inject
 
 @ActivityScoped
-class AccountListPresenter @Inject constructor() : BasePresenter<View>(), Presenter {
+class AccountListPresenter @Inject constructor(val repository: AccountRepository) : BasePresenter<View>(), Presenter {
 
     override fun retrieveAccounts() {
-        val accounts = arrayListOf(
-                Account(UUID.randomUUID(), "Current Account", "300.00"),
-                Account(UUID.randomUUID(), "Savings Account", "5100.00"),
-                Account(UUID.randomUUID(), "Wallet", "100.00")
-        )
+        // TODO Move to interactor
+        val mapper = AccountMapper()
 
-        val rand = Random().nextInt(2)
-
-        if (rand == 0) {
-            getView().renderAccounts(accounts)
-        } else {
-            getView().renderEmptyState()
-        }
+        repository.getAll().subscribe({
+            if (it.isEmpty()) {
+                getView().renderEmptyState()
+            } else {
+                getView().renderAccounts(mapper.mapDomainToUi(it))
+            }
+        }, { Timber.d(it.message) })
     }
 
     override fun cleanUp() {

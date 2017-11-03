@@ -35,7 +35,7 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(account: Account) {
         itemView.apply {
             item_account_name.text = account.name
-            item_account_balance.text = "£ ${account.balance}"
+            item_account_balance.text = account.prettyBalance
 
             item_account_icon.setImageResource(when (account.name) {
                 "Current Account" -> R.drawable.ic_credit_card
