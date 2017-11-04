@@ -15,8 +15,10 @@ class AccountListPresenter @Inject constructor(private val getAccounts: GetAccou
     }
 
     private fun onSuccess(accounts: List<Account>) {
-        if (accounts.isEmpty()) getView().renderEmptyState()
-        getView().renderAccounts(accounts)
+        if (accounts.isEmpty())
+            getView().renderEmptyState()
+        else
+            getView().renderAccounts(accounts)
     }
 
     private fun onError(throwable: Throwable) {
