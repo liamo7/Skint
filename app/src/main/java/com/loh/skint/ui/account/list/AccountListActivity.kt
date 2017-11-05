@@ -7,20 +7,21 @@ import android.view.View.VISIBLE
 import com.loh.skint.R
 import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.ui.model.Account
+import com.loh.skint.util.accountCreateIntent
 import kotlinx.android.synthetic.main.activity_account_list.*
 import javax.inject.Inject
 
 class AccountListActivity : BaseActivity(), View {
-
     @Inject lateinit var listAdapter: AccountListAdapter
-    @Inject lateinit var presenter: Presenter
 
+    @Inject lateinit var presenter: Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle(R.string.title_account_list)
-        setupList()
         presenter.attach(this)
+        setupList()
+        fab_create_account.setOnClickListener { presenter.onFabClicked() }
         presenter.retrieveAccounts()
     }
 
@@ -45,5 +46,9 @@ class AccountListActivity : BaseActivity(), View {
     override fun renderEmptyState() {
         recycler_view.visibility = GONE
         empty_container.visibility = VISIBLE
+    }
+
+    override fun navigateToAccountCreation() {
+        startActivity(accountCreateIntent())
     }
 }

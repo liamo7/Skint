@@ -7,8 +7,10 @@ import com.loh.skint.ui.model.Account
 interface View : MvpView {
     fun renderAccounts(accounts: List<Account>)
     fun renderEmptyState()
+    fun navigateToAccountCreation()
 }
 
 interface Presenter : MvpPresenter<View> {
     fun retrieveAccounts()
+    fun onFabClicked()
 }

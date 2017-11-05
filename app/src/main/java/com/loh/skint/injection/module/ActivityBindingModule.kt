@@ -1,6 +1,8 @@
 package com.loh.skint.injection.module
 
 import com.loh.skint.injection.scope.ActivityScoped
+import com.loh.skint.ui.account.create.AccountCreateActivity
+import com.loh.skint.ui.account.create.AccountCreateModule
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.list.AccountListModule
 import dagger.Module
@@ -11,4 +13,8 @@ internal abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = arrayOf(AccountListModule::class))
     internal abstract fun accountListActivity(): AccountListActivity
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = arrayOf(AccountCreateModule::class))
+    internal abstract fun accountCreateActivity(): AccountCreateActivity
 }

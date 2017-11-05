@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.account.create.AccountCreateActivity"
+            android:label="@string/title_account_create"/>
+
     </application>
 
 </manifest>

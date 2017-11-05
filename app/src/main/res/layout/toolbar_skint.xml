@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:parentTag="android.support.v7.widget.Toolbar"
-    tools:style="@style/Toolbar">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       tools:parentTag="android.support.v7.widget.Toolbar"
+       tools:style="@style/Skint.Toolbar">
 
     <TextView
         android:id="@+id/toolbar_title"
         style="@style/Toolbar.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/app_name"/>
+        tools:text="Your Accounts"/>
 
 </merge>
