@@ -31,6 +31,7 @@ class SkintApp : DaggerApplication() {
             name = "Current Account"
             balance = "302.95"
             dateCreated = Date()
+            iconResName = "ic_wallet"
         }).subscribe()
     }
 

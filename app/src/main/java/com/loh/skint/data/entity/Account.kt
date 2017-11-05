@@ -9,4 +9,5 @@ import java.util.*
     var name: String
     var balance: String
     var dateCreated: Date
+    var iconResName: String
 }

@@ -46,14 +46,7 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.apply {
             item_account_name.text = account.name
             item_account_balance.text = account.prettyBalance
-
-            item_account_icon.setImageResource(when (account.name) {
-                "Current Account" -> R.drawable.ic_credit_card
-                "Savings Account" -> R.drawable.ic_piggy_bank
-                "Wallet" -> R.drawable.ic_wallet
-                else -> R.drawable.ic_money_bag
-            })
-
+            item_account_icon.setImageResource(account.iconResId)
             item_account_container.setOnClickListener { listener(account) }
         }
     }
