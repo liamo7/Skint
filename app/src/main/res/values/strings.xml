@@ -3,4 +3,10 @@
     <string name="empty_accounts_list_empty">You have no accounts here</string>
     <string name="empty_accounts_list_subtitle">Tap the \'+\' button below on the right to add a new account.</string>
     <string name="title_account_list">Your Accounts</string>
+    <string name="title_account_overview">Overview</string>
+    <string name="nav_open">Open Navigation</string>
+    <string name="nav_close">Close Navigation</string>
+    <string name="overview_current_balance">Current Balance</string>
+    <string name="overview_available_balance">Available Balance</string>
+    <string name="overview_last_record">Recent Record</string>
 </resources>

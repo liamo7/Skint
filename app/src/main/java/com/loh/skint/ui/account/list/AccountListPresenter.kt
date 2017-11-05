@@ -9,7 +9,6 @@ import javax.inject.Inject
 
 @ActivityScoped
 class AccountListPresenter @Inject constructor(private val getAccounts: GetAccounts) : BasePresenter<View>(), Presenter {
-
     override fun retrieveAccounts() {
         getAccounts.execute({ onSuccess(it) }, { onError(it) }, null)
     }
@@ -24,6 +23,10 @@ class AccountListPresenter @Inject constructor(private val getAccounts: GetAccou
     private fun onError(throwable: Throwable) {
         Timber.e(throwable.message)
         getView().renderEmptyState()
+    }
+
+    override fun onAccountClicked(account: Account) {
+        getView().navigateToAccount(account.uuid)
     }
 
     override fun cleanUp() {

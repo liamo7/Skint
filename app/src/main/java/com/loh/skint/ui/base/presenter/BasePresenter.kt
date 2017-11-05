@@ -12,6 +12,7 @@ abstract class BasePresenter<V : MvpView> : MvpPresenter<V> {
 
     override fun detach() {
         this.view = null
+        cleanUp()
     }
 
     override fun isViewAttached(): Boolean = this.view != null

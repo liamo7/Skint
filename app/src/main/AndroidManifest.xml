@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.loh.skint">
 
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+
     <application
         android:name=".SkintApp"
         android:allowBackup="true"
@@ -16,6 +18,10 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.account.overview.OverviewActivity"
+            android:label="@string/title_account_overview"/>
 
     </application>
 

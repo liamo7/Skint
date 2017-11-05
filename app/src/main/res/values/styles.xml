@@ -22,4 +22,19 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="Overview.Collapse.Title" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textColor">@color/overview_title</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Overview.Collapse.Value" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/overview_value_size</item>
+    </style>
+
+    <style name="Overview.Collapse.Value.Sub" parent="Overview.Collapse.Value">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/overview_sub_value_size</item>
+    </style>
+
 </resources>

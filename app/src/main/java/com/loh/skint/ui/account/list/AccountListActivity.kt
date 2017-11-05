@@ -1,13 +1,17 @@
 package com.loh.skint.ui.account.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.loh.skint.R
+import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.ui.model.Account
+import com.loh.skint.util.INTENT_ACCOUNT_ID
 import kotlinx.android.synthetic.main.activity_account_list.*
+import java.util.*
 import javax.inject.Inject
 
 class AccountListActivity : BaseActivity(), View {
@@ -34,6 +38,8 @@ class AccountListActivity : BaseActivity(), View {
     private fun setupList() {
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = listAdapter
+
+        listAdapter.setListener { account -> presenter.onAccountClicked(account) }
     }
 
     override fun renderAccounts(accounts: List<Account>) {
@@ -45,5 +51,9 @@ class AccountListActivity : BaseActivity(), View {
     override fun renderEmptyState() {
         recycler_view.visibility = GONE
         empty_container.visibility = VISIBLE
+    }
+
+    override fun navigateToAccount(uuid: UUID) {
+        startActivity(Intent(this, OverviewActivity::class.java).apply { putExtra(INTENT_ACCOUNT_ID, uuid) })
     }
 }
