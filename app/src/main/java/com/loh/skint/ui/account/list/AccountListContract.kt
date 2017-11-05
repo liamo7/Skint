@@ -9,9 +9,11 @@ interface View : MvpView {
     fun renderAccounts(accounts: List<Account>)
     fun renderEmptyState()
     fun navigateToAccount(uuid: UUID)
+    fun navigateToAccountCreation()
 }
 
 interface Presenter : MvpPresenter<View> {
     fun retrieveAccounts()
     fun onAccountClicked(account: Account)
+    fun onFabClicked()
 }

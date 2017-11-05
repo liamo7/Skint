@@ -9,6 +9,11 @@ import javax.inject.Inject
 
 @ActivityScoped
 class AccountListPresenter @Inject constructor(private val getAccounts: GetAccounts) : BasePresenter<View>(), Presenter {
+
+    override fun onFabClicked() {
+        getView().navigateToAccountCreation()
+    }
+
     override fun retrieveAccounts() {
         getAccounts.execute({ onSuccess(it) }, { onError(it) }, null)
     }

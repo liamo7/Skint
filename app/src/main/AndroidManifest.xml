@@ -23,6 +23,10 @@
             android:name=".ui.account.overview.OverviewActivity"
             android:label="@string/title_account_overview"/>
 
+        <activity
+            android:name=".ui.account.create.AccountCreateActivity"
+            android:label="@string/title_account_create"/>
+
     </application>
 
 </manifest>

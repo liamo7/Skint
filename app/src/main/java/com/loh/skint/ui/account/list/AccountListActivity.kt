@@ -10,21 +10,22 @@ import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.ui.model.Account
 import com.loh.skint.util.INTENT_ACCOUNT_ID
+import com.loh.skint.util.accountCreateIntent
 import kotlinx.android.synthetic.main.activity_account_list.*
 import java.util.*
 import javax.inject.Inject
 
 class AccountListActivity : BaseActivity(), View {
-
     @Inject lateinit var listAdapter: AccountListAdapter
-    @Inject lateinit var presenter: Presenter
 
+    @Inject lateinit var presenter: Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle(R.string.title_account_list)
-        setupList()
         presenter.attach(this)
+        setupList()
+        fab_create_account.setOnClickListener { presenter.onFabClicked() }
         presenter.retrieveAccounts()
     }
 
@@ -55,5 +56,9 @@ class AccountListActivity : BaseActivity(), View {
 
     override fun navigateToAccount(uuid: UUID) {
         startActivity(Intent(this, OverviewActivity::class.java).apply { putExtra(INTENT_ACCOUNT_ID, uuid) })
+    }
+
+    override fun navigateToAccountCreation() {
+        startActivity(accountCreateIntent())
     }
 }
