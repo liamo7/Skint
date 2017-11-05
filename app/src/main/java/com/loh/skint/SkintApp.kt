@@ -2,12 +2,14 @@ package com.loh.skint
 
 import com.facebook.stetho.Stetho
 import com.loh.skint.data.entity.AccountEntity
+import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
 import com.loh.skint.domain.repository.AccountRepository
 import com.loh.skint.injection.component.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber
+import java.math.BigDecimal
 import java.util.*
 import javax.inject.Inject
 
@@ -29,7 +31,8 @@ class SkintApp : DaggerApplication() {
         repository.add(AccountEntity().apply {
             uuid = UUID.randomUUID()
             name = "Current Account"
-            balance = "302.95"
+            balance = BigDecimal("300.00")
+            currency = AVAILABLE_CURRENCIES[0]
             dateCreated = Date()
             iconResName = "ic_wallet"
         }).subscribe()

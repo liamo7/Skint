@@ -1,8 +1,13 @@
 package com.loh.skint.ui.model
 
-import android.support.annotation.DrawableRes
+import com.loh.skint.domain.model.Currency
 import java.util.*
 
-data class Account(val uuid: UUID, val name: String, val balance: String, @DrawableRes val iconResId: Int) {
-    val prettyBalance = "£ $balance"
+data class Account(val uuid: UUID,
+                   val name: String,
+                   val balance: String,
+                   val currency: Currency,
+                   val iconResId: Int) {
+
+    val prettyBalance = "${currency.symbol} $balance"
 }
