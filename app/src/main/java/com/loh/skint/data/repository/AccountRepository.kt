@@ -1,12 +1,12 @@
 package com.loh.skint.data.repository
 
 import com.loh.skint.data.entity.Account
+import com.loh.skint.data.entity.AccountEntity
 import com.loh.skint.domain.mapper.AccountMapper
 import com.loh.skint.domain.repository.AccountRepository
 import io.reactivex.Single
 import io.requery.Persistable
 import io.requery.reactivex.KotlinReactiveEntityStore
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -23,8 +23,9 @@ class AccountRepository @Inject constructor(private val dataStore: KotlinReactiv
                 .map { mapper.mapEntityToDomain(it) }
     }
 
-    override fun get(uuid: UUID): Single<com.loh.skint.domain.model.Account> {
+    override fun get(id: Int): Single<com.loh.skint.domain.model.Account> {
         return dataStore.select(Account::class)
+                .where(AccountEntity.ID.eq(id))
                 .get().observable().singleOrError()
                 .map { mapper.mapEntityToDomain(it) }
     }

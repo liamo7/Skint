@@ -4,9 +4,9 @@ import android.os.Bundle
 import com.loh.skint.R
 import com.loh.skint.ui.base.activity.BaseDrawerActivity
 import com.loh.skint.ui.model.Account
+import com.loh.skint.ui.model.Record
 import com.loh.skint.util.INTENT_ACCOUNT_ID
 import kotlinx.android.synthetic.main.activity_account_overview.*
-import java.util.*
 import javax.inject.Inject
 
 class OverviewActivity : BaseDrawerActivity(), View {
@@ -23,15 +23,17 @@ class OverviewActivity : BaseDrawerActivity(), View {
 
     override fun getLayoutRes(): Int = R.layout.activity_account_overview
 
-    override fun getAccountId(): UUID = intent.extras[INTENT_ACCOUNT_ID] as UUID
+    override fun getAccountId(): Int = intent.extras[INTENT_ACCOUNT_ID] as Int
 
     override fun handleInvalidAccount() = finish()
 
     override fun renderOverviewCollapse(account: Account) {
         collapseView = findViewById(R.id.overview_view)
         collapseView.setAccount(account)
+    }
 
-        recent_records.setRecords(account.records)
+    override fun renderRecentRecords(recentRecords: List<Record>) {
+        recent_records.setRecords(recentRecords)
     }
 
     override fun onDestroy() {

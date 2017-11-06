@@ -6,15 +6,14 @@ import com.loh.skint.domain.usecase.SingleUseCase
 import com.loh.skint.ui.model.Account
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import java.util.*
 import javax.inject.Inject
 
 class GetAccount @Inject constructor(compositeDisposable: CompositeDisposable,
                                      private val repository: AccountRepository,
                                      private val mapper: AccountMapper)
-    : SingleUseCase<Account, UUID>(compositeDisposable) {
+    : SingleUseCase<Account, Int>(compositeDisposable) {
 
-    override fun build(params: UUID): Single<Account> {
+    override fun build(params: Int): Single<Account> {
         return repository.get(params)
                 .map { mapper.mapDomainToUi(it) }
     }

@@ -1,14 +1,14 @@
 package com.loh.skint.ui.account.overview
 
-import com.loh.skint.domain.usecase.account.GetAccount
+import com.loh.skint.domain.usecase.GetOverview
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
-import com.loh.skint.ui.model.Account
+import com.loh.skint.ui.model.OverviewModel
 import timber.log.Timber
 import javax.inject.Inject
 
 @ActivityScoped
-class OverviewPresenter @Inject constructor(private val getAccount: GetAccount) : BasePresenter<View>(), Presenter {
+class OverviewPresenter @Inject constructor(private val getOverview: GetOverview) : BasePresenter<View>(), Presenter {
 
     override fun loadAccount() {
         val id = getView().getAccountId()
@@ -18,12 +18,12 @@ class OverviewPresenter @Inject constructor(private val getAccount: GetAccount) 
             return
         }
 
-        getAccount.execute({ onSuccess(it) }, { onError(it) }, id)
+        getOverview.execute({ onSuccess(it) }, { onError(it) }, id)
     }
 
-    private fun onSuccess(account: Account) {
-        Timber.d(account.toString())
-        getView().renderOverviewCollapse(account)
+    private fun onSuccess(overviewModel: OverviewModel) {
+        getView().renderOverviewCollapse(overviewModel.account)
+        getView().renderRecentRecords(overviewModel.recentRecords)
     }
 
     private fun onError(throwable: Throwable) {
@@ -31,6 +31,6 @@ class OverviewPresenter @Inject constructor(private val getAccount: GetAccount) 
     }
 
     override fun cleanUp() {
-        getAccount.dispose()
+        getOverview.dispose()
     }
 }

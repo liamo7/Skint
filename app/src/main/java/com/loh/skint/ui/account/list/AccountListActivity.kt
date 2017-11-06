@@ -12,7 +12,6 @@ import com.loh.skint.ui.model.Account
 import com.loh.skint.util.INTENT_ACCOUNT_ID
 import com.loh.skint.util.accountCreateIntent
 import kotlinx.android.synthetic.main.activity_account_list.*
-import java.util.*
 import javax.inject.Inject
 
 class AccountListActivity : BaseActivity(), View {
@@ -54,8 +53,8 @@ class AccountListActivity : BaseActivity(), View {
         empty_container.visibility = VISIBLE
     }
 
-    override fun navigateToAccount(uuid: UUID) {
-        startActivity(Intent(this, OverviewActivity::class.java).apply { putExtra(INTENT_ACCOUNT_ID, uuid) })
+    override fun navigateToAccount(id: Int) {
+        startActivity(Intent(this, OverviewActivity::class.java).apply { putExtra(INTENT_ACCOUNT_ID, id) })
     }
 
     override fun navigateToAccountCreation() {

@@ -109,4 +109,6 @@ dependencies {
     testImplementation deps.test.mockito
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
+
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.0.5'
 }

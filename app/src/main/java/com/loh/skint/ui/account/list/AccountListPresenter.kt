@@ -31,7 +31,7 @@ class AccountListPresenter @Inject constructor(private val getAccounts: GetAccou
     }
 
     override fun onAccountClicked(account: Account) {
-        getView().navigateToAccount(account.uuid)
+        getView().navigateToAccount(account.dbId)
     }
 
     override fun cleanUp() {

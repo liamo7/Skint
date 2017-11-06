@@ -2,13 +2,16 @@ package com.loh.skint.domain.model
 
 import android.content.Context
 import com.loh.skint.data.entity.TransferType
+import org.threeten.bp.LocalDate
 import java.math.BigDecimal
 import java.util.*
 
 data class Account(val uuid: UUID,
+                   val dbId: Int,
                    var name: String,
                    var balance: BigDecimal,
                    var currency: Currency,
+                   var dateCreated: LocalDate,
                    var iconResName: String,
                    var records: MutableList<Record>?) {
 

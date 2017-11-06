@@ -26,4 +26,8 @@ class DataModule {
     @Provides @Singleton
     fun bindsAccountRepository(repository: com.loh.skint.data.repository.AccountRepository):
             com.loh.skint.domain.repository.AccountRepository = repository
+
+    @Provides @Singleton
+    fun bindsRecordRepository(repository: com.loh.skint.data.repository.RecordRepository):
+            com.loh.skint.domain.repository.RecordRepository = repository
 }

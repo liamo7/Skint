@@ -12,7 +12,7 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
 
     override fun mapEntityToDomain(entity: Record): com.loh.skint.domain.model.Record {
         return com.loh.skint.domain.model.Record(
-                entity.uuid, entity.transferType, entity.amount, entity.date, entity.account
+                entity.uuid, entity.id, entity.transferType, entity.amount, entity.dateOf, entity.account
         )
     }
 
@@ -21,7 +21,7 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
             uuid = domain.uuid
             transferType = domain.transferType
             amount = domain.amount
-            date = domain.date
+            dateOf = domain.date
             account = domain.account
         }
     }
@@ -29,6 +29,7 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
     override fun mapDomainToUi(domain: com.loh.skint.domain.model.Record): com.loh.skint.ui.model.Record {
         return com.loh.skint.ui.model.Record(
                 domain.uuid,
+                domain.dbId,
                 domain.transferType,
                 domain.amount,
                 domain.date,
