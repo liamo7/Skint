@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Skint</string>
     <string name="empty_accounts_list_empty">You have no accounts here</string>
     <string name="empty_accounts_list_subtitle">Tap the \'+\' button below on the right to add a new account.</string>
     <string name="title_account_list">Your Accounts</string>
@@ -10,4 +9,6 @@
     <string name="overview_available_balance">Available Balance</string>
     <string name="overview_last_record">Recent Record</string>
     <string name="title_account_create">Add Account</string>
+    <string name="widget_title_recent_records">Recent Records</string>
+    <string name="widget_view_more">More</string>
 </resources>

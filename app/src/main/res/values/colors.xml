@@ -9,4 +9,5 @@
     <color name="card_title_color">#484E53</color>
     <color name="item_account_list_balance_color">#a4a7a8</color>
     <color name="overview_title">#80FFFFFF</color>
+    <color name="divider">#10000000</color>
 </resources>

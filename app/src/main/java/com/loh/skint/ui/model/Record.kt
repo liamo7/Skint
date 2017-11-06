@@ -9,4 +9,5 @@ data class Record(
         val transferType: TransferType,
         val amount: BigDecimal,
         val date: Date,
-        val accountId: UUID)
+        val accountId: UUID) {
+}

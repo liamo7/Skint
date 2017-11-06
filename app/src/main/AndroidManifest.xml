@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Skint">
 
-        <activity android:name=".ui.account.list.AccountListActivity">
+        <activity
+            android:name=".ui.account.list.AccountListActivity">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <action android:name="android.intent.action.MAIN"/>

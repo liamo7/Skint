@@ -16,6 +16,29 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            dimension "default"
+            applicationIdSuffix '.dev'
+            versionNameSuffix "-dev"
+            resValue "string", "app_name", "Skint Dev"
+            resConfigs "en", "xxhdpi"
+        }
+
+        mock {
+            dimension "default"
+            applicationIdSuffix '.mock'
+            versionNameSuffix "-mock"
+            resValue "string", "app_name", "Skint Mock"
+        }
+
+        prod {
+            dimension "default"
+            resValue "string", "app_name", "Skint"
+        }
+    }
+
     buildTypes {
         release {
             debuggable false

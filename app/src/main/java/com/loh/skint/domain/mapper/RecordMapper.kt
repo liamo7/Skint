@@ -27,7 +27,13 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
     }
 
     override fun mapDomainToUi(domain: com.loh.skint.domain.model.Record): com.loh.skint.ui.model.Record {
-        TODO("not implemented")
+        return com.loh.skint.ui.model.Record(
+                domain.uuid,
+                domain.transferType,
+                domain.amount,
+                domain.date,
+                domain.account.uuid
+        )
     }
 
 }

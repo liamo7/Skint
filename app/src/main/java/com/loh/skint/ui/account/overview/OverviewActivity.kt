@@ -5,6 +5,7 @@ import com.loh.skint.R
 import com.loh.skint.ui.base.activity.BaseDrawerActivity
 import com.loh.skint.ui.model.Account
 import com.loh.skint.util.INTENT_ACCOUNT_ID
+import kotlinx.android.synthetic.main.activity_account_overview.*
 import java.util.*
 import javax.inject.Inject
 
@@ -29,6 +30,8 @@ class OverviewActivity : BaseDrawerActivity(), View {
     override fun renderOverviewCollapse(account: Account) {
         collapseView = findViewById(R.id.overview_view)
         collapseView.setAccount(account)
+
+        recent_records.setRecords(account.records)
     }
 
     override fun onDestroy() {

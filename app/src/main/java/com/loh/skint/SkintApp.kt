@@ -39,14 +39,56 @@ class SkintApp : DaggerApplication() {
             iconResName = "ic_wallet"
         }
 
-        val records = listOf(RecordEntity().apply {
-            uuid = UUID.randomUUID()
-            amount = BigDecimal("30.00")
-            transferType = TransferType.INCOME
-            date = Date()
-            account = a
-        })
-
+        val records = listOf(
+                RecordEntity().apply {
+                    uuid = UUID.randomUUID()
+                    amount = BigDecimal("30.00")
+                    transferType = TransferType.INCOME
+                    date = Date()
+                    account = a
+                },
+                RecordEntity().apply {
+                    uuid = UUID.randomUUID()
+                    amount = BigDecimal("60.00")
+                    transferType = TransferType.INCOME
+                    date = Date()
+                    account = a
+                },
+                RecordEntity().apply {
+                    uuid = UUID.randomUUID()
+                    amount = BigDecimal("70.00")
+                    transferType = TransferType.EXPENSE
+                    date = Date()
+                    account = a
+                },
+                RecordEntity().apply {
+                    uuid = UUID.randomUUID()
+                    amount = BigDecimal("20.00")
+                    transferType = TransferType.INCOME
+                    date = Date()
+                    account = a
+                },
+                RecordEntity().apply {
+                    uuid = UUID.randomUUID()
+                    amount = BigDecimal("40.00")
+                    transferType = TransferType.EXPENSE
+                    date = Date()
+                    account = a
+                },
+                RecordEntity().apply {
+                    uuid = UUID.randomUUID()
+                    amount = BigDecimal("10.00")
+                    transferType = TransferType.INCOME
+                    date = Date()
+                    account = a
+                },
+                RecordEntity().apply {
+                    uuid = UUID.randomUUID()
+                    amount = BigDecimal("60.00")
+                    transferType = TransferType.EXPENSE
+                    date = Date()
+                    account = a
+                })
         a.records = records
 
         repository.add(a).subscribe()
