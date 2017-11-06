@@ -22,14 +22,13 @@ class AccountMapper @Inject constructor(@App val context: Context, val recordMap
     }
 
     override fun mapDomainToEntity(domain: com.loh.skint.domain.model.Account): com.loh.skint.data.entity.Account {
-        val recs = domain.records?.let { recordMapper.mapDomainToEntity(it).toMutableList() }
         return AccountEntity().apply {
             uuid = domain.uuid
             name = domain.name
             currency = domain.currency
             balance = domain.balance
             iconResName = domain.iconResName
-            records = recs
+            records = domain.records?.toList()?.let { recordMapper.mapDomainToEntity(it) }
         }
     }
 

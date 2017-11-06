@@ -2,6 +2,8 @@ package com.loh.skint
 
 import com.facebook.stetho.Stetho
 import com.loh.skint.data.entity.AccountEntity
+import com.loh.skint.data.entity.RecordEntity
+import com.loh.skint.data.entity.TransferType
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
 import com.loh.skint.domain.repository.AccountRepository
 import com.loh.skint.injection.component.DaggerAppComponent
@@ -28,14 +30,26 @@ class SkintApp : DaggerApplication() {
             Stetho.initializeWithDefaults(this)
         }
 
-        repository.add(AccountEntity().apply {
+        val a = AccountEntity().apply {
             uuid = UUID.randomUUID()
             name = "Current Account"
             balance = BigDecimal("300.00")
             currency = AVAILABLE_CURRENCIES[0]
             dateCreated = Date()
             iconResName = "ic_wallet"
-        }).subscribe()
+        }
+
+        val records = listOf(RecordEntity().apply {
+            uuid = UUID.randomUUID()
+            amount = BigDecimal("30.00")
+            transferType = TransferType.INCOME
+            date = Date()
+            account = a
+        })
+
+        a.records = records
+
+        repository.add(a).subscribe()
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

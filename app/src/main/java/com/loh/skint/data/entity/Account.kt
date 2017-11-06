@@ -15,7 +15,6 @@ import java.util.*
     @get:Convert(CurrencyConverter::class) var currency: Currency
     var dateCreated: Date
     var iconResName: String
-
     @get:OneToMany(mappedBy = "account")
-    var records: MutableList<Record>?
+    var records: List<Record>?
 }
