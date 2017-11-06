@@ -7,7 +7,7 @@ import java.util.*
 
 data class Record(
         val uuid: UUID,
-        val transferType: TransferType,
-        val amount: BigDecimal,
-        val date: Date,
-        val account: Account)
+        var transferType: TransferType,
+        var amount: BigDecimal,
+        var date: Date,
+        var account: Account)

@@ -7,7 +7,8 @@ data class Account(val uuid: UUID,
                    val name: String,
                    val balance: String,
                    val currency: Currency,
-                   val iconResId: Int) {
+                   val iconResId: Int,
+                   val records: List<Record>?) {
 
     val prettyBalance = "${currency.symbol} $balance"
 }

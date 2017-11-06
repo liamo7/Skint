@@ -34,6 +34,11 @@ class AccountMapper @Inject constructor(@App val context: Context, val recordMap
 
     override fun mapDomainToUi(domain: com.loh.skint.domain.model.Account): com.loh.skint.ui.model.Account {
         return com.loh.skint.ui.model.Account(
-                domain.uuid, domain.name, domain.balance.toPlainString(), domain.currency, domain.getIconResId(context))
+                domain.uuid,
+                domain.name,
+                domain.balance.toPlainString(),
+                domain.currency,
+                domain.getIconResId(context),
+                domain.records?.let { recordMapper.mapDomainToUi(it) })
     }
 }
