@@ -11,4 +11,11 @@
     <string name="title_account_create">Add Account</string>
     <string name="widget_title_recent_records">Recent Records</string>
     <string name="widget_view_more">More</string>
+    <string name="title_records_list">Records</string>
+    <string name="title_budgets">Budgets</string>
+    <string name="title_goals">Goals</string>
+    <string name="title_charts">Charts</string>
+    <string name="title_reports">Reports</string>
+    <string name="nav_account_close">Leave Account</string>
+    <string name="title_settings">Settings</string>
 </resources>

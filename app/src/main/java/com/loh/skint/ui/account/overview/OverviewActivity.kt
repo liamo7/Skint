@@ -2,14 +2,13 @@ package com.loh.skint.ui.account.overview
 
 import android.os.Bundle
 import com.loh.skint.R
-import com.loh.skint.ui.base.activity.BaseDrawerActivity
+import com.loh.skint.ui.base.activity.BaseAccountDrawerActivity
 import com.loh.skint.ui.model.Account
 import com.loh.skint.ui.model.Record
-import com.loh.skint.util.INTENT_ACCOUNT_ID
 import kotlinx.android.synthetic.main.activity_account_overview.*
 import javax.inject.Inject
 
-class OverviewActivity : BaseDrawerActivity(), View {
+class OverviewActivity : BaseAccountDrawerActivity(), View {
 
     @Inject lateinit var presenter: Presenter
 
@@ -23,7 +22,7 @@ class OverviewActivity : BaseDrawerActivity(), View {
 
     override fun getLayoutRes(): Int = R.layout.activity_account_overview
 
-    override fun getAccountId(): Int = intent.extras[INTENT_ACCOUNT_ID] as Int
+    override fun getMenuItemRes(): Int = R.id.nav_overview
 
     override fun handleInvalidAccount() = finish()
 

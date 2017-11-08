@@ -22,6 +22,7 @@ class OverviewPresenter @Inject constructor(private val getOverview: GetOverview
     }
 
     private fun onSuccess(overviewModel: OverviewModel) {
+        getView().renderNavHeader(overviewModel.account)
         getView().renderOverviewCollapse(overviewModel.account)
         getView().renderRecentRecords(overviewModel.recentRecords)
     }

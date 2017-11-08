@@ -17,9 +17,9 @@ import com.loh.skint.R
 abstract class BaseDrawerActivity : BaseActivity() {
 
     private lateinit var drawerToggle: ActionBarDrawerToggle
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var navigationView: NavigationView
+    protected lateinit var drawerLayout: DrawerLayout
     private lateinit var toolbar: Toolbar
+    protected lateinit var navigationView: NavigationView
 
     private var isRestoredToTop: Boolean = false
 
