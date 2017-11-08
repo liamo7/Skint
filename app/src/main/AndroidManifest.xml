@@ -28,6 +28,10 @@
             android:name=".ui.account.create.AccountCreateActivity"
             android:label="@string/title_account_create"/>
 
+        <activity
+            android:name=".ui.record.list.RecordListActivity"
+            android:label="@string/title_records_list"/>
+
     </application>
 
 </manifest>

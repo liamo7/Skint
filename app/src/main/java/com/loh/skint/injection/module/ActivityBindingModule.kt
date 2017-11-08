@@ -7,6 +7,8 @@ import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.list.AccountListModule
 import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.account.overview.OverviewModule
+import com.loh.skint.ui.record.list.RecordListActivity
+import com.loh.skint.ui.record.list.RecordListModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -22,4 +24,7 @@ internal abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = arrayOf(AccountCreateModule::class))
     internal abstract fun accountCreateActivity(): AccountCreateActivity
+
+    @ContributesAndroidInjector(modules = arrayOf(RecordListModule::class))
+    internal abstract fun recordListActivity(): RecordListActivity
 }
