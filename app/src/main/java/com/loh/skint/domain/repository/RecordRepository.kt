@@ -6,5 +6,7 @@ import org.threeten.bp.LocalDate
 
 interface RecordRepository : Repository<com.loh.skint.data.entity.Record, com.loh.skint.domain.model.Record> {
 
+    fun getAllForAccount(accountId: Int): Single<List<Record>>
+
     fun getRecentRecords(accountId: Int, date: LocalDate): Single<List<Record>>
 }

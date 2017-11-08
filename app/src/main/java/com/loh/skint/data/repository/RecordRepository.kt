@@ -4,11 +4,9 @@ import com.loh.skint.data.entity.RecordEntity
 import com.loh.skint.domain.mapper.RecordMapper
 import com.loh.skint.domain.model.Record
 import com.loh.skint.domain.repository.RecordRepository
+import com.loh.skint.util.timespan
 import io.reactivex.Single
 import io.requery.Persistable
-import io.requery.kotlin.Logical
-import io.requery.meta.AttributeDelegate
-import io.requery.query.Expression
 import io.requery.reactivex.KotlinReactiveEntityStore
 import org.threeten.bp.LocalDate
 import javax.inject.Inject
@@ -21,30 +19,40 @@ class RecordRepository @Inject constructor(private val dataStore: KotlinReactive
     override fun getRecentRecords(accountId: Int, date: LocalDate): Single<List<Record>> {
         return dataStore.select(RecordEntity::class)
                 .where(RecordEntity.ACCOUNT_ID.eq(accountId))
-                .and(matchTimespan(date, LocalDate.now(), RecordEntity.DATE_OF))
+                .and(RecordEntity.DATE_OF.timespan(date, LocalDate.now()))
                 .orderBy(RecordEntity.DATE_OF.asc())
                 .get().observable().toList()
                 .map { mapper.mapEntityToDomain(it) }
     }
 
     override fun get(id: Int): Single<Record> {
-        TODO("not implemented")
+        return dataStore.select(RecordEntity::class)
+                .where(RecordEntity.ID.eq(id))
+                .get().observable().singleOrError()
+                .map { mapper.mapEntityToDomain(it) }
+
+    }
+
+    override fun getAllForAccount(accountId: Int): Single<List<Record>> {
+        return dataStore.select(RecordEntity::class)
+                .where(RecordEntity.ACCOUNT_ID.eq(accountId))
+                .get().observable().toList()
+                .map { mapper.mapEntityToDomain(it) }
     }
 
     override fun getAll(): Single<List<Record>> {
-        TODO("not implemented")
+        return dataStore.select(RecordEntity::class)
+                .get().observable().toList()
+                .map { mapper.mapEntityToDomain(it) }
     }
 
     override fun add(model: com.loh.skint.data.entity.Record): Single<Record> {
-        TODO("not implemented")
+        return dataStore.insert(model)
+                .map { mapper.mapEntityToDomain(it) }
     }
 
     override fun update(model: com.loh.skint.data.entity.Record): Single<Record> {
-        TODO("not implemented")
-    }
-
-    fun matchTimespan(start: LocalDate, end: LocalDate, queryExpression: AttributeDelegate<RecordEntity, LocalDate>):
-            Logical<out Expression<LocalDate>, Any> {
-        return queryExpression.between(start, end)
+        return dataStore.update(model)
+                .map { mapper.mapEntityToDomain(it) }
     }
 }
