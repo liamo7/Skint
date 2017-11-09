@@ -5,6 +5,7 @@ import android.content.Intent
 import com.loh.skint.ui.account.create.AccountCreateActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
+import com.loh.skint.ui.record.list.RecordListActivity
 
 const val INTENT_ACCOUNT_ID = "ACCOUNT_ID"
 
@@ -15,7 +16,7 @@ fun Context.accountOverview(id: Int?): Intent {
 }
 
 fun Context.recordsList(id: Int?): Intent {
-    return Intent(this, OverviewActivity::class.java).apply {
+    return Intent(this, RecordListActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }

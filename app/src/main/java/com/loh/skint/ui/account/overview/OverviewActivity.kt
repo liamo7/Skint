@@ -2,6 +2,7 @@ package com.loh.skint.ui.account.overview
 
 import android.os.Bundle
 import com.loh.skint.R
+import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseAccountDrawerActivity
 import com.loh.skint.ui.model.Account
 import com.loh.skint.ui.model.Record
@@ -23,6 +24,8 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
     override fun getLayoutRes(): Int = R.layout.activity_account_overview
 
     override fun getMenuItemRes(): Int = R.id.nav_overview
+
+    override fun inject(component: ActivityComponent) = component.inject(this)
 
     override fun handleInvalidAccount() = finish()
 

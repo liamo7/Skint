@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.loh.skint.R
+import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.ui.model.Account
@@ -29,6 +30,8 @@ class AccountListActivity : BaseActivity(), View {
     }
 
     override fun getLayoutRes(): Int = R.layout.activity_account_list
+
+    override fun inject(component: ActivityComponent) = component.inject(this)
 
     override fun onDestroy() {
         super.onDestroy()
