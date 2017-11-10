@@ -105,6 +105,7 @@ dependencies {
     implementation deps.timber
 
     // test
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
     testImplementation deps.test.junit
     testImplementation deps.test.mockito
     androidTestImplementation deps.test.runner

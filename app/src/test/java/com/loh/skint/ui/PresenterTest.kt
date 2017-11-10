@@ -1,4 +1,4 @@
-package com.loh.skint
+package com.loh.skint.ui
 
 import com.loh.skint.ui.base.MvpView
 import com.loh.skint.ui.base.presenter.BasePresenter

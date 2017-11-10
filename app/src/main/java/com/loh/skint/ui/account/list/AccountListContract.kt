@@ -5,14 +5,18 @@ import com.loh.skint.ui.base.presenter.MvpPresenter
 import com.loh.skint.ui.model.Account
 
 interface View : MvpView {
-    fun renderAccounts(accounts: List<Account>)
-    fun renderEmptyState()
+    fun showAccounts(accounts: List<Account>)
+    fun hideAccountsList()
+
+    fun showEmptyState()
+    fun hideEmptyState()
+
     fun navigateToAccount(id: Int)
     fun navigateToAccountCreation()
 }
 
 interface Presenter : MvpPresenter<View> {
     fun retrieveAccounts()
-    fun onAccountClicked(account: Account)
+    fun onAccountItemClicked(account: Account)
     fun onFabClicked()
 }

@@ -4,6 +4,7 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 abstract class SingleUseCase<T, P> constructor(private val compositeDisposable: CompositeDisposable) : UseCase<Single<T>, P> {
@@ -12,11 +13,14 @@ abstract class SingleUseCase<T, P> constructor(private val compositeDisposable: 
         addDisposable(getInvoke(params).subscribe({ onSuccess(it) }, { onError(it) }))
     }
 
+    fun execute(singleObserver: DisposableSingleObserver<T>, params: P) {
+        addDisposable(getInvoke(params).subscribeWith(singleObserver))
+    }
+
     override fun getInvoke(params: P): Single<T> {
         return build(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-
     }
 
     override fun addDisposable(disposable: Disposable) {
@@ -24,6 +28,6 @@ abstract class SingleUseCase<T, P> constructor(private val compositeDisposable: 
     }
 
     override fun dispose() {
-        compositeDisposable.dispose()
+        if (!compositeDisposable.isDisposed) compositeDisposable.dispose()
     }
 }
