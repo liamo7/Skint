@@ -9,8 +9,10 @@ interface View : AccountView {
     fun handleInvalidAccount()
     fun renderOverviewCollapse(account: Account)
     fun renderRecentRecords(recentRecords: List<Record>)
+    fun navigateToRecordCreation()
 }
 
 interface Presenter : MvpPresenter<View> {
     fun loadAccount()
+    fun onFabClicked()
 }

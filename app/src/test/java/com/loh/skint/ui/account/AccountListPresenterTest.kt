@@ -3,6 +3,7 @@ package com.loh.skint.ui.account
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
 import com.loh.skint.domain.usecase.account.GetAccounts
 import com.loh.skint.ui.account.list.AccountListPresenter
+import com.loh.skint.ui.account.list.Presenter
 import com.loh.skint.ui.account.list.View
 import com.loh.skint.ui.model.Account
 import com.nhaarman.mockito_kotlin.KArgumentCaptor
@@ -27,7 +28,7 @@ class AccountListPresenterTest {
     @Mock private lateinit var mockUsecase: GetAccounts
 
     private lateinit var captor: KArgumentCaptor<DisposableSingleObserver<List<Account>>>
-    private lateinit var presenter: AccountListPresenter
+    private lateinit var presenter: Presenter
 
     @Before
     fun setUp() {

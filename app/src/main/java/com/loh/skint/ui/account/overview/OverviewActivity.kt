@@ -19,6 +19,8 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
         super.onCreate(savedInstanceState)
         presenter.attach(this)
         presenter.loadAccount()
+
+        fab_add_record.setOnClickListener { presenter.onFabClicked() }
     }
 
     override fun getLayoutRes(): Int = R.layout.activity_account_overview
@@ -37,6 +39,8 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
     override fun renderRecentRecords(recentRecords: List<Record>) {
         recent_records.setRecords(recentRecords)
     }
+
+    override fun navigateToRecordCreation() {}
 
     override fun onDestroy() {
         super.onDestroy()
