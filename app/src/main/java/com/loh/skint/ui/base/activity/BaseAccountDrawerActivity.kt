@@ -24,6 +24,7 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), AccountView, Na
 
     override fun onResume() {
         super.onResume()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         navigationView.setCheckedItem(getMenuItemRes())
     }
 
@@ -51,6 +52,7 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), AccountView, Na
             R.id.nav_settings -> settings()
             else -> null
         }
+        drawerLayout.closeDrawer(Gravity.START)
 
         if (item.itemId == R.id.nav_sign_out) {
             startActivity(accountListIntent().bringToFront().clearHistory())
@@ -63,7 +65,6 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), AccountView, Na
             return true
         }
 
-        drawerLayout.closeDrawer(Gravity.START)
         return false
     }
 }
