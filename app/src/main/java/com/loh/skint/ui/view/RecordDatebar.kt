@@ -4,18 +4,14 @@ import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
+import android.view.View.OnClickListener
 import com.loh.skint.R
 import kotlinx.android.synthetic.main.record_datebar.view.*
 
 class RecordDatebar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
         ConstraintLayout(context, attrs, defStyle) {
 
-    interface ActionListener {
-        fun onNextActionClicked()
-        fun onPreviousActionClicked()
-    }
-
-    private var listener: ActionListener? = null
+    private lateinit var listener: ActionListener
 
     init {
         View.inflate(context, R.layout.record_datebar, this)
@@ -23,16 +19,12 @@ class RecordDatebar @JvmOverloads constructor(context: Context, attrs: Attribute
 
     fun setActionListener(listener: ActionListener) {
         this.listener = listener
-        bindActions()
+        datebar_next.setOnClickListener(OnClickListener { this.listener.onNextActionClicked() })
+        datebar_previous.setOnClickListener(OnClickListener { this.listener.onPreviousActionClicked() })
     }
+}
 
-    private fun bindActions() {
-        // nested 'it' in lambda of click listeners require named 'outer' lambda parameter
-        listener?.let { l ->
-            {
-                datebar_previous.setOnClickListener { l.onPreviousActionClicked() }
-                datebar_next.setOnClickListener { l.onNextActionClicked() }
-            }
-        }
-    }
+interface ActionListener {
+    fun onNextActionClicked()
+    fun onPreviousActionClicked()
 }

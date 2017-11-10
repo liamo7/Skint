@@ -10,12 +10,13 @@ import com.loh.skint.injection.module.ActivityModule
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    lateinit var activityComponent: ActivityComponent
+    val activityComponent: ActivityComponent by lazy {
+        (application as SkintApp).appComponent.plus(ActivityModule(this))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutRes())
-        activityComponent = (application as SkintApp).appComponent.plus(ActivityModule(this))
         inject(activityComponent)
     }
 

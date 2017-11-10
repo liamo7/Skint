@@ -14,11 +14,12 @@ import com.loh.skint.util.inflate
 
 abstract class BaseFragment : Fragment() {
 
-    lateinit var fragmentComponent: FragmentComponent
+    val fragmentComponent: FragmentComponent by lazy {
+        (activity as BaseActivity).activityComponent.plus(FragmentModule(this))
+    }
 
     override fun onAttach(context: Context) {
         if (context is BaseActivity) {
-            fragmentComponent = context.activityComponent.plus(FragmentModule(this))
             inject(fragmentComponent)
         }
         super.onAttach(context)
