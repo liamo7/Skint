@@ -4,12 +4,19 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.loh.skint.injection.scope.ActivityScoped
+import com.loh.skint.util.DateRange
 import javax.inject.Inject
 
 @ActivityScoped
 class RecordListPagerAdapter @Inject constructor(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment = RecordListFragment()
+    var dateRange: DateRange = DateRange.DAY
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
-    override fun getCount(): Int = 100
+    override fun getItem(position: Int): Fragment = RecordListFragment.newInstance(position, dateRange)
+
+    override fun getCount(): Int = dateRange.timespan
 }
