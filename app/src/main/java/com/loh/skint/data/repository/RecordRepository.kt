@@ -4,6 +4,8 @@ import com.loh.skint.data.entity.RecordEntity
 import com.loh.skint.domain.mapper.RecordMapper
 import com.loh.skint.domain.model.Record
 import com.loh.skint.domain.repository.RecordRepository
+import com.loh.skint.util.DateRange
+import com.loh.skint.util.calculateTimespan
 import com.loh.skint.util.timespan
 import io.reactivex.Single
 import io.requery.Persistable
@@ -20,6 +22,15 @@ class RecordRepository @Inject constructor(private val dataStore: KotlinReactive
         return dataStore.select(RecordEntity::class)
                 .where(RecordEntity.ACCOUNT_ID.eq(accountId))
                 .and(RecordEntity.DATE_OF.timespan(date, LocalDate.now()))
+                .orderBy(RecordEntity.DATE_OF.asc())
+                .get().observable().toList()
+                .map { mapper.mapEntityToDomain(it) }
+    }
+
+    override fun getRange(accountId: Int, date: LocalDate, dateRange: DateRange): Single<List<Record>> {
+        return dataStore.select(RecordEntity::class)
+                .where(RecordEntity.ACCOUNT_ID.eq(accountId))
+                .and(RecordEntity.DATE_OF.timespan(calculateTimespan(dateRange, date)))
                 .orderBy(RecordEntity.DATE_OF.asc())
                 .get().observable().toList()
                 .map { mapper.mapEntityToDomain(it) }

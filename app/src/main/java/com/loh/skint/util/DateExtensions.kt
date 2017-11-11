@@ -1,8 +1,10 @@
 package com.loh.skint.util
 
+import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.temporal.ChronoUnit
+import org.threeten.bp.temporal.TemporalAdjusters.*
 import java.io.Serializable
 
 
@@ -46,5 +48,14 @@ fun calculateDateFromViewPager(position: Int, dateRange: DateRange): LocalDate {
         is DateRange.WEEK -> START_OF_TIME.plusDays(position.toLong())
         is DateRange.MONTH -> START_OF_TIME.plusDays(position.toLong())
         is DateRange.YEAR -> START_OF_TIME.plusDays(position.toLong())
+    }
+}
+
+fun calculateTimespan(dateRange: DateRange, date: LocalDate): Pair<LocalDate, LocalDate> {
+    return when (dateRange) {
+        is DateRange.YEAR -> date.with(firstDayOfYear()) to date.with(lastDayOfYear())
+        is DateRange.MONTH -> date.with(firstDayOfMonth()) to date.with(lastDayOfMonth())
+        is DateRange.WEEK -> date.with(DayOfWeek.MONDAY) to date.with(DayOfWeek.SUNDAY)
+        is DateRange.DAY -> date to date
     }
 }

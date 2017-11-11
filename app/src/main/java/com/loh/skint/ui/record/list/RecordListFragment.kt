@@ -1,20 +1,24 @@
 package com.loh.skint.ui.record.list
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.loh.skint.R
 import com.loh.skint.injection.component.FragmentComponent
+import com.loh.skint.ui.account.BaseAccountDrawerActivity
 import com.loh.skint.ui.base.fragment.BaseFragment
+import com.loh.skint.ui.model.Record
 import com.loh.skint.ui.view.ActionListener
 import com.loh.skint.ui.view.RecordDatebar
-import com.loh.skint.util.DateRange
-import com.loh.skint.util.calculateDateFromViewPager
-import com.loh.skint.util.scrollLeft
-import com.loh.skint.util.scrollRight
+import com.loh.skint.util.*
 import kotlinx.android.synthetic.main.activity_record_list.*
+import kotlinx.android.synthetic.main.fragment_record_list.*
 import javax.inject.Inject
 
-class RecordListFragment : BaseFragment(), ActionListener {
+class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.record.list.View {
+
+    @Inject lateinit var presenter: Presenter
+    @Inject lateinit var listAdapter: RecordListAdapter
 
     companion object {
         private val ARG_POSITION = "ARG_POSITION"
@@ -30,9 +34,12 @@ class RecordListFragment : BaseFragment(), ActionListener {
         }
     }
 
-    @Inject lateinit var presenter: Presenter
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        presenter.attach(this)
+
+        recycler_view.layoutManager = LinearLayoutManager(activity)
+        recycler_view.adapter = listAdapter
+
         val datebar = view.findViewById<RecordDatebar>(R.id.datebar)
         datebar.setActionListener(this)
 
@@ -40,6 +47,13 @@ class RecordListFragment : BaseFragment(), ActionListener {
         val date = calculateDateFromViewPager(arguments.getInt(ARG_POSITION), dateRange)
 
         datebar.setDate(date, dateRange)
+
+        presenter.retrieveRecords()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter.detach()
     }
 
     override fun getLayoutRes(): Int = R.layout.fragment_record_list
@@ -53,4 +67,22 @@ class RecordListFragment : BaseFragment(), ActionListener {
     override fun onPreviousActionClicked() {
         if (activity is RecordListActivity) activity.viewpager.scrollLeft()
     }
+
+    override fun getAccountId(): Int? {
+        if (activity is BaseAccountDrawerActivity) {
+            return (activity as BaseAccountDrawerActivity).getAccountId()
+        }
+        return null
+    }
+
+    override fun displayEmptyState() = empty_container.show()
+
+    override fun hideEmptyState() = empty_container.hide()
+
+    override fun displayRecords(records: List<Record>) {
+        recycler_view.show()
+        listAdapter.records = records
+    }
+
+    override fun hideRecords() = recycler_view.hide()
 }

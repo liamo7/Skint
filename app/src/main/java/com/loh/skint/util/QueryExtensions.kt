@@ -9,3 +9,8 @@ fun <V> AttributeDelegate<V, LocalDate>.timespan(startDate: LocalDate, endDate: 
         Logical<out Expression<LocalDate>, Any> {
     return between(startDate, endDate)
 }
+
+fun <V> AttributeDelegate<V, LocalDate>.timespan(pair: Pair<LocalDate, LocalDate>):
+        Logical<out Expression<LocalDate>, Any> {
+    return timespan(pair.first, pair.second)
+}
