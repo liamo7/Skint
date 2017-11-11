@@ -3,7 +3,7 @@ package com.loh.skint.ui.record.list
 import android.os.Bundle
 import com.loh.skint.R
 import com.loh.skint.injection.component.ActivityComponent
-import com.loh.skint.ui.base.activity.BaseAccountDrawerActivity
+import com.loh.skint.ui.account.BaseAccountDrawerActivity
 import kotlinx.android.synthetic.main.activity_record_list.*
 import javax.inject.Inject
 

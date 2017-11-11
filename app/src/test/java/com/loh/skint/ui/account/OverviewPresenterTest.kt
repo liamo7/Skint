@@ -102,18 +102,6 @@ class OverviewPresenterTest {
         verify(mockView).renderRecentRecords(overviewModel.recentRecords)
     }
 
-    @Test
-    fun test_nav_drawer_profile_updated() {
-        `when`(mockView.getAccountId()).thenReturn(0)
-        presenter.loadAccount()
-
-        verify(mockView).getAccountId()
-        verify(mockUsecase).execute(captor.capture(), eq(0))
-        captor.firstValue.onSuccess(overviewModel)
-
-        verify(mockView).renderNavHeader(overviewModel.account)
-    }
-
     @After
     fun tearDown() {
         presenter.detach()

@@ -1,4 +1,4 @@
-package com.loh.skint.ui.base.activity
+package com.loh.skint.ui.account
 
 import android.os.Bundle
 import android.support.annotation.IdRes
@@ -9,16 +9,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.loh.skint.R
 import com.loh.skint.ui.base.AccountView
+import com.loh.skint.ui.base.activity.BaseDrawerActivity
 import com.loh.skint.ui.model.Account
 import com.loh.skint.util.*
+import javax.inject.Inject
 
-abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), AccountView, NavigationView.OnNavigationItemSelectedListener {
+abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), View, AccountView, NavigationView.OnNavigationItemSelectedListener {
+
+    @Inject lateinit var drawerPresenter: Presenter
 
     @IdRes
     abstract fun getMenuItemRes(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        drawerPresenter.attach(this)
+        drawerPresenter.loadAccount()
         navigationView.setNavigationItemSelectedListener(this)
     }
 
@@ -26,6 +32,11 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), AccountView, Na
         super.onResume()
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         navigationView.setCheckedItem(getMenuItemRes())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        drawerPresenter.detach()
     }
 
     override fun renderNavHeader(account: Account) {

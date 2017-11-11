@@ -31,7 +31,6 @@ class OverviewPresenter @Inject constructor(private val getOverview: GetOverview
 
     inner class Observer : DisposableSingleObserver<OverviewModel>() {
         override fun onSuccess(model: OverviewModel) {
-            getView().renderNavHeader(model.account)
             getView().renderOverviewCollapse(model.account)
             getView().renderRecentRecords(model.recentRecords)
         }
