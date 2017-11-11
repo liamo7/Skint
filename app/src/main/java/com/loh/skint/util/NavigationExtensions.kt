@@ -1,5 +1,6 @@
 package com.loh.skint.util
 
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import com.loh.skint.ui.account.create.AccountCreateActivity
@@ -65,4 +66,17 @@ fun Intent.clearHistory(): Intent {
 fun Intent.bringToFront(): Intent {
     addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
     return this
+}
+
+fun Intent.eqClasses(arg1: ComponentName?): Boolean {
+    return component?.className.equals(arg1?.className)
+}
+
+fun Intent.isOverview(): Boolean {
+    if (component.className != null) {
+//        component?.className?.equals(OverviewActivity::class.java.name)
+        return component.className == OverviewActivity::class.java.name
+    }
+
+    return false
 }
