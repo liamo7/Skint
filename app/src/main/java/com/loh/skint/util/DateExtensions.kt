@@ -31,12 +31,12 @@ sealed class DateRange(val timespan: Int) : Serializable {
     object YEAR : DateRange(YEARS_BETWEEN)
 }
 
-fun LocalDate.calculateIndexFromRange(dateRange: DateRange): Int {
+fun LocalDate.calculateViewpagerPositionFromDateRange(dateRange: DateRange): Int {
     return when (dateRange) {
-        is DateRange.DAY -> daysBetween(START_OF_TIME)
-        is DateRange.WEEK -> weeksBetween(START_OF_TIME)
-        is DateRange.MONTH -> monthsBetween(START_OF_TIME)
-        is DateRange.YEAR -> yearsBetween(START_OF_TIME)
+        is DateRange.DAY -> START_OF_TIME.daysBetween(this)
+        is DateRange.WEEK -> START_OF_TIME.weeksBetween(this)
+        is DateRange.MONTH -> START_OF_TIME.monthsBetween(this)
+        is DateRange.YEAR -> START_OF_TIME.yearsBetween(this)
     }
 }
 

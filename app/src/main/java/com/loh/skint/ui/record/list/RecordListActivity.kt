@@ -4,7 +4,9 @@ import android.os.Bundle
 import com.loh.skint.R
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
+import com.loh.skint.util.calculateViewpagerPositionFromDateRange
 import kotlinx.android.synthetic.main.activity_record_list.*
+import org.threeten.bp.LocalDate
 import javax.inject.Inject
 
 class RecordListActivity : BaseAccountDrawerActivity() {
@@ -14,6 +16,7 @@ class RecordListActivity : BaseAccountDrawerActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewpager.adapter = pagerAdapter
+        viewpager.currentItem = LocalDate.now().calculateViewpagerPositionFromDateRange(pagerAdapter.dateRange)
     }
 
     override fun getLayoutRes(): Int = R.layout.activity_record_list

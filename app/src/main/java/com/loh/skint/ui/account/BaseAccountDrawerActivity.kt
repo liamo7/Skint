@@ -24,7 +24,7 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), View, AccountVi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         drawerPresenter.attach(this)
-        drawerPresenter.loadAccount()
+        //drawerPresenter.loadAccount()
         navigationView.setNavigationItemSelectedListener(this)
     }
 
