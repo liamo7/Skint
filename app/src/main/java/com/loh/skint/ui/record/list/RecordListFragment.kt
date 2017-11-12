@@ -1,6 +1,8 @@
 package com.loh.skint.ui.record.list
 
 import android.os.Bundle
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.DividerItemDecoration.VERTICAL
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.loh.skint.R
@@ -38,6 +40,7 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
         presenter.attach(this)
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.adapter = listAdapter
+        recycler_view.addItemDecoration(DividerItemDecoration(activity, VERTICAL))
         datebar.setActionListener(this)
         presenter.retrieveRecords()
     }

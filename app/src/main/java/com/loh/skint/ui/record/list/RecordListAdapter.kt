@@ -7,7 +7,8 @@ import com.loh.skint.R
 import com.loh.skint.injection.scope.FragmentScoped
 import com.loh.skint.ui.model.Record
 import com.loh.skint.util.inflate
-import kotlinx.android.synthetic.main.item_recent_record.view.*
+import kotlinx.android.synthetic.main.item_record.view.*
+import org.threeten.bp.format.DateTimeFormatter
 import javax.inject.Inject
 
 @FragmentScoped
@@ -20,12 +21,16 @@ class RecordListAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.inflate(R.layout.item_recent_record))
+        return ViewHolder(parent.inflate(R.layout.item_record))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val record = records[position]
-        holder.itemView.item_recent_record_amount.text = record.amount.toPlainString()
+        holder.itemView.item_record_name.text = record.amount.toPlainString()
+        holder.itemView.item_record_date.text = record.date.format(DateTimeFormatter.ofPattern("E dd MMM YYYY"))
+//        holder.itemView.item_record_icon = record.amount.toPlainString()
+//        holder.itemView.item_record_balance.text = record.amount.toPlainString()
+
     }
 
     override fun getItemCount() = records.size
