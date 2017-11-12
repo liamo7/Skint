@@ -111,5 +111,6 @@ dependencies {
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 
+    implementation 'com.afollestad.material-dialogs:core:0.9.5.0'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.0.5'
 }

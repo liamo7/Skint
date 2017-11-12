@@ -22,4 +22,14 @@
     <string name="action_next">Next</string>
     <string name="records_none_message">There are no records available</string>
     <string name="record_empty_subtitle">Tap the \'+\' button below on the right to add a transaction.</string>
+    <string name="change_date_range">Change Date Range</string>
+    <string name="title_date_range_select">Choose Date Range</string>
+    <string name="choose">Choose</string>
+
+    <string-array name="date_ranges">
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+    </string-array>
 </resources>

@@ -30,7 +30,7 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun inject(component: FragmentComponent)
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container?.inflate(getLayoutRes())
     }
 }

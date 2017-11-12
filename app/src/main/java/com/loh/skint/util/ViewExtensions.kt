@@ -16,7 +16,9 @@ fun ViewPager.scrollLeft() {
 }
 
 fun ViewPager.scrollRight() {
-    if (currentItem < adapter.count) setCurrentItem(currentItem + 1, true)
+    adapter?.let { a ->
+        if (currentItem < a.count) setCurrentItem(currentItem + 1, true)
+    }
 }
 
 fun View.show() {

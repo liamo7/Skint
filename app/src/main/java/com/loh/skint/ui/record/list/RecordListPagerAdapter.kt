@@ -10,11 +10,14 @@ import javax.inject.Inject
 @ActivityScoped
 class RecordListPagerAdapter @Inject constructor(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
-    var dateRange: DateRange = DateRange.DAY
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private var dateRange: DateRange = DateRange.DAY
+
+    fun setDateRange(dateRange: DateRange) {
+        this.dateRange = dateRange
+        notifyDataSetChanged()
+    }
+
+    fun getDateRange() = this.dateRange
 
     override fun getItem(position: Int): Fragment = RecordListFragment.newInstance(position, dateRange)
 

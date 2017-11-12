@@ -7,7 +7,6 @@ import org.threeten.bp.temporal.ChronoUnit
 import org.threeten.bp.temporal.TemporalAdjusters.*
 import java.io.Serializable
 
-
 val START_OF_TIME = LocalDate.of(1900, 1, 1)
 val END_OF_TIME = LocalDate.of(2099, 12, 1)
 
@@ -26,11 +25,15 @@ fun LocalDate.weeksBetween(date: LocalDate) = ChronoUnit.WEEKS.between(this, dat
 fun LocalDate.monthsBetween(date: LocalDate) = ChronoUnit.MONTHS.between(this, date).toInt()
 fun LocalDate.yearsBetween(date: LocalDate) = ChronoUnit.YEARS.between(this, date).toInt()
 
-sealed class DateRange(val timespan: Int) : Serializable {
-    object DAY : DateRange(DAYS_BETWEEN)
-    object WEEK : DateRange(WEEKS_BETWEEN)
-    object MONTH : DateRange(MONTHS_BETWEEN)
-    object YEAR : DateRange(YEARS_BETWEEN)
+sealed class DateRange(val id: Int, val timespan: Int) : Serializable {
+    object DAY : DateRange(0, DAYS_BETWEEN)
+    object WEEK : DateRange(1, WEEKS_BETWEEN)
+    object MONTH : DateRange(2, MONTHS_BETWEEN)
+    object YEAR : DateRange(3, YEARS_BETWEEN)
+
+    companion object {
+        fun values() = listOfNotNull(DAY, WEEK, MONTH, YEAR)
+    }
 }
 
 fun LocalDate.calculateViewpagerPositionFromDateRange(dateRange: DateRange): Int {
@@ -45,9 +48,9 @@ fun LocalDate.calculateViewpagerPositionFromDateRange(dateRange: DateRange): Int
 fun calculateDateFromViewPager(position: Int, dateRange: DateRange): LocalDate {
     return when (dateRange) {
         is DateRange.DAY -> START_OF_TIME.plusDays(position.toLong())
-        is DateRange.WEEK -> START_OF_TIME.plusDays(position.toLong())
-        is DateRange.MONTH -> START_OF_TIME.plusDays(position.toLong())
-        is DateRange.YEAR -> START_OF_TIME.plusDays(position.toLong())
+        is DateRange.WEEK -> START_OF_TIME.plusWeeks(position.toLong())
+        is DateRange.MONTH -> START_OF_TIME.plusMonths(position.toLong())
+        is DateRange.YEAR -> START_OF_TIME.plusYears(position.toLong())
     }
 }
 

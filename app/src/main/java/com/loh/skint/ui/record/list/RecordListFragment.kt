@@ -55,11 +55,11 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
     override fun inject(component: FragmentComponent) = component.inject(this)
 
     override fun onNextActionClicked() {
-        if (activity is RecordListActivity) activity.viewpager.scrollRight()
+        if (activity is RecordListActivity) (activity as RecordListActivity).viewpager.scrollRight()
     }
 
     override fun onPreviousActionClicked() {
-        if (activity is RecordListActivity) activity.viewpager.scrollLeft()
+        if (activity is RecordListActivity) (activity as RecordListActivity).viewpager.scrollLeft()
     }
 
     override fun getAccountId(): Int? {
@@ -85,10 +85,10 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
     }
 
     override fun getDateRange(): DateRange {
-        return arguments.getSerializable(ARG_DATE_RANGE) as DateRange
+        return arguments?.getSerializable(ARG_DATE_RANGE) as DateRange
     }
 
     override fun getDate(): LocalDate {
-        return calculateDateFromViewPager(arguments.getInt(ARG_POSITION), getDateRange())
+        return calculateDateFromViewPager(arguments!!.getInt(ARG_POSITION), getDateRange())
     }
 }
