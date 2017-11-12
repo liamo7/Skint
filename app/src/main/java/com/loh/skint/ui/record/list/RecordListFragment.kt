@@ -42,6 +42,7 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
         recycler_view.adapter = listAdapter
         recycler_view.addItemDecoration(DividerItemDecoration(activity, VERTICAL))
         datebar.setActionListener(this)
+        fab_add_record.setOnClickListener { presenter.onAddRecord() }
         presenter.retrieveRecords()
     }
 
@@ -90,5 +91,9 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
 
     override fun getDate(): LocalDate {
         return calculateDateFromViewPager(arguments!!.getInt(ARG_POSITION), getDateRange())
+    }
+
+    override fun navigateToRecordCreation(accountId: Int) {
+        startActivity(activity?.recordCreateIntent(accountId))
     }
 }

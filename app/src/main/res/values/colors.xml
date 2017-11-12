@@ -10,4 +10,36 @@
     <color name="item_account_list_balance_color">#a4a7a8</color>
     <color name="overview_title">#80FFFFFF</color>
     <color name="divider">#10000000</color>
+
+
+    <color name="category_salary">#1abc9c</color>
+    <color name="category_loan">#3498db</color>
+    <color name="category_gifts">#9b59b6</color>
+    <color name="category_other">#34495e</color>
+
+    <color name="category_car">#2ecc71</color>
+    <color name="category_travel">#2c3e50</color>
+    <color name="category_food_drink">#2ecc71</color>
+    <color name="category_personal">#16a085</color>
+    <color name="category_bills">#e74c3c</color>
+    <color name="category_entertainment">#7f8c8d</color>
+    <color name="category_home">#0063B1</color>
+    <color name="category_utilities">#f1c40f</color>
+    <color name="category_shopping">#d35400</color>
+    <color name="category_accommodation">#6A1B9A</color>
+    <color name="category_health">#c0392b</color>
+    <color name="category_clothing">#1A237E</color>
+    <color name="category_transport">#95a5a6</color>
+    <color name="category_groceries">#546E7A</color>
+    <color name="category_drinks">#6D4C41</color>
+    <color name="category_hobbies">#69797E</color>
+    <color name="category_pets">#DA3B01</color>
+    <color name="category_education">#00CC6A</color>
+    <color name="category_cinema">#4C4A48</color>
+    <color name="category_kids">#0063B1</color>
+    <color name="category_rent">#E81123</color>
+    <color name="category_mortgage">#744DA9</color>
+    <color name="category_phone">#0063B1</color>
+    <color name="category_savings">#107C10</color>
+
 </resources>

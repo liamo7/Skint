@@ -6,6 +6,8 @@ import android.content.Intent
 import com.loh.skint.ui.account.create.AccountCreateActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
+import com.loh.skint.ui.category.list.CategoryListActivity
+import com.loh.skint.ui.record.create.RecordCreateActivity
 import com.loh.skint.ui.record.list.RecordListActivity
 
 const val INTENT_ACCOUNT_ID = "ACCOUNT_ID"
@@ -56,6 +58,16 @@ fun Context.accountListIntent(): Intent {
 
 fun Context.accountCreateIntent(): Intent {
     return Intent(this, AccountCreateActivity::class.java)
+}
+
+fun Context.recordCreateIntent(accountId: Int): Intent {
+    return Intent(this, RecordCreateActivity::class.java).apply {
+        putExtra(INTENT_ACCOUNT_ID, accountId)
+    }
+}
+
+fun Context.categoryListActivity(): Intent {
+    return Intent(this, CategoryListActivity::class.java)
 }
 
 fun Intent.clearHistory(): Intent {

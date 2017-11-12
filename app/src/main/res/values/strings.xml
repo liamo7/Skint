@@ -32,4 +32,38 @@
         <item>Month</item>
         <item>Year</item>
     </string-array>
+
+    <string name="category_salary">Salary</string>
+    <string name="category_loan">Loan</string>
+    <string name="category_gifts">Gifts</string>
+    <string name="category_other">Other</string>
+
+    <string name="category_car">Car</string>
+    <string name="category_travel">Travel</string>
+    <string name="category_food_drink">Food &amp; Drink</string>
+    <string name="category_personal">Personal</string>
+    <string name="category_bills">Bills</string>
+    <string name="category_entertainment">Entertainment</string>
+    <string name="category_home">Home</string>
+    <string name="category_utilities">Utilities</string>
+    <string name="category_shopping">Shopping</string>
+    <string name="category_accommodation">Accommodation</string>
+    <string name="category_health">Health</string>
+    <string name="category_clothing">Clothing</string>
+    <string name="category_transport">Transportation</string>
+    <string name="category_groceries">Groceries</string>
+    <string name="category_drinks">Drinks</string>
+    <string name="category_hobbies">Hobbies</string>
+    <string name="category_pets">Pets</string>
+    <string name="category_education">Education</string>
+    <string name="category_cinema">Cinema</string>
+    <string name="category_kids">Kids</string>
+    <string name="category_rent">Rent</string>
+    <string name="category_mortgage">Mortgage</string>
+    <string name="category_phone">Phone</string>
+    <string name="category_savings">Savings</string>
+
+    <string name="title_records_create">Add</string>
+    <string name="title_category_list">Categories</string>
+
 </resources>

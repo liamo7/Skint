@@ -33,7 +33,8 @@ class RecordListPresenter @Inject constructor(private val getRecords: GetRecords
     }
 
     override fun onAddRecord() {
-        TODO("not implemented")
+        val id = getView().getAccountId()
+        id?.let { getView().navigateToRecordCreation(it) }
     }
 
     private fun handleEmptyState() {

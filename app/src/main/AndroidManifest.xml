@@ -32,6 +32,14 @@
             android:name=".ui.record.list.RecordListActivity"
             android:label="@string/title_records_list"/>
 
+        <activity
+            android:name=".ui.record.create.RecordCreateActivity"
+            android:label="@string/title_records_create"/>
+
+        <activity
+            android:name=".ui.category.list.CategoryListActivity"
+            android:label="@string/title_category_list"/>
+
     </application>
 
 </manifest>

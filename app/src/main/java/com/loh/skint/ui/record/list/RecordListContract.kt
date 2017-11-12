@@ -14,6 +14,7 @@ interface View : AccountView {
     fun renderDatebar(date: LocalDate, dateRange: DateRange)
     fun getDateRange(): DateRange
     fun getDate(): LocalDate
+    fun navigateToRecordCreation(accountId: Int)
 }
 
 interface Presenter : MvpPresenter<View> {
