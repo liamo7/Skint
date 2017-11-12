@@ -9,10 +9,10 @@ import com.loh.skint.ui.account.BaseAccountDrawerActivity
 import com.loh.skint.ui.base.fragment.BaseFragment
 import com.loh.skint.ui.model.Record
 import com.loh.skint.ui.view.ActionListener
-import com.loh.skint.ui.view.RecordDatebar
 import com.loh.skint.util.*
 import kotlinx.android.synthetic.main.activity_record_list.*
 import kotlinx.android.synthetic.main.fragment_record_list.*
+import org.threeten.bp.LocalDate
 import javax.inject.Inject
 
 class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.record.list.View {
@@ -36,24 +36,15 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         presenter.attach(this)
-
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.adapter = listAdapter
-
-        val datebar = view.findViewById<RecordDatebar>(R.id.datebar)
         datebar.setActionListener(this)
-
-        val dateRange = arguments.getSerializable(ARG_DATE_RANGE) as DateRange
-        val date = calculateDateFromViewPager(arguments.getInt(ARG_POSITION), dateRange)
-
-        datebar.setDate(date, dateRange)
-
         presenter.retrieveRecords()
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         presenter.detach()
+        super.onDestroyView()
     }
 
     override fun getLayoutRes(): Int = R.layout.fragment_record_list
@@ -85,4 +76,16 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
     }
 
     override fun hideRecords() = recycler_view.hide()
+
+    override fun renderDatebar(date: LocalDate, dateRange: DateRange) {
+        datebar.setDate(date, dateRange)
+    }
+
+    override fun getDateRange(): DateRange {
+        return arguments.getSerializable(ARG_DATE_RANGE) as DateRange
+    }
+
+    override fun getDate(): LocalDate {
+        return calculateDateFromViewPager(arguments.getInt(ARG_POSITION), getDateRange())
+    }
 }

@@ -1,24 +1,30 @@
 package com.loh.skint.ui.record.list
 
 import com.loh.skint.domain.usecase.record.GetRecords
+import com.loh.skint.injection.scope.FragmentScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
 import com.loh.skint.ui.model.Record
-import com.loh.skint.util.DateRange
 import io.reactivex.observers.DisposableSingleObserver
-import org.threeten.bp.LocalDate
 import timber.log.Timber
 import javax.inject.Inject
 
-class RecordListPresenter @Inject constructor(val getRecords: GetRecords) : BasePresenter<View>(), Presenter {
+@FragmentScoped
+class RecordListPresenter @Inject constructor(private val getRecords: GetRecords) : BasePresenter<View>(), Presenter {
 
     override fun retrieveRecords() {
         val accountId = getView().getAccountId()
+
+        val date = getView().getDate()
+        val range = getView().getDateRange()
+
+        getView().renderDatebar(date, range)
+
         if (accountId == null) {
             handleEmptyState()
             return
         }
 
-        val params = GetRecords.Params(accountId, DateRange.DAY, LocalDate.now())
+        val params = GetRecords.Params(accountId, range, date)
         getRecords.execute(Observer(), params)
     }
 
@@ -33,14 +39,12 @@ class RecordListPresenter @Inject constructor(val getRecords: GetRecords) : Base
     private fun handleEmptyState() {
         getView().displayEmptyState()
         getView().hideRecords()
-
     }
 
     override fun cleanUp() = getRecords.dispose()
 
     inner class Observer : DisposableSingleObserver<List<Record>>() {
         override fun onSuccess(records: List<Record>) {
-            Timber.d("Records: ${records.size}")
             if (records.isEmpty()) {
                 handleEmptyState()
             } else {
