@@ -20,4 +20,6 @@
     <string name="title_settings">Settings</string>
     <string name="action_previous">Previous</string>
     <string name="action_next">Next</string>
+    <string name="records_none_message">There are no records available</string>
+    <string name="record_empty_subtitle">Tap the \'+\' button below on the right to add a transaction.</string>
 </resources>
