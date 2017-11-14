@@ -8,18 +8,17 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AccountMapper @Inject constructor(@App val context: Context, val recordMapper: RecordMapper) : Mapper<com.loh.skint.data.entity.Account, com.loh.skint.domain.model.Account, com.loh.skint.ui.model.Account> {
+class AccountMapper @Inject constructor(@App val context: Context, val recordMapper: RecordMapper) : Mapper<com.loh.skint.data.entity.Account, com.loh.skint.domain.model.Account> {
 
     override fun mapEntityToDomain(entity: com.loh.skint.data.entity.Account): com.loh.skint.domain.model.Account {
         return Account(
                 entity.uuid,
-                entity.id,
                 entity.name,
                 entity.balance,
                 entity.currency,
                 entity.dateCreated,
                 entity.iconResName,
-                entity.records?.let { recordMapper.mapEntityToDomain(it).toMutableList() }
+                entity.records.let { recordMapper.mapEntityToDomain(it) }
         )
     }
 
@@ -31,19 +30,7 @@ class AccountMapper @Inject constructor(@App val context: Context, val recordMap
             balance = domain.balance
             dateCreated = domain.dateCreated
             iconResName = domain.iconResName
-            records = domain.records?.toList()?.let { recordMapper.mapDomainToEntity(it) }
+            records.addAll(0, recordMapper.mapDomainToEntity(domain.records))
         }
-    }
-
-    override fun mapDomainToUi(domain: com.loh.skint.domain.model.Account): com.loh.skint.ui.model.Account {
-        return com.loh.skint.ui.model.Account(
-                domain.uuid,
-                domain.dbId,
-                domain.name,
-                domain.balance.toPlainString(),
-                domain.currency,
-                domain.dateCreated,
-                domain.getIconResId(context),
-                domain.records?.let { recordMapper.mapDomainToUi(it) })
     }
 }

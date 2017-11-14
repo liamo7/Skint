@@ -1,13 +1,15 @@
 package com.loh.skint.ui.widget
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.util.AttributeSet
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.loh.skint.R
-import com.loh.skint.ui.model.Record
+import com.loh.skint.domain.model.Record
 import com.loh.skint.util.inflate
 
 class RecentRecordsWidget @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
@@ -49,6 +51,12 @@ class RecentRecordsWidget @JvmOverloads constructor(context: Context, attrs: Att
 
     fun bindRecord(view: View, record: Record) {
         val amount = view.findViewById<TextView>(R.id.item_recent_record_amount)
-        amount.text = "£ ${record.amount}"
+        val categoryIcon = view.findViewById<ImageView>(R.id.item_recent_record_icon)
+        val categoryName = view.findViewById<TextView>(R.id.item_recent_record_name)
+
+        amount.text = "£ ${record.amount.toPlainString()}"
+        categoryName.text = context.getString(record.category.nameRes)
+        categoryIcon.setImageResource(record.category.iconRes)
+        categoryIcon.setColorFilter(ContextCompat.getColor(context, record.category.colorRes))
     }
 }

@@ -33,6 +33,11 @@
         <item>Year</item>
     </string-array>
 
+    <string-array name="transfer_types">
+        <item>Income</item>
+        <item>Expense</item>
+    </string-array>
+
     <string name="category_salary">Salary</string>
     <string name="category_loan">Loan</string>
     <string name="category_gifts">Gifts</string>
@@ -65,5 +70,13 @@
 
     <string name="title_records_create">Add</string>
     <string name="title_category_list">Categories</string>
+    <string name="action_pick_location">Choose Location</string>
+    <string name="hint_location">Location</string>
+    <string name="action_pick_date">Choose Date</string>
+    <string name="hint_date">Date</string>
+    <string name="hint_note">Note</string>
+    <string name="hint_transfer_type">Type</string>
+    <string name="action_pick_transfer_type">Choose Type</string>
+    <string name="title_transfer_type">Transfer Type</string>
 
 </resources>

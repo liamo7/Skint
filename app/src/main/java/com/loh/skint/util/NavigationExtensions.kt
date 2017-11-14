@@ -9,40 +9,41 @@ import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.category.list.CategoryListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
 import com.loh.skint.ui.record.list.RecordListActivity
+import java.util.*
 
 const val INTENT_ACCOUNT_ID = "ACCOUNT_ID"
 
-fun Context.accountOverview(id: Int?): Intent {
+fun Context.accountOverview(id: UUID?): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }
 
-fun Context.recordsList(id: Int?): Intent {
+fun Context.recordsList(id: UUID?): Intent {
     return Intent(this, RecordListActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }
 
-fun Context.goalsList(id: Int?): Intent {
+fun Context.goalsList(id: UUID?): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }
 
-fun Context.budgetsList(id: Int?): Intent {
+fun Context.budgetsList(id: UUID?): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }
 
-fun Context.chartsList(id: Int?): Intent {
+fun Context.chartsList(id: UUID?): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }
 
-fun Context.reportsList(id: Int?): Intent {
+fun Context.reportsList(id: UUID?): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
@@ -60,7 +61,7 @@ fun Context.accountCreateIntent(): Intent {
     return Intent(this, AccountCreateActivity::class.java)
 }
 
-fun Context.recordCreateIntent(accountId: Int): Intent {
+fun Context.recordCreateIntent(accountId: UUID): Intent {
     return Intent(this, RecordCreateActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, accountId)
     }

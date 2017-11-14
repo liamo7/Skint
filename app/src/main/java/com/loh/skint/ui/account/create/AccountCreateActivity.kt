@@ -1,7 +1,6 @@
 package com.loh.skint.ui.account.create
 
 import android.os.Bundle
-import android.view.MenuItem
 import com.loh.skint.R
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseActivity
@@ -21,12 +20,4 @@ class AccountCreateActivity : BaseActivity() {
     override fun getLayoutRes(): Int = R.layout.activity_account_create
 
     override fun inject(component: ActivityComponent) = component.inject(this)
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

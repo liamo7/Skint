@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_recent_record_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,35 +12,35 @@
 
     <ImageView
         android:id="@+id/item_recent_record_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@mipmap/ic_launcher_round"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@mipmap/ic_launcher_round"/>
 
     <TextView
         android:id="@+id/item_recent_record_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Salary, Income"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/item_recent_record_amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/item_recent_record_icon"
-        app:layout_constraintTop_toTopOf="@id/item_recent_record_icon"/>
+        app:layout_constraintTop_toTopOf="@id/item_recent_record_icon"
+        tools:text="Salary, Income"/>
 
     <TextView
         android:id="@+id/item_recent_record_amount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="£400.00"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/item_recent_record_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/item_recent_record_icon"
-        app:layout_constraintTop_toBottomOf="@id/item_recent_record_name"/>
+        app:layout_constraintTop_toBottomOf="@id/item_recent_record_name"
+        tools:text="£400.00"/>
 
 </android.support.constraint.ConstraintLayout>

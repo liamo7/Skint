@@ -5,7 +5,7 @@ import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.widget.TextView
 import com.loh.skint.R
-import com.loh.skint.ui.model.Account
+import com.loh.skint.domain.model.Account
 
 class OverviewCollapse @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
         ConstraintLayout(context, attrs, defStyle) {
@@ -22,8 +22,8 @@ class OverviewCollapse @JvmOverloads constructor(context: Context, attrs: Attrib
     }
 
     fun setAccount(account: Account) {
-        balanceValue.text = account.prettyBalance
-        availableValue.text = account.prettyBalance
+        balanceValue.text = account.prettyBalance()
+        availableValue.text = account.prettyBalance()
         lastRecordValue.text = "N/A"
     }
 }

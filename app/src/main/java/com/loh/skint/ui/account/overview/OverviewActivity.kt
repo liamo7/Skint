@@ -2,10 +2,10 @@ package com.loh.skint.ui.account.overview
 
 import android.os.Bundle
 import com.loh.skint.R
+import com.loh.skint.domain.model.Account
+import com.loh.skint.domain.model.Record
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
-import com.loh.skint.ui.model.Account
-import com.loh.skint.ui.model.Record
 import kotlinx.android.synthetic.main.activity_account_overview.*
 import javax.inject.Inject
 

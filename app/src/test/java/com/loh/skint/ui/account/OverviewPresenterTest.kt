@@ -2,13 +2,11 @@ package com.loh.skint.ui.account
 
 import com.loh.skint.data.entity.TransferType
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
-import com.loh.skint.domain.usecase.GetOverview
+import com.loh.skint.domain.usecase.account.GetOverview
 import com.loh.skint.ui.account.overview.OverviewPresenter
 import com.loh.skint.ui.account.overview.Presenter
 import com.loh.skint.ui.account.overview.View
-import com.loh.skint.ui.model.Account
 import com.loh.skint.ui.model.OverviewModel
-import com.loh.skint.ui.model.Record
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.observers.DisposableSingleObserver
 import org.junit.After
@@ -54,10 +52,10 @@ class OverviewPresenterTest {
 
     @Test
     fun test_invalid_account_id_kicks_user_back_to_account_list() {
-        `when`(mockView.getAccountId()).thenReturn(null)
+        `when`(mockView.getAccountUUID()).thenReturn(null)
         presenter.loadAccount()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
         verify(mockView).handleInvalidAccount()
         verifyZeroInteractions(mockUsecase)
         verifyNoMoreInteractions(mockView)
@@ -65,10 +63,10 @@ class OverviewPresenterTest {
 
     @Test
     fun test_account_retrieval_error_kicks_user_back_to_account_list() {
-        `when`(mockView.getAccountId()).thenReturn(0)
+        `when`(mockView.getAccountUUID()).thenReturn(0)
         presenter.loadAccount()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
         verify(mockUsecase).execute(captor.capture(), eq(0))
         captor.firstValue.onError(Throwable())
 
@@ -80,10 +78,10 @@ class OverviewPresenterTest {
 
     @Test
     fun test_overview_collapse_rendered() {
-        `when`(mockView.getAccountId()).thenReturn(0)
+        `when`(mockView.getAccountUUID()).thenReturn(0)
         presenter.loadAccount()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
         verify(mockUsecase).execute(captor.capture(), eq(0))
         captor.firstValue.onSuccess(overviewModel)
 
@@ -92,10 +90,10 @@ class OverviewPresenterTest {
 
     @Test
     fun test_recent_records_widget_rendered() {
-        `when`(mockView.getAccountId()).thenReturn(0)
+        `when`(mockView.getAccountUUID()).thenReturn(0)
         presenter.loadAccount()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
         verify(mockUsecase).execute(captor.capture(), eq(0))
         captor.firstValue.onSuccess(overviewModel)
 

@@ -2,7 +2,6 @@ package com.loh.skint.ui.record
 
 import com.loh.skint.domain.usecase.record.GetRecords
 import com.loh.skint.testUtil.ModelProvider.Companion.randomRecord
-import com.loh.skint.ui.model.Record
 import com.loh.skint.ui.record.list.Presenter
 import com.loh.skint.ui.record.list.RecordListPresenter
 import com.loh.skint.ui.record.list.View
@@ -40,7 +39,7 @@ class RecordListPresenterTest {
     fun test_empty_state_shown_when_no_records_available() {
         presenter.retrieveRecords()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
 
         // return an empty list
         Mockito.verify(mockUsecase).execute(captor.capture(), Mockito.eq(0))
@@ -53,10 +52,10 @@ class RecordListPresenterTest {
 
     @Test
     fun test_empty_state_shown_on_account_id_error() {
-        Mockito.`when`(mockView.getAccountId()).thenReturn(null)
+        Mockito.`when`(mockView.getAccountUUID()).thenReturn(null)
         presenter.retrieveRecords()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
 
         verify(mockView).displayEmptyState()
         verify(mockView).hideRecords()
@@ -67,7 +66,7 @@ class RecordListPresenterTest {
     fun test_empty_state_shown_on_error() {
         presenter.retrieveRecords()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
 
         // return an empty list
         Mockito.verify(mockUsecase).execute(captor.capture(), Mockito.eq(0))
@@ -85,7 +84,7 @@ class RecordListPresenterTest {
 
         presenter.retrieveRecords()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
 
         // return an empty list
         Mockito.verify(mockUsecase).execute(captor.capture(), Mockito.eq(0))

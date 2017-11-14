@@ -6,15 +6,16 @@ import android.support.v7.widget.DividerItemDecoration.VERTICAL
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.loh.skint.R
+import com.loh.skint.domain.model.Record
 import com.loh.skint.injection.component.FragmentComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
 import com.loh.skint.ui.base.fragment.BaseFragment
-import com.loh.skint.ui.model.Record
 import com.loh.skint.ui.view.ActionListener
 import com.loh.skint.util.*
 import kotlinx.android.synthetic.main.activity_record_list.*
 import kotlinx.android.synthetic.main.fragment_record_list.*
 import org.threeten.bp.LocalDate
+import java.util.*
 import javax.inject.Inject
 
 class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.record.list.View {
@@ -63,9 +64,9 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
         if (activity is RecordListActivity) (activity as RecordListActivity).viewpager.scrollLeft()
     }
 
-    override fun getAccountId(): Int? {
+    override fun getAccountUUID(): UUID? {
         if (activity is BaseAccountDrawerActivity) {
-            return (activity as BaseAccountDrawerActivity).getAccountId()
+            return (activity as BaseAccountDrawerActivity).getAccountUUID()
         }
         return null
     }
@@ -93,7 +94,7 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
         return calculateDateFromViewPager(arguments!!.getInt(ARG_POSITION), getDateRange())
     }
 
-    override fun navigateToRecordCreation(accountId: Int) {
-        startActivity(activity?.recordCreateIntent(accountId))
+    override fun navigateToRecordCreation(accountUUID: UUID) {
+        startActivity(activity?.recordCreateIntent(accountUUID))
     }
 }

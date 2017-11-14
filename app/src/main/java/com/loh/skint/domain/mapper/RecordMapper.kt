@@ -8,11 +8,16 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.loh.skint.data.entity.Record, com.loh.skint.domain.model.Record, com.loh.skint.ui.model.Record> {
+class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.loh.skint.data.entity.Record, com.loh.skint.domain.model.Record> {
 
     override fun mapEntityToDomain(entity: Record): com.loh.skint.domain.model.Record {
         return com.loh.skint.domain.model.Record(
-                entity.uuid, entity.id, entity.transferType, entity.amount, entity.dateOf, entity.account
+                entity.uuid,
+                entity.transferType,
+                entity.amount,
+                entity.dateOf,
+                entity.category,
+                entity.account.uuid
         )
     }
 
@@ -22,19 +27,8 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
             transferType = domain.transferType
             amount = domain.amount
             dateOf = domain.date
-            account = domain.account
+            category = domain.category
+            accountUUID = domain.accountUUID
         }
     }
-
-    override fun mapDomainToUi(domain: com.loh.skint.domain.model.Record): com.loh.skint.ui.model.Record {
-        return com.loh.skint.ui.model.Record(
-                domain.uuid,
-                domain.dbId,
-                domain.transferType,
-                domain.amount,
-                domain.date,
-                domain.account.uuid
-        )
-    }
-
 }

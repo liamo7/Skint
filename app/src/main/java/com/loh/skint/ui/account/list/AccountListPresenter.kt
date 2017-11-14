@@ -1,9 +1,9 @@
 package com.loh.skint.ui.account.list
 
+import com.loh.skint.domain.model.Account
 import com.loh.skint.domain.usecase.account.GetAccounts
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
-import com.loh.skint.ui.model.Account
 import io.reactivex.observers.DisposableSingleObserver
 import timber.log.Timber
 import javax.inject.Inject
@@ -16,7 +16,7 @@ class AccountListPresenter @Inject constructor(private val getAccounts: GetAccou
     }
 
     override fun onAccountItemClicked(account: Account) {
-        getView().navigateToAccount(account.dbId)
+        getView().navigateToAccount(account.uuid)
     }
 
     override fun onFabClicked() {
@@ -27,7 +27,7 @@ class AccountListPresenter @Inject constructor(private val getAccounts: GetAccou
         getAccounts.dispose()
     }
 
-    inner class Observer : DisposableSingleObserver<List<Account>>() {
+    inner class Observer : DisposableSingleObserver<MutableList<Account>>() {
 
         override fun onError(e: Throwable) {
             Timber.e(e.message)
@@ -36,7 +36,7 @@ class AccountListPresenter @Inject constructor(private val getAccounts: GetAccou
             getView().showEmptyState()
         }
 
-        override fun onSuccess(accounts: List<Account>) {
+        override fun onSuccess(accounts: MutableList<Account>) {
             if (accounts.isEmpty()) {
                 getView().hideAccountsList()
                 getView().showEmptyState()

@@ -1,14 +1,16 @@
 package com.loh.skint.ui.record.list
 
+import android.graphics.PorterDuff
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.loh.skint.R
+import com.loh.skint.domain.model.Record
 import com.loh.skint.injection.scope.FragmentScoped
-import com.loh.skint.ui.model.Record
+import com.loh.skint.util.LONG_DATE_FORMAT
 import com.loh.skint.util.inflate
 import kotlinx.android.synthetic.main.item_record.view.*
-import org.threeten.bp.format.DateTimeFormatter
 import javax.inject.Inject
 
 @FragmentScoped
@@ -26,11 +28,14 @@ class RecordListAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val record = records[position]
-        holder.itemView.item_record_name.text = record.amount.toPlainString()
-        holder.itemView.item_record_date.text = record.date.format(DateTimeFormatter.ofPattern("E dd MMM YYYY"))
-//        holder.itemView.item_record_icon = record.amount.toPlainString()
-//        holder.itemView.item_record_balance.text = record.amount.toPlainString()
 
+        holder.itemView.apply {
+            item_record_name.text = context.getString(record.category.nameRes)
+            item_record_amount.text = "£ ${record.amount.toPlainString()}"
+            item_record_date.text = record.date.format(LONG_DATE_FORMAT)
+            item_record_icon.setImageResource(record.category.iconRes)
+            item_record_icon.setColorFilter(ContextCompat.getColor(context, record.category.colorRes), PorterDuff.Mode.SRC_IN)
+        }
     }
 
     override fun getItemCount() = records.size

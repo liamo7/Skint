@@ -9,7 +9,8 @@ import org.threeten.bp.LocalDate
 import java.math.BigDecimal
 import java.util.*
 
-@Entity(name = "AccountEntity") interface Account : Persistable {
+@Entity(name = "AccountEntity")
+interface Account : Persistable {
     @get:[Key Generated] val id: Int
     @get:Column(unique = true) var uuid: UUID
     var name: String
@@ -17,6 +18,6 @@ import java.util.*
     @get:Convert(CurrencyConverter::class) var currency: Currency
     @get:Convert(LocalDateConverter::class) var dateCreated: LocalDate
     var iconResName: String
-    @get:OneToMany(mappedBy = "account")
-    var records: List<Record>?
+    @get:OneToMany(mappedBy = "account", cascade = arrayOf(CascadeAction.SAVE, CascadeAction.DELETE))
+    val records: MutableList<Record>
 }

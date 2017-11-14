@@ -3,14 +3,15 @@ package com.loh.skint.ui.account.list
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.loh.skint.R
+import com.loh.skint.domain.model.Account
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseActivity
-import com.loh.skint.ui.model.Account
 import com.loh.skint.util.accountCreateIntent
 import com.loh.skint.util.accountOverview
 import com.loh.skint.util.hide
 import com.loh.skint.util.show
 import kotlinx.android.synthetic.main.activity_account_list.*
+import java.util.*
 import javax.inject.Inject
 
 class AccountListActivity : BaseActivity(), View {
@@ -54,7 +55,7 @@ class AccountListActivity : BaseActivity(), View {
 
     override fun hideEmptyState() = empty_container.hide()
 
-    override fun navigateToAccount(id: Int) = startActivity(accountOverview(id))
+    override fun navigateToAccount(uuid: UUID) = startActivity(accountOverview(uuid))
 
     override fun navigateToAccountCreation() = startActivity(accountCreateIntent())
 }

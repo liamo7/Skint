@@ -7,14 +7,17 @@ import com.loh.skint.domain.repository.AccountRepository
 import io.reactivex.Single
 import io.requery.Persistable
 import io.requery.reactivex.KotlinReactiveEntityStore
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AccountRepository @Inject constructor(private val dataStore: KotlinReactiveEntityStore<Persistable>, private val mapper: AccountMapper) : AccountRepository {
+class AccountRepository @Inject constructor(private val dataStore: KotlinReactiveEntityStore<Persistable>,
+                                            private val mapper: AccountMapper)
+    : AccountRepository {
 
     override fun update(model: Account): Single<com.loh.skint.domain.model.Account> {
-        return dataStore.update(model)
+        return dataStore.upsert(model)
                 .map { mapper.mapEntityToDomain(it) }
     }
 
@@ -23,16 +26,22 @@ class AccountRepository @Inject constructor(private val dataStore: KotlinReactiv
                 .map { mapper.mapEntityToDomain(it) }
     }
 
-    override fun get(id: Int): Single<com.loh.skint.domain.model.Account> {
+    override fun get(uuid: UUID): Single<com.loh.skint.domain.model.Account> {
         return dataStore.select(Account::class)
-                .where(AccountEntity.ID.eq(id))
+                .where(AccountEntity.UUID.eq(uuid))
                 .get().observable().singleOrError()
                 .map { mapper.mapEntityToDomain(it) }
     }
 
-    override fun getAll(): Single<List<com.loh.skint.domain.model.Account>> {
+    override fun getAll(): Single<MutableList<com.loh.skint.domain.model.Account>> {
         return dataStore.select(Account::class)
                 .get().observable().toList()
                 .map { mapper.mapEntityToDomain(it) }
+    }
+
+    override fun getBlocking(uuid: UUID): Account {
+        return dataStore.select(AccountEntity::class)
+                .where(AccountEntity.UUID.eq(uuid))
+                .get().first()
     }
 }

@@ -1,9 +1,9 @@
 package com.loh.skint.ui.record.list
 
+import com.loh.skint.domain.model.Record
 import com.loh.skint.domain.usecase.record.GetRecords
 import com.loh.skint.injection.scope.FragmentScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
-import com.loh.skint.ui.model.Record
 import io.reactivex.observers.DisposableSingleObserver
 import timber.log.Timber
 import javax.inject.Inject
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class RecordListPresenter @Inject constructor(private val getRecords: GetRecords) : BasePresenter<View>(), Presenter {
 
     override fun retrieveRecords() {
-        val accountId = getView().getAccountId()
+        val accountId = getView().getAccountUUID()
 
         val date = getView().getDate()
         val range = getView().getDateRange()
@@ -33,7 +33,7 @@ class RecordListPresenter @Inject constructor(private val getRecords: GetRecords
     }
 
     override fun onAddRecord() {
-        val id = getView().getAccountId()
+        val id = getView().getAccountUUID()
         id?.let { getView().navigateToRecordCreation(it) }
     }
 
@@ -44,8 +44,8 @@ class RecordListPresenter @Inject constructor(private val getRecords: GetRecords
 
     override fun cleanUp() = getRecords.dispose()
 
-    inner class Observer : DisposableSingleObserver<List<Record>>() {
-        override fun onSuccess(records: List<Record>) {
+    inner class Observer : DisposableSingleObserver<MutableList<Record>>() {
+        override fun onSuccess(records: MutableList<Record>) {
             if (records.isEmpty()) {
                 handleEmptyState()
             } else {

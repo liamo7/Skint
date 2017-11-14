@@ -112,5 +112,6 @@ dependencies {
     androidTestImplementation deps.test.espresso
 
     implementation 'com.afollestad.material-dialogs:core:0.9.5.0'
+    implementation 'com.wdullaer:materialdatetimepicker:3.4.0'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.0.5'
 }

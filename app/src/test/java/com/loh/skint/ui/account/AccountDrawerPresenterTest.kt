@@ -2,7 +2,6 @@ package com.loh.skint.ui.account
 
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
 import com.loh.skint.domain.usecase.account.GetAccount
-import com.loh.skint.ui.model.Account
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.observers.DisposableSingleObserver
 import org.junit.After
@@ -37,10 +36,10 @@ class AccountDrawerPresenterTest {
 
     @Test
     fun test_nav_drawer_profile_updated() {
-        Mockito.`when`(mockView.getAccountId()).thenReturn(0)
+        Mockito.`when`(mockView.getAccountUUID()).thenReturn(0)
         presenter.loadAccount()
 
-        verify(mockView).getAccountId()
+        verify(mockView).getAccountUUID()
         verify(mockUsecase).execute(captor.capture(), eq(0))
         captor.firstValue.onSuccess(account)
 

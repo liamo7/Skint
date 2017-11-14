@@ -5,13 +5,11 @@ import android.support.annotation.IdRes
 import android.support.design.widget.NavigationView
 import android.view.Gravity
 import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.TextView
 import com.loh.skint.R
 import com.loh.skint.ui.base.AccountView
 import com.loh.skint.ui.base.activity.BaseDrawerActivity
-import com.loh.skint.ui.model.Account
 import com.loh.skint.util.*
+import java.util.*
 import javax.inject.Inject
 
 abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), View, AccountView, NavigationView.OnNavigationItemSelectedListener {
@@ -39,20 +37,20 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), View, AccountVi
         drawerPresenter.detach()
     }
 
-    override fun renderNavHeader(account: Account) {
-        val nameView = findViewById<TextView>(R.id.nav_header_account_name)
-        val balanceView = findViewById<TextView>(R.id.nav_header_account_balance)
-        val iconView = findViewById<ImageView>(R.id.nav_header_account_icon)
+//    override fun renderNavHeader(account: Account) {
+//        val nameView = findViewById<TextView>(R.id.nav_header_account_name)
+//        val balanceView = findViewById<TextView>(R.id.nav_header_account_balance)
+//        val iconView = findViewById<ImageView>(R.id.nav_header_account_icon)
+//
+//        nameView.text = account.name
+//        balanceView.text = account.prettyBalance()
+//        iconView.setImageResource(account.getIconResId(this))
+//    }
 
-        nameView.text = account.name
-        balanceView.text = account.prettyBalance
-        iconView.setImageResource(account.iconResId)
-    }
-
-    override fun getAccountId(): Int? = intent.extras[INTENT_ACCOUNT_ID] as Int
+    override fun getAccountUUID(): UUID? = intent.extras[INTENT_ACCOUNT_ID] as UUID
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val accountId = getAccountId()
+        val accountId = getAccountUUID()
         val intent = when (item.itemId) {
             R.id.nav_overview -> accountOverview(accountId)
             R.id.nav_records -> recordsList(accountId)

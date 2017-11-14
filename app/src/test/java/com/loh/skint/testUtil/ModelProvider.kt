@@ -2,8 +2,6 @@ package com.loh.skint.testUtil
 
 import com.loh.skint.data.entity.TransferType
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
-import com.loh.skint.ui.model.Account
-import com.loh.skint.ui.model.Record
 import org.threeten.bp.LocalDate
 import java.math.BigDecimal
 import java.util.*

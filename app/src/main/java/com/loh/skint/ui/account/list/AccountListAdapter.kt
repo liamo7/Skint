@@ -4,8 +4,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.loh.skint.R
+import com.loh.skint.domain.model.Account
 import com.loh.skint.injection.scope.ActivityScoped
-import com.loh.skint.ui.model.Account
 import com.loh.skint.util.inflate
 import kotlinx.android.synthetic.main.item_account_list.view.*
 import java.util.*
@@ -45,8 +45,8 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(account: Account, listener: (Account) -> Unit) {
         itemView.apply {
             item_account_name.text = account.name
-            item_account_balance.text = account.prettyBalance
-            item_account_icon.setImageResource(account.iconResId)
+            item_account_balance.text = account.prettyBalance()
+            item_account_icon.setImageResource(account.getIconResId(itemView.context))
             item_account_container.setOnClickListener { listener(account) }
         }
     }

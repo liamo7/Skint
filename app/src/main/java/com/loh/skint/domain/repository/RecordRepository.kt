@@ -4,12 +4,10 @@ import com.loh.skint.domain.model.Record
 import com.loh.skint.util.DateRange
 import io.reactivex.Single
 import org.threeten.bp.LocalDate
+import java.util.*
 
-interface RecordRepository : Repository<com.loh.skint.data.entity.Record, com.loh.skint.domain.model.Record> {
-
-    fun getRange(accountId: Int, date: LocalDate, dateRange: DateRange): Single<List<Record>>
-
-    fun getAllForAccount(accountId: Int): Single<List<Record>>
-
-    fun getRecentRecords(accountId: Int, date: LocalDate): Single<List<Record>>
+interface RecordRepository : Repository<com.loh.skint.data.entity.Record, Record> {
+    fun getRange(accountUUID: UUID, date: LocalDate, dateRange: DateRange): Single<MutableList<Record>>
+    fun getAllForAccount(accountUUID: UUID): Single<MutableList<Record>>
+    fun getRecentRecords(accountUUID: UUID, date: LocalDate): Single<MutableList<Record>>
 }

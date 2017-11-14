@@ -41,5 +41,6 @@
     <color name="category_mortgage">#744DA9</color>
     <color name="category_phone">#0063B1</color>
     <color name="category_savings">#107C10</color>
+    <color name="dark_grey">#263238</color>
 
 </resources>

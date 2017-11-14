@@ -1,9 +1,9 @@
 package com.loh.skint.ui.account
 
+import com.loh.skint.domain.model.Account
 import com.loh.skint.domain.usecase.account.GetAccount
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
-import com.loh.skint.ui.model.Account
 import io.reactivex.observers.DisposableSingleObserver
 import timber.log.Timber
 import javax.inject.Inject
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class AccountDrawerPresenter @Inject constructor(private val getAccount: GetAccount) : BasePresenter<View>(), Presenter {
 
     override fun loadAccount() {
-        val id = getView().getAccountId()
+        val id = getView().getAccountUUID()
         if (id == null) {
             Timber.e("Invalid Account ID")
             return
@@ -29,7 +29,7 @@ class AccountDrawerPresenter @Inject constructor(private val getAccount: GetAcco
         }
 
         override fun onSuccess(account: Account) {
-            getView().renderNavHeader(account)
+            //getView().renderNavHeader(account)
         }
 
     }

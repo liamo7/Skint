@@ -5,7 +5,6 @@ import com.loh.skint.domain.usecase.account.GetAccounts
 import com.loh.skint.ui.account.list.AccountListPresenter
 import com.loh.skint.ui.account.list.Presenter
 import com.loh.skint.ui.account.list.View
-import com.loh.skint.ui.model.Account
 import com.nhaarman.mockito_kotlin.KArgumentCaptor
 import com.nhaarman.mockito_kotlin.argumentCaptor
 import io.reactivex.observers.DisposableSingleObserver
