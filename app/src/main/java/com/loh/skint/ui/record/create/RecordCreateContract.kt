@@ -1,26 +1,32 @@
 package com.loh.skint.ui.record.create
 
-import com.loh.skint.data.entity.TransferType
-import com.loh.skint.domain.model.Category
+import android.support.annotation.DrawableRes
 import com.loh.skint.ui.base.AccountView
 import com.loh.skint.ui.base.presenter.MvpPresenter
+import org.threeten.bp.LocalDate
 
 interface View : AccountView {
-    fun setSelectedCategory(selectedCategory: Category)
-    fun navigateToCategorySelector()
+    fun showCategorySelector()
     fun showTransferTypeSelector()
-    fun showDateSelector()
+    fun showDateSelector(date: LocalDate)
     fun showLocationSelector()
-    fun setSelectedTransferType(transferType: TransferType)
-    fun retrieveInput()
+    fun setCategoryIcon(@DrawableRes iconRes: Int)
+    fun setTransferType(transferType: String)
+    fun setDate(date: String)
+    fun getAmount() : String
+    fun getNote() : String
 }
 
 interface Presenter : MvpPresenter<View> {
-    fun onCategorySelected(id: Int)
     fun onTransferTypeClicked()
     fun onDateClicked()
     fun onLocationClicked()
-    fun onIconClicked()
-    fun onTransferTypeSelected(which: Int)
-    fun addRecord()
+    fun onCategoryIconClicked()
+    fun onCategorySelected(categoryId: Int)
+    fun onDateSelected(year: Int, monthOfYear: Int, dayOfMonth: Int)
+    fun onTransferTypeSelected(itemIndex: Int)
+    fun saveRecord()
+
+    fun onSaveState(): RecordCreatePresenter.State
+    fun onRestoreState(state: RecordCreatePresenter.State)
 }

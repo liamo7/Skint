@@ -7,7 +7,7 @@ import com.loh.skint.data.entity.AccountEntity
 import com.loh.skint.data.entity.RecordEntity
 import com.loh.skint.data.entity.TransferType
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
-import com.loh.skint.domain.model.CATEGORIES
+import com.loh.skint.domain.model.Category
 import com.loh.skint.domain.repository.AccountRepository
 import com.loh.skint.injection.component.AppComponent
 import com.loh.skint.injection.component.DaggerAppComponent
@@ -57,7 +57,7 @@ class SkintApp : Application() {
                     amount = BigDecimal("30.00")
                     transferType = TransferType.INCOME
                     dateOf = LocalDate.now().minusDays(7)
-                    category = CATEGORIES[12]
+                    category = Category.getCategories()[12]
                     account = a
                     accountUUID = a.uuid
                 },
@@ -66,7 +66,7 @@ class SkintApp : Application() {
                     amount = BigDecimal("60.00")
                     transferType = TransferType.INCOME
                     dateOf = LocalDate.now().minusDays(10)
-                    category = CATEGORIES[10]
+                    category = Category.getCategories()[10]
                     account = a
                     accountUUID = a.uuid
                 },
@@ -75,7 +75,7 @@ class SkintApp : Application() {
                     amount = BigDecimal("70.00")
                     transferType = TransferType.EXPENSE
                     dateOf = LocalDate.now().minusDays(1)
-                    category = CATEGORIES[21]
+                    category = Category.getCategories()[21]
                     account = a
                     accountUUID = a.uuid
                 },
@@ -84,7 +84,7 @@ class SkintApp : Application() {
                     amount = BigDecimal("20.00")
                     transferType = TransferType.INCOME
                     dateOf = LocalDate.now().minusDays(5)
-                    category = CATEGORIES[17]
+                    category = Category.getCategories()[17]
                     account = a
                     accountUUID = a.uuid
                 },
@@ -93,7 +93,7 @@ class SkintApp : Application() {
                     amount = BigDecimal("40.00")
                     transferType = TransferType.EXPENSE
                     dateOf = LocalDate.now().minusDays(3)
-                    category = CATEGORIES[9]
+                    category = Category.getCategories()[9]
                     account = a
                     accountUUID = a.uuid
                 },
@@ -102,7 +102,7 @@ class SkintApp : Application() {
                     amount = BigDecimal("10.00")
                     transferType = TransferType.INCOME
                     dateOf = LocalDate.now().minusDays(8)
-                    category = CATEGORIES[14]
+                    category = Category.getCategories()[14]
                     account = a
                     accountUUID = a.uuid
                 },
@@ -111,7 +111,7 @@ class SkintApp : Application() {
                     amount = BigDecimal("60.00")
                     transferType = TransferType.EXPENSE
                     dateOf = LocalDate.now().minusDays(1)
-                    category = CATEGORIES[12]
+                    category = Category.getCategories()[12]
                     account = a
                     accountUUID = a.uuid
                 })

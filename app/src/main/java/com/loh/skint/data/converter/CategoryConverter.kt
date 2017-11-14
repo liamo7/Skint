@@ -1,7 +1,7 @@
 package com.loh.skint.data.converter
 
 import com.loh.skint.domain.model.Category
-import com.loh.skint.domain.model.findCategoryById
+import com.loh.skint.domain.model.Category.Companion.findCategoryById
 import io.requery.Converter
 
 class CategoryConverter : Converter<Category, Int> {

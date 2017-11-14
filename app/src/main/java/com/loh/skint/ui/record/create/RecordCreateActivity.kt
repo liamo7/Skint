@@ -2,20 +2,19 @@ package com.loh.skint.ui.record.create
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.DrawableRes
 import com.afollestad.materialdialogs.MaterialDialog
 import com.loh.skint.R
-import com.loh.skint.data.entity.TransferType
-import com.loh.skint.domain.model.Category
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.ui.category.list.CategoryListActivity.Companion.ARG_SELECTED_CATEGORY
 import com.loh.skint.ui.category.list.CategoryListActivity.Companion.INTENT_REQUEST_CODE
 import com.loh.skint.util.INTENT_ACCOUNT_ID
-import com.loh.skint.util.LONG_DATE_FORMAT
 import com.loh.skint.util.categoryListActivity
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_record_create.*
 import org.threeten.bp.LocalDate
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -41,7 +40,14 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         setBackToolbar(toolbar, R.drawable.ic_arrow_back)
         presenter.attach(this)
 
+
+        if (savedInstanceState != null && savedInstanceState["STATE"] != null) {
+            presenter.onRestoreState(savedInstanceState.getSerializable("STATE") as RecordCreatePresenter.State)
+            Timber.d("Activity State: ${savedInstanceState.getSerializable("STATE") as RecordCreatePresenter.State}")
+        }
+
         // disable entry
+        record_create_transfer_type_input.keyListener = null
         record_create_date_input.keyListener = null
         record_create_location_input.keyListener = null
 
@@ -55,9 +61,9 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         record_create_location_input.setOnClickListener { presenter.onLocationClicked() }
         record_create_location_action.setOnClickListener { presenter.onLocationClicked() }
 
-        record_create_icon.setOnClickListener { presenter.onIconClicked() }
+        record_create_icon.setOnClickListener { presenter.onCategoryIconClicked() }
 
-        fab_save_record.setOnClickListener { presenter.addRecord() }
+        fab_save_record.setOnClickListener { presenter.saveRecord() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -65,6 +71,11 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         if (requestCode == INTENT_REQUEST_CODE && resultCode == RESULT_OK) {
             data?.extras?.getInt(ARG_SELECTED_CATEGORY)?.let { presenter.onCategorySelected(it) }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putSerializable("STATE", presenter.onSaveState())
     }
 
     override fun onDestroy() {
@@ -78,11 +89,11 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
 
     override fun getAccountUUID(): UUID? = intent.getSerializableExtra(INTENT_ACCOUNT_ID) as UUID
 
-    override fun setSelectedCategory(selectedCategory: Category) {
-        record_create_icon.setImageResource(selectedCategory.iconRes)
+    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
+        presenter.onDateSelected(year, monthOfYear, dayOfMonth)
     }
 
-    override fun navigateToCategorySelector() {
+    override fun showCategorySelector() {
         startActivityForResult(categoryListActivity(), INTENT_REQUEST_CODE)
     }
 
@@ -90,8 +101,7 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         if (!transferTypeDialog.isShowing) transferTypeDialog.show()
     }
 
-    override fun showDateSelector() {
-        val date = LocalDate.now()
+    override fun showDateSelector(date: LocalDate) {
         val dpd = DatePickerDialog.newInstance(this, date.year, date.monthValue, date.dayOfMonth)
         dpd.show(fragmentManager, "dpd")
     }
@@ -100,16 +110,23 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
 
     }
 
-    override fun setSelectedTransferType(transferType: TransferType) {
-        record_create_transfer_type_input.setText(transferType.name.toLowerCase().capitalize())
+    override fun setCategoryIcon(@DrawableRes iconRes: Int) {
+        record_create_icon.setImageResource(iconRes)
     }
 
-    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        val date = LocalDate.of(year, monthOfYear, dayOfMonth)
-        record_create_date_input.setText(date.format(LONG_DATE_FORMAT))
+    override fun setTransferType(transferType: String) {
+        record_create_transfer_type_input.setText(transferType)
     }
 
-    override fun retrieveInput() {
-        TODO("not implemented")
+    override fun setDate(date: String) {
+        record_create_date_input.setText(date)
+    }
+
+    override fun getAmount(): String {
+        return record_create_amount.text.toString()
+    }
+
+    override fun getNote(): String {
+        return record_create_note_input.text.toString()
     }
 }

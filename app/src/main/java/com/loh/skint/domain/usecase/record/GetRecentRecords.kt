@@ -14,7 +14,6 @@ class GetRecentRecords @Inject constructor(compositeDisposable: CompositeDisposa
     : SingleUseCase<MutableList<Record>, UUID>(compositeDisposable) {
 
     override fun build(params: UUID): Single<MutableList<Record>> {
-        return repository.getRecentRecords(params, LocalDate.now().minusDays(7))
+        return repository.getRecentRecords(params, LocalDate.now().minusWeeks(1))
     }
-
 }

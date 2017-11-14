@@ -1,12 +1,11 @@
 package com.loh.skint.ui.category.list
 
 import android.support.v4.content.ContextCompat
-
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.loh.skint.R
-import com.loh.skint.domain.model.CATEGORIES
+import com.loh.skint.domain.model.Category.Companion.getCategories
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.util.inflate
 import kotlinx.android.synthetic.main.item_category.view.*
@@ -26,7 +25,7 @@ class CategoryListAdapter @Inject constructor() : RecyclerView.Adapter<CategoryL
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val category = CATEGORIES[position]
+        val category = getCategories()[position]
 
         holder.itemView.apply {
             listener?.let { setOnClickListener { listener?.onCategoryClicked(category.id) } }
@@ -36,7 +35,7 @@ class CategoryListAdapter @Inject constructor() : RecyclerView.Adapter<CategoryL
         }
     }
 
-    override fun getItemCount(): Int = CATEGORIES.size
+    override fun getItemCount(): Int = getCategories().size
 
     fun setListener(listener: CategoryListAdapter.OnCategoryClickListener) {
         this.listener = listener
