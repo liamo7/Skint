@@ -58,6 +58,7 @@ class SkintApp : Application() {
                     transferType = TransferType.INCOME
                     dateOf = LocalDate.now().minusDays(7)
                     category = Category.getCategories()[12]
+                    note = ""
                     account = a
                     accountUUID = a.uuid
                 },
@@ -67,6 +68,7 @@ class SkintApp : Application() {
                     transferType = TransferType.INCOME
                     dateOf = LocalDate.now().minusDays(10)
                     category = Category.getCategories()[10]
+                    note = ""
                     account = a
                     accountUUID = a.uuid
                 },
@@ -76,6 +78,7 @@ class SkintApp : Application() {
                     transferType = TransferType.EXPENSE
                     dateOf = LocalDate.now().minusDays(1)
                     category = Category.getCategories()[21]
+                    note = ""
                     account = a
                     accountUUID = a.uuid
                 },
@@ -85,6 +88,7 @@ class SkintApp : Application() {
                     transferType = TransferType.INCOME
                     dateOf = LocalDate.now().minusDays(5)
                     category = Category.getCategories()[17]
+                    note = ""
                     account = a
                     accountUUID = a.uuid
                 },
@@ -94,6 +98,7 @@ class SkintApp : Application() {
                     transferType = TransferType.EXPENSE
                     dateOf = LocalDate.now().minusDays(3)
                     category = Category.getCategories()[9]
+                    note = ""
                     account = a
                     accountUUID = a.uuid
                 },
@@ -103,6 +108,7 @@ class SkintApp : Application() {
                     transferType = TransferType.INCOME
                     dateOf = LocalDate.now().minusDays(8)
                     category = Category.getCategories()[14]
+                    note = ""
                     account = a
                     accountUUID = a.uuid
                 },
@@ -112,6 +118,7 @@ class SkintApp : Application() {
                     transferType = TransferType.EXPENSE
                     dateOf = LocalDate.now().minusDays(1)
                     category = Category.getCategories()[12]
+                    note = ""
                     account = a
                     accountUUID = a.uuid
                 })

@@ -58,8 +58,8 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
     }
 
     override fun onDateSelected(year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        // build date
-        selectedDate = LocalDate.of(year, monthOfYear, dayOfMonth)
+        // as the date selector is different month number system than that of LocalDate's
+        selectedDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
 
         // format and set date
         val prettyDate = selectedDate.format(LONG_DATE_FORMAT)

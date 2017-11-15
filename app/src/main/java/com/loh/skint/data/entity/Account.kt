@@ -12,7 +12,7 @@ import java.util.*
 @Entity(name = "AccountEntity")
 interface Account : Persistable {
     @get:[Key Generated] val id: Int
-    @get:Column(unique = true) var uuid: UUID
+    @get:Column(unique = true, index = true) var uuid: UUID
     var name: String
     @get:Convert(BigDecimalConverter::class) var balance: BigDecimal
     @get:Convert(CurrencyConverter::class) var currency: Currency

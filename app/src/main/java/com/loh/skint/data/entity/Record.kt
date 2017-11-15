@@ -12,12 +12,12 @@ import java.util.*
 @Entity(name = "RecordEntity")
 interface Record : Persistable {
     @get:[Key Generated] val id: Int
-    @get:Column(unique = true) var uuid: UUID
+    @get:Column(unique = true, index = true) var uuid: UUID
     var transferType: TransferType
     @get:Convert(BigDecimalConverter::class) var amount: BigDecimal
     @get:Convert(LocalDateConverter::class) var dateOf: LocalDate
     @get:Convert(CategoryConverter::class) var category: Category
     @get:ManyToOne var account: Account
-    var note: String
+    @get:Column(value = "", nullable = false) var note: String
     var accountUUID: UUID
 }
