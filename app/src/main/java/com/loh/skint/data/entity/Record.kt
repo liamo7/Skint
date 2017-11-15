@@ -18,5 +18,6 @@ interface Record : Persistable {
     @get:Convert(LocalDateConverter::class) var dateOf: LocalDate
     @get:Convert(CategoryConverter::class) var category: Category
     @get:ManyToOne var account: Account
+    var note: String
     var accountUUID: UUID
 }

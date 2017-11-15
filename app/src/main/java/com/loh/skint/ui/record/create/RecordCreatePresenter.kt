@@ -1,5 +1,6 @@
 package com.loh.skint.ui.record.create
 
+import com.loh.skint.R
 import com.loh.skint.data.entity.TransferType
 import com.loh.skint.domain.model.Category
 import com.loh.skint.domain.model.Record
@@ -85,12 +86,21 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
         val note = getView().getNote()
 
         // validate input
-        if (accountUUID == null) return
-        if (selectedCategory == null) return
+        if (accountUUID == null) {
+            showGenericError()
+            return
+        }
+
+        if (selectedCategory == null) {
+            getView().showMessage(R.string.category_select_error)
+            return
+        }
 
         val amountRegex = "^[0-9]+(\\.[0-9]{1,2})?$"
-        if (amount.isBlank()) return
-        if (!amount.matches(Regex(amountRegex))) return
+        if (amount.isBlank() || !amount.matches(Regex(amountRegex))) {
+            getView().showMessage(R.string.amount_invalid_error)
+            return
+        }
 
         // build record
         val record = Record(
@@ -99,6 +109,7 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
                 BigDecimal(amount),
                 selectedDate,
                 selectedCategory!!,
+                note,
                 accountUUID
         )
 
@@ -116,14 +127,19 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
     }
 
     override fun onRestoreState(state: State) {
+        // Restore our custom state that are not stored via view components internal state mechanisms
         onCategorySelected(state.categoryId)
         onDateSelected(state.date.year, state.date.monthValue, state.date.dayOfMonth)
         onTransferTypeSelected(state.transferType.ordinal)
-        Timber.d("State: ${state.categoryId}, ${state.transferType}, ${state.date}")
     }
 
     private fun determineTransferType(index: Int): TransferType {
+        // both the type selector and enum ordinal are zero based index
         return if (index == 0) TransferType.INCOME else TransferType.EXPENSE
+    }
+
+    private fun showGenericError() {
+        getView().showMessage(R.string.oops_error)
     }
 
     override fun cleanUp() {
@@ -132,10 +148,14 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
 
     inner class Observer : DisposableCompletableObserver() {
         override fun onComplete() {
-            Timber.d("Completed Successfully")
+            getView().showMessage(R.string.record_create_success)
+            getView().navigateBackToRecordList()
+            Timber.d("Record created successfully.")
         }
 
         override fun onError(e: Throwable) {
+            // display a generic error message
+            showGenericError()
             Timber.e(e.message)
         }
     }

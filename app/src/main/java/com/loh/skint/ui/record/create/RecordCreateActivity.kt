@@ -3,6 +3,8 @@ package com.loh.skint.ui.record.create
 import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.DrawableRes
+import android.support.annotation.StringRes
+import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.loh.skint.R
 import com.loh.skint.injection.component.ActivityComponent
@@ -14,12 +16,15 @@ import com.loh.skint.util.categoryListActivity
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_record_create.*
 import org.threeten.bp.LocalDate
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
 
 class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetListener {
+
+    companion object {
+        @JvmStatic val ARG_STATE = "STATE"
+    }
 
     @Inject lateinit var presenter: Presenter
 
@@ -40,10 +45,8 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         setBackToolbar(toolbar, R.drawable.ic_arrow_back)
         presenter.attach(this)
 
-
-        if (savedInstanceState != null && savedInstanceState["STATE"] != null) {
-            presenter.onRestoreState(savedInstanceState.getSerializable("STATE") as RecordCreatePresenter.State)
-            Timber.d("Activity State: ${savedInstanceState.getSerializable("STATE") as RecordCreatePresenter.State}")
+        if (savedInstanceState != null && savedInstanceState[ARG_STATE] != null) {
+            presenter.onRestoreState(savedInstanceState.getSerializable(ARG_STATE) as RecordCreatePresenter.State)
         }
 
         // disable entry
@@ -75,7 +78,7 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putSerializable("STATE", presenter.onSaveState())
+        outState?.putSerializable(ARG_STATE, presenter.onSaveState())
     }
 
     override fun onDestroy() {
@@ -102,7 +105,8 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
     }
 
     override fun showDateSelector(date: LocalDate) {
-        val dpd = DatePickerDialog.newInstance(this, date.year, date.monthValue, date.dayOfMonth)
+        // month value for local date starts at 1
+        val dpd = DatePickerDialog.newInstance(this, date.year, date.monthValue - 1, date.dayOfMonth)
         dpd.show(fragmentManager, "dpd")
     }
 
@@ -128,5 +132,13 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
 
     override fun getNote(): String {
         return record_create_note_input.text.toString()
+    }
+
+    override fun showMessage(@StringRes stringRes: Int) {
+        Toast.makeText(this, stringRes, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun navigateBackToRecordList() {
+        finish()
     }
 }

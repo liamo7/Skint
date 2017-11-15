@@ -78,5 +78,10 @@
     <string name="hint_transfer_type">Type</string>
     <string name="action_pick_transfer_type">Choose Type</string>
     <string name="title_transfer_type">Transfer Type</string>
+    <string name="oops_error">Oops, looks like there was a problem.</string>
+    <string name="category_select_error">Please select a category.</string>
+    <string name="amount_invalid_error">Please enter a valid amount.</string>
+    <string name="record_create_success">Record successfully created.</string>
+    <string name="transfer_type_select_error">Please select a transfer type.</string>
 
 </resources>

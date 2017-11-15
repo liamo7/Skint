@@ -11,4 +11,5 @@ data class Record(
         var amount: BigDecimal,
         var date: LocalDate,
         var category: Category,
+        var note: String,
         var accountUUID: UUID)
