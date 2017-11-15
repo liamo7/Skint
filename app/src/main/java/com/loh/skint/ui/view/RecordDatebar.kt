@@ -4,7 +4,6 @@ import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.view.View
-import android.view.View.OnClickListener
 import com.loh.skint.R
 import com.loh.skint.util.*
 import kotlinx.android.synthetic.main.record_datebar.view.*
@@ -21,8 +20,8 @@ class RecordDatebar @JvmOverloads constructor(context: Context, attrs: Attribute
 
     fun setActionListener(listener: ActionListener) {
         this.listener = listener
-        datebar_next.setOnClickListener(OnClickListener { this.listener.onNextActionClicked() })
-        datebar_previous.setOnClickListener(OnClickListener { this.listener.onPreviousActionClicked() })
+        datebar_next.setOnClickListener({ this.listener.onNextActionClicked() })
+        datebar_previous.setOnClickListener({ this.listener.onPreviousActionClicked() })
     }
 
     fun setDate(date: LocalDate, dateRange: DateRange) {
@@ -32,7 +31,7 @@ class RecordDatebar @JvmOverloads constructor(context: Context, attrs: Attribute
     private fun formatDate(date: LocalDate, dateRange: DateRange): String {
         return when (dateRange) {
             is DateRange.DAY -> DAY_FORMAT.format(date)
-            is DateRange.WEEK -> WEEK_FORMAT.format(date) + " - \n" + WEEK_FORMAT.format(date.plusWeeks(1))
+            is DateRange.WEEK -> WEEK_FORMAT.format(date) + " -\n" + WEEK_FORMAT.format(date.plusDays(6))
             is DateRange.MONTH -> MONTH_FORMAT.format(date)
             is DateRange.YEAR -> YEAR_FORMAT.format(date)
         }
