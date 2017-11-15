@@ -12,4 +12,7 @@ data class Record(
         var date: LocalDate,
         var category: Category,
         var note: String,
-        var accountUUID: UUID)
+        var accountUUID: UUID) {
+
+    fun prettyAmount(currencyCode: String) = "$currencyCode ${amount.toPlainString()}"
+}

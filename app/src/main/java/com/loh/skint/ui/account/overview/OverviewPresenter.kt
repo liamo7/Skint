@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 @ActivityScoped
 class OverviewPresenter @Inject constructor(private val getOverview: GetOverview) : BasePresenter<View>(), Presenter {
+
     override fun loadAccount() {
         val id = getView().getAccountUUID()
 
@@ -31,7 +32,7 @@ class OverviewPresenter @Inject constructor(private val getOverview: GetOverview
 
     inner class Observer : DisposableSingleObserver<OverviewModel>() {
         override fun onSuccess(model: OverviewModel) {
-            getView().renderOverviewCollapse(model.account)
+            getView().renderOverviewCollapse(model)
             getView().renderRecentRecords(model.recentRecords)
         }
 

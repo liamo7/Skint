@@ -2,10 +2,10 @@ package com.loh.skint.ui.account.overview
 
 import android.os.Bundle
 import com.loh.skint.R
-import com.loh.skint.domain.model.Account
 import com.loh.skint.domain.model.Record
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
+import com.loh.skint.ui.model.OverviewModel
 import kotlinx.android.synthetic.main.activity_account_overview.*
 import javax.inject.Inject
 
@@ -18,9 +18,17 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.attach(this)
-        presenter.loadAccount()
-
         fab_add_record.setOnClickListener { presenter.onFabClicked() }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.loadAccount()
+    }
+
+    override fun onDestroy() {
+        presenter.detach()
+        super.onDestroy()
     }
 
     override fun getLayoutRes(): Int = R.layout.activity_account_overview
@@ -31,9 +39,9 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
 
     override fun handleInvalidAccount() = finish()
 
-    override fun renderOverviewCollapse(account: Account) {
+    override fun renderOverviewCollapse(overviewModel: OverviewModel) {
         collapseView = findViewById(R.id.overview_view)
-        collapseView.setAccount(account)
+        collapseView.setOverview(overviewModel)
     }
 
     override fun renderRecentRecords(recentRecords: List<Record>) {
@@ -41,9 +49,4 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
     }
 
     override fun navigateToRecordCreation() {}
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.detach()
-    }
 }

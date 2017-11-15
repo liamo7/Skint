@@ -21,22 +21,21 @@ class AccountListActivity : BaseActivity(), View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presenter.attach(this)
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle(R.string.title_account_list)
         setupList()
-        presenter.attach(this)
         fab_create_account.setOnClickListener { presenter.onFabClicked() }
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter.retrieveAccounts()
     }
 
     override fun getLayoutRes(): Int = R.layout.activity_account_list
 
     override fun inject(component: ActivityComponent) = component.inject(this)
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.detach()
-    }
 
     private fun setupList() {
         recycler_view.layoutManager = LinearLayoutManager(this)

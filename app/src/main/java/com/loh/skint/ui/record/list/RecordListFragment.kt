@@ -20,12 +20,9 @@ import javax.inject.Inject
 
 class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.record.list.View {
 
-    @Inject lateinit var presenter: Presenter
-    @Inject lateinit var listAdapter: RecordListAdapter
-
     companion object {
-        private val ARG_POSITION = "ARG_POSITION"
-        private val ARG_DATE_RANGE = "ARG_DATE_RANGE"
+        @JvmField val ARG_POSITION = "ARG_POSITION"
+        @JvmField val ARG_DATE_RANGE = "ARG_DATE_RANGE"
 
         fun newInstance(position: Int, dateRange: DateRange): RecordListFragment {
             val fragment = RecordListFragment()
@@ -37,6 +34,9 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
         }
     }
 
+    @Inject lateinit var presenter: Presenter
+    @Inject lateinit var listAdapter: RecordListAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         presenter.attach(this)
         recycler_view.layoutManager = LinearLayoutManager(activity)
@@ -44,6 +44,10 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
         recycler_view.addItemDecoration(DividerItemDecoration(activity, VERTICAL))
         datebar.setActionListener(this)
         fab_add_record.setOnClickListener { presenter.onAddRecord() }
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter.retrieveRecords()
     }
 

@@ -11,13 +11,13 @@ import javax.inject.Inject
 
 class CategoryListActivity : BaseActivity(), View, CategoryListAdapter.OnCategoryClickListener {
 
-    @Inject lateinit var presenter: Presenter
-    @Inject lateinit var listAdapter: CategoryListAdapter
-
     companion object {
         @JvmStatic val INTENT_REQUEST_CODE = 1001
         @JvmStatic val ARG_SELECTED_CATEGORY = "SELECTED_CATEGORY"
     }
+
+    @Inject lateinit var presenter: Presenter
+    @Inject lateinit var listAdapter: CategoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

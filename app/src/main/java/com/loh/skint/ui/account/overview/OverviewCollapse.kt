@@ -5,7 +5,7 @@ import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
 import android.widget.TextView
 import com.loh.skint.R
-import com.loh.skint.domain.model.Account
+import com.loh.skint.ui.model.OverviewModel
 
 class OverviewCollapse @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
         ConstraintLayout(context, attrs, defStyle) {
@@ -21,9 +21,12 @@ class OverviewCollapse @JvmOverloads constructor(context: Context, attrs: Attrib
         lastRecordValue = findViewById(R.id.overview_last_record_value)
     }
 
-    fun setAccount(account: Account) {
-        balanceValue.text = account.prettyBalance()
-        availableValue.text = account.prettyBalance()
-        lastRecordValue.text = "N/A"
+    fun setOverview(overviewModel: OverviewModel) {
+        val currency = overviewModel.account.currency.symbol
+
+        balanceValue.text = overviewModel.account.prettyBalance()
+        availableValue.text = overviewModel.account.prettyBalance()
+        lastRecordValue.text = overviewModel.recentRecords.firstOrNull()?.prettyAmount(currency)
+                ?: "N/A"
     }
 }

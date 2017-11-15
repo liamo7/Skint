@@ -46,7 +46,7 @@ class RecordListActivity : BaseAccountDrawerActivity() {
         dateRangeDialog = MaterialDialog.Builder(this)
                 .title(R.string.title_date_range_select)
                 .items(R.array.date_ranges)
-                .itemsCallbackSingleChoice(pagerAdapter.getDateRange().id, { dialog, itemView, which, text ->
+                .itemsCallbackSingleChoice(pagerAdapter.getDateRange().id, { _, _, which, _ ->
                     // update our newly selected date range
                     pagerAdapter.setDateRange(DateRange.values()[which])
                     // update the pager position to new position of date based on new date range
