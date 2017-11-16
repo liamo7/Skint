@@ -7,6 +7,7 @@ import com.loh.skint.ui.account.create.AccountCreateActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.category.list.CategoryListActivity
+import com.loh.skint.ui.icon.AccountIconListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
 import com.loh.skint.ui.record.list.RecordListActivity
 import java.util.*
@@ -67,8 +68,12 @@ fun Context.recordCreateIntent(accountId: UUID): Intent {
     }
 }
 
-fun Context.categoryListActivity(): Intent {
+fun Context.categoryListIntent(): Intent {
     return Intent(this, CategoryListActivity::class.java)
+}
+
+fun Context.accountIconSelectorIntent(): Intent {
+    return Intent(this, AccountIconListActivity::class.java)
 }
 
 fun Intent.clearHistory(): Intent {

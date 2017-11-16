@@ -23,7 +23,9 @@ class OverviewPresenter @Inject constructor(private val getOverview: GetOverview
     }
 
     override fun onFabClicked() {
-        getView().navigateToRecordCreation()
+        getView().getAccountUUID()?.let {
+            getView().navigateToRecordCreation(it)
+        }
     }
 
     override fun cleanUp() {

@@ -7,6 +7,7 @@ import com.loh.skint.data.entity.AccountEntity
 import com.loh.skint.data.entity.RecordEntity
 import com.loh.skint.data.entity.TransferType
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
+import com.loh.skint.domain.model.Account
 import com.loh.skint.domain.model.Category
 import com.loh.skint.domain.repository.AccountRepository
 import com.loh.skint.injection.component.AppComponent
@@ -48,7 +49,7 @@ class SkintApp : Application() {
             balance = BigDecimal("300.00")
             currency = AVAILABLE_CURRENCIES[0]
             dateCreated = LocalDate.now().minusDays(10)
-            iconResName = "ic_wallet"
+            iconId = Account.ICONS[0].id
         }
 
         val records = mutableListOf(

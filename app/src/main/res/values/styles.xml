@@ -70,4 +70,26 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="Create.Main.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">@dimen/create_main_text_size</item>
+    </style>
+
+    <style name="Create.Main.Currency" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/create_main_text_size</item>
+    </style>
+
+    <style name="Create.Item.Action" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:clickable">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/create_item_action</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
 </resources>

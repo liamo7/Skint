@@ -17,4 +17,14 @@
     <dimen name="overview_value_margin_vertical">8dp</dimen>
     <dimen name="overview_value_size">28sp</dimen>
     <dimen name="overview_sub_value_size">20sp</dimen>
+    <dimen name="create_main_edittext_margin_start">16dp</dimen>
+    <dimen name="create_main_edittext_margin_end">8dp</dimen>
+    <dimen name="create_main_icon_size">50dp</dimen>
+    <dimen name="create_main_content_padding">16dp</dimen>
+    <dimen name="create_details_content_padding">16dp</dimen>
+    <dimen name="create_item_icon_size">24dp</dimen>
+    <dimen name="create_item_input_margin_horizontal">16dp</dimen>
+    <dimen name="divider_horizontal_height">1dp</dimen>
+    <dimen name="divider_horizontal_margin_top">8dp</dimen>
+    <dimen name="create_main_text_size">24sp</dimen>
 </resources>

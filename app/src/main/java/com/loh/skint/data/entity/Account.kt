@@ -17,7 +17,7 @@ interface Account : Persistable {
     @get:Convert(BigDecimalConverter::class) var balance: BigDecimal
     @get:Convert(CurrencyConverter::class) var currency: Currency
     @get:Convert(LocalDateConverter::class) var dateCreated: LocalDate
-    var iconResName: String
+    var iconId: Int
     @get:OneToMany(mappedBy = "account", cascade = arrayOf(CascadeAction.SAVE, CascadeAction.DELETE))
     val records: MutableList<Record>
 }

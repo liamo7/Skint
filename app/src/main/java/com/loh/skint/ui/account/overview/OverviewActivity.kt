@@ -6,7 +6,9 @@ import com.loh.skint.domain.model.Record
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
 import com.loh.skint.ui.model.OverviewModel
+import com.loh.skint.util.recordCreateIntent
 import kotlinx.android.synthetic.main.activity_account_overview.*
+import java.util.*
 import javax.inject.Inject
 
 class OverviewActivity : BaseAccountDrawerActivity(), View {
@@ -48,5 +50,7 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
         recent_records.setRecords(recentRecords)
     }
 
-    override fun navigateToRecordCreation() {}
+    override fun navigateToRecordCreation(uuid: UUID) {
+        startActivity(recordCreateIntent(uuid))
+    }
 }

@@ -11,10 +11,6 @@ import kotlinx.android.synthetic.main.item_account_list.view.*
 import java.util.*
 import javax.inject.Inject
 
-interface OnAccountItemClickListener {
-    fun onAccountClicked(uuid: UUID)
-}
-
 @ActivityScoped
 class AccountListAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>() {
 
@@ -46,7 +42,7 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.apply {
             item_account_name.text = account.name
             item_account_balance.text = account.prettyBalance()
-            item_account_icon.setImageResource(account.getIconResId(itemView.context))
+            item_account_icon.setImageResource(account.accountIcon.iconResId)
             item_account_container.setOnClickListener { listener(account) }
         }
     }

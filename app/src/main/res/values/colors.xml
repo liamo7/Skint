@@ -43,4 +43,6 @@
     <color name="category_savings">#107C10</color>
     <color name="dark_grey">#263238</color>
 
+    <color name="create_item_action">#00CC6A</color>
+
 </resources>

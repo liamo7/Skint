@@ -83,5 +83,22 @@
     <string name="amount_invalid_error">Please enter a valid amount.</string>
     <string name="record_create_success">Record successfully created.</string>
     <string name="transfer_type_select_error">Please select a transfer type.</string>
+    <string name="hint_account_name">Account Name</string>
+    <string name="zero">0</string>
+    <string name="action_pick_currency">Choose Currency</string>
+    <string name="hint_currency">Currency</string>
+    <string name="hint_initial_balance">Initial Balance</string>
+    <string name="title_currencies">Currencies</string>
+    <string name="balance_invalid_error">Invalid balance amount.</string>
+    <string name="name_invalid_error">Name must not be blank.</string>
+    <string name="icon_select_error">No icon has been selected.</string>
+    <string name="account_create_success">Account successfully created.</string>
+    <string name="icon_wallet">Wallet</string>
+    <string name="icon_credit_card">Credit Card</string>
+    <string name="icon_piggy">Piggy Bank</string>
+    <string name="icon_money_bag">Money Bag</string>
+    <string name="icon_coins">Coins</string>
+    <string name="icon_safebox">Safebox</string>
+    <string name="title_account_icon_select">Select icon</string>
 
 </resources>

@@ -12,7 +12,7 @@ import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.ui.category.list.CategoryListActivity.Companion.ARG_SELECTED_CATEGORY
 import com.loh.skint.ui.category.list.CategoryListActivity.Companion.INTENT_REQUEST_CODE
 import com.loh.skint.util.INTENT_ACCOUNT_ID
-import com.loh.skint.util.categoryListActivity
+import com.loh.skint.util.categoryListIntent
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_record_create.*
 import org.threeten.bp.LocalDate
@@ -97,7 +97,7 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
     }
 
     override fun showCategorySelector() {
-        startActivityForResult(categoryListActivity(), INTENT_REQUEST_CODE)
+        startActivityForResult(categoryListIntent(), INTENT_REQUEST_CODE)
     }
 
     override fun showTransferTypeSelector() {

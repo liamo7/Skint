@@ -2,8 +2,10 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="ContentDescription,KeyboardInaccessibleWidget">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -19,12 +21,12 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="@dimen/create_main_content_padding">
 
             <ImageView
                 android:id="@+id/record_create_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/create_main_icon_size"
+                android:layout_height="@dimen/create_main_icon_size"
                 android:src="@drawable/dashed_circle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,18 +34,13 @@
 
             <EditText
                 android:id="@+id/record_create_amount"
+                style="@style/Create.Main.EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="16dp"
-                android:background="@android:color/transparent"
-                android:hint="0"
+                android:layout_marginEnd="@dimen/create_main_edittext_margin_end"
+                android:layout_marginStart="@dimen/create_main_edittext_margin_start"
+                android:hint="@string/zero"
                 android:inputType="number|numberDecimal|numberSigned"
-                android:maxLines="1"
-                android:textAlignment="textEnd"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/record_create_currency"
                 app:layout_constraintStart_toEndOf="@id/record_create_icon"
@@ -51,12 +48,10 @@
 
             <TextView
                 android:id="@+id/record_create_currency"
+                style="@style/Create.Main.Currency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GBP"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -82,12 +77,12 @@
                 android:id="@+id/record_create_transfer_type_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="@dimen/create_details_content_padding">
 
                 <ImageView
                     android:id="@+id/record_create_transfer_type_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/create_item_icon_size"
+                    android:layout_height="@dimen/create_item_icon_size"
                     android:src="@drawable/ic_bi_arrows"
                     android:tint="@color/dark_grey"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +93,7 @@
                     android:id="@+id/record_create_transfer_type_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/create_item_input_margin_horizontal"
                     android:background="@android:color/transparent"
                     android:hint="@string/hint_transfer_type"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -108,21 +103,18 @@
 
                 <TextView
                     android:id="@+id/record_create_transfer_type_action"
+                    style="@style/Create.Item.Action"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
                     android:text="@string/action_pick_transfer_type"
-                    android:textColor="@color/category_education"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/divider_horizontal_height"
+                    android:layout_marginTop="@dimen/divider_horizontal_margin_top"
                     android:background="@color/divider"
                     app:layout_constraintTop_toBottomOf="@id/record_create_transfer_type_input"/>
 
@@ -132,12 +124,12 @@
                 android:id="@+id/record_create_note_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="@dimen/create_details_content_padding">
 
                 <ImageView
                     android:id="@+id/record_create_note_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/create_item_icon_size"
+                    android:layout_height="@dimen/create_item_icon_size"
                     android:src="@drawable/ic_create"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,7 +139,7 @@
                     android:id="@+id/record_create_note_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/create_item_input_margin_horizontal"
                     android:background="@android:color/transparent"
                     android:hint="@string/hint_note"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -157,8 +149,8 @@
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/divider_horizontal_height"
+                    android:layout_marginTop="@dimen/divider_horizontal_margin_top"
                     android:background="@color/divider"
                     app:layout_constraintTop_toBottomOf="@id/record_create_note_input"/>
 
@@ -168,12 +160,12 @@
                 android:id="@+id/record_create_date_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="@dimen/create_details_content_padding">
 
                 <ImageView
                     android:id="@+id/record_create_date_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/create_item_icon_size"
+                    android:layout_height="@dimen/create_item_icon_size"
                     android:src="@drawable/ic_date_range"
                     android:tint="@color/dark_grey"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -184,7 +176,7 @@
                     android:id="@+id/record_create_date_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/create_item_input_margin_horizontal"
                     android:background="@android:color/transparent"
                     android:hint="@string/hint_date"
                     android:inputType="date"
@@ -195,21 +187,18 @@
 
                 <TextView
                     android:id="@+id/record_create_date_action"
+                    style="@style/Create.Item.Action"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
                     android:text="@string/action_pick_date"
-                    android:textColor="@color/category_education"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/divider_horizontal_height"
+                    android:layout_marginTop="@dimen/divider_horizontal_margin_top"
                     android:background="@color/divider"
                     app:layout_constraintTop_toBottomOf="@id/record_create_date_input"/>
 
@@ -219,12 +208,12 @@
                 android:id="@+id/record_create_location_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="@dimen/create_details_content_padding">
 
                 <ImageView
                     android:id="@+id/record_create_location_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/create_item_icon_size"
+                    android:layout_height="@dimen/create_item_icon_size"
                     android:src="@drawable/ic_location"
                     android:tint="@color/dark_grey"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -235,7 +224,7 @@
                     android:id="@+id/record_create_location_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/create_item_input_margin_horizontal"
                     android:background="@android:color/transparent"
                     android:hint="@string/hint_location"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -245,21 +234,18 @@
 
                 <TextView
                     android:id="@+id/record_create_location_action"
+                    style="@style/Create.Item.Action"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
                     android:text="@string/action_pick_location"
-                    android:textColor="@color/category_education"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_height="@dimen/divider_horizontal_height"
+                    android:layout_marginTop="@dimen/divider_horizontal_margin_top"
                     android:background="@color/divider"
                     app:layout_constraintTop_toBottomOf="@id/record_create_location_input"/>
 
@@ -273,7 +259,7 @@
         android:id="@+id/fab_save_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_tick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
