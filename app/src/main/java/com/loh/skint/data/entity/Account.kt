@@ -20,4 +20,6 @@ interface Account : Persistable {
     var iconId: Int
     @get:OneToMany(mappedBy = "account", cascade = arrayOf(CascadeAction.SAVE, CascadeAction.DELETE))
     val records: MutableList<Record>
+    @get:OneToMany(mappedBy = "account", cascade = arrayOf(CascadeAction.SAVE, CascadeAction.DELETE))
+    val goals: MutableList<Goal>
 }

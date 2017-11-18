@@ -8,6 +8,7 @@ import com.loh.skint.ui.account.icon.AccountIconListActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.category.list.CategoryListActivity
+import com.loh.skint.ui.goal.list.GoalListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
 import com.loh.skint.ui.record.list.RecordListActivity
 import dagger.Subcomponent
@@ -18,11 +19,12 @@ interface ActivityComponent {
 
     fun inject(activity: AccountCreateActivity)
     fun inject(activity: AccountListActivity)
+    fun inject(activity: AccountIconListActivity)
     fun inject(activity: OverviewActivity)
     fun inject(activity: RecordListActivity)
     fun inject(activity: RecordCreateActivity)
     fun inject(activity: CategoryListActivity)
-    fun inject(activity: AccountIconListActivity)
+    fun inject(activity: GoalListActivity)
 
     fun plus(module: FragmentModule): FragmentComponent
 }

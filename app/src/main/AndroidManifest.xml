@@ -44,6 +44,10 @@
             android:name=".ui.account.icon.AccountIconListActivity"
             android:label="@string/title_account_icon_select"/>
 
+        <activity
+            android:name=".ui.goal.list.GoalListActivity"
+            android:label="@string/title_goals"/>
+
     </application>
 
 </manifest>

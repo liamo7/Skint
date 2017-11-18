@@ -11,7 +11,8 @@ data class Account(val uuid: UUID,
                    var currency: Currency,
                    var dateCreated: LocalDate,
                    var accountIcon: AccountIcon,
-                   var records: MutableList<Record> = mutableListOf()) {
+                   var records: MutableList<Record> = mutableListOf(),
+                   var goals: MutableList<Goal> = mutableListOf()) {
 
     companion object {
         val ICONS = listOf(

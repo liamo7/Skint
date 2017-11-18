@@ -9,6 +9,7 @@ import com.loh.skint.ui.account.list.AccountListPresenter
 import com.loh.skint.ui.account.overview.OverviewPresenter
 import com.loh.skint.ui.account.overview.Presenter
 import com.loh.skint.ui.category.list.CategoryListPresenter
+import com.loh.skint.ui.goal.list.GoalListPresenter
 import com.loh.skint.ui.record.create.RecordCreatePresenter
 import dagger.Module
 import dagger.Provides
@@ -48,6 +49,11 @@ class ActivityModule constructor(private val activity: AppCompatActivity) {
 
     @Provides @ActivityScoped
     fun provideAccountCreatePresenter(presenter: AccountCreatePresenter): com.loh.skint.ui.account.create.Presenter {
+        return presenter
+    }
+
+    @Provides @ActivityScoped
+    fun provideGoalListPresenter(presenter: GoalListPresenter): com.loh.skint.ui.goal.list.Presenter {
         return presenter
     }
 }

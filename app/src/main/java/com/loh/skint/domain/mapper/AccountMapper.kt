@@ -1,14 +1,14 @@
 package com.loh.skint.domain.mapper
 
-import android.content.Context
 import com.loh.skint.data.entity.AccountEntity
 import com.loh.skint.domain.model.Account
-import com.loh.skint.injection.qualifier.App
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AccountMapper @Inject constructor(@App val context: Context, val recordMapper: RecordMapper) : Mapper<com.loh.skint.data.entity.Account, com.loh.skint.domain.model.Account> {
+class AccountMapper @Inject constructor(private val recordMapper: RecordMapper,
+                                        private val goalMapper: GoalMapper)
+    : Mapper<com.loh.skint.data.entity.Account, com.loh.skint.domain.model.Account> {
 
     override fun mapEntityToDomain(entity: com.loh.skint.data.entity.Account): com.loh.skint.domain.model.Account {
         return Account(
@@ -18,7 +18,8 @@ class AccountMapper @Inject constructor(@App val context: Context, val recordMap
                 entity.currency,
                 entity.dateCreated,
                 Account.findIconById(entity.id),
-                entity.records.let { recordMapper.mapEntityToDomain(it) }
+                entity.records.let { recordMapper.mapEntityToDomain(it) },
+                entity.goals.let { goalMapper.mapEntityToDomain(it) }
         )
     }
 
@@ -31,6 +32,7 @@ class AccountMapper @Inject constructor(@App val context: Context, val recordMap
             dateCreated = domain.dateCreated
             iconId = domain.accountIcon.id
             records.addAll(0, recordMapper.mapDomainToEntity(domain.records))
+            goals.addAll(0, goalMapper.mapDomainToEntity(domain.goals))
         }
     }
 }
