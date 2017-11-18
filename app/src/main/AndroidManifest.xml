@@ -41,7 +41,7 @@
             android:label="@string/title_category_list"/>
 
         <activity
-            android:name=".ui.icon.AccountIconListActivity"
+            android:name=".ui.account.icon.AccountIconListActivity"
             android:label="@string/title_account_icon_select"/>
 
     </application>

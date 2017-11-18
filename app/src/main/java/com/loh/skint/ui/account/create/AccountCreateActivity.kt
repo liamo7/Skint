@@ -8,9 +8,9 @@ import com.loh.skint.R
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
 import com.loh.skint.domain.model.Account
 import com.loh.skint.injection.component.ActivityComponent
+import com.loh.skint.ui.account.icon.AccountIconListActivity.Companion.ARG_SELECTED_ICON
+import com.loh.skint.ui.account.icon.AccountIconListActivity.Companion.INTENT_REQUEST_CODE
 import com.loh.skint.ui.base.activity.BaseActivity
-import com.loh.skint.ui.icon.AccountIconListActivity.Companion.ARG_SELECTED_ICON
-import com.loh.skint.ui.icon.AccountIconListActivity.Companion.INTENT_REQUEST_CODE
 import com.loh.skint.util.accountIconSelectorIntent
 import com.loh.skint.util.accountOverview
 import kotlinx.android.synthetic.main.activity_account_create.*

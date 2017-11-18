@@ -4,10 +4,10 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import com.loh.skint.ui.account.create.AccountCreateActivity
+import com.loh.skint.ui.account.icon.AccountIconListActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.category.list.CategoryListActivity
-import com.loh.skint.ui.icon.AccountIconListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
 import com.loh.skint.ui.record.list.RecordListActivity
 import org.threeten.bp.LocalDate
