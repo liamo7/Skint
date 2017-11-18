@@ -8,6 +8,7 @@ import com.loh.skint.R
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
 import com.loh.skint.util.DateRange
+import com.loh.skint.util.INTENT_DATE
 import com.loh.skint.util.calculateViewpagerPositionFromDateRange
 import kotlinx.android.synthetic.main.activity_record_list.*
 import org.threeten.bp.LocalDate
@@ -18,10 +19,13 @@ class RecordListActivity : BaseAccountDrawerActivity() {
     @Inject lateinit var pagerAdapter: RecordListPagerAdapter
 
     private lateinit var dateRangeDialog: MaterialDialog
-    private var date = LocalDate.now()
+    private lateinit var date: LocalDate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // determines whether we should navigate to a specific date in time for list
+        date = intent.getSerializableExtra(INTENT_DATE) as LocalDate? ?: LocalDate.now()
         viewpager.adapter = pagerAdapter
         viewpager.currentItem = date.calculateViewpagerPositionFromDateRange(pagerAdapter.getDateRange())
     }

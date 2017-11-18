@@ -22,6 +22,7 @@
             android:id="@+id/item_account_icon"
             android:layout_width="@dimen/item_account_list_icon_size"
             android:layout_height="@dimen/item_account_list_icon_size"
+            android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

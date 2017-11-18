@@ -81,7 +81,6 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
 
         // pass to usecase
         addAccount.execute(Observer(), account)
-
     }
 
     override fun onSaveState(): State {

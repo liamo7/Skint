@@ -1,5 +1,6 @@
 package com.loh.skint.ui.account
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.design.widget.NavigationView
@@ -73,11 +74,15 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), View, AccountVi
         // disallow opening new instance of active activity.
         // overview activity should'nt be finished
         if (intent != null && !intent.eqClasses(componentName)) {
-            startActivity(intent.bringToFront())
-            if (intent.isOverview()) finish()
+            navigateToDrawerItem(intent)
             return true
         }
 
         return false
+    }
+
+    private fun navigateToDrawerItem(intent: Intent) {
+        startActivity(intent.bringToFront())
+        if (intent.isOverview()) finish()
     }
 }

@@ -6,7 +6,9 @@ import com.loh.skint.domain.model.Record
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
 import com.loh.skint.ui.model.OverviewModel
+import com.loh.skint.ui.widget.RecentRecordsWidget
 import com.loh.skint.util.recordCreateIntent
+import com.loh.skint.util.recordsList
 import kotlinx.android.synthetic.main.activity_account_overview.*
 import java.util.*
 import javax.inject.Inject
@@ -20,6 +22,15 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.attach(this)
+
+        recent_records.setClickListener(object : RecentRecordsWidget.OnClickListener {
+            override fun onMoreActionClicked() = startActivity(recordsList(getAccountUUID()))
+
+            override fun onRecordClicked(record: Record) {
+                startActivity(recordsList(getAccountUUID(), record.date))
+            }
+        })
+
         fab_add_record.setOnClickListener { presenter.onFabClicked() }
     }
 

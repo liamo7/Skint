@@ -2,8 +2,10 @@ package com.loh.skint.data.entity
 
 import com.loh.skint.data.converter.BigDecimalConverter
 import com.loh.skint.data.converter.CategoryConverter
+import com.loh.skint.data.converter.CurrencyConverter
 import com.loh.skint.data.converter.LocalDateConverter
 import com.loh.skint.domain.model.Category
+import com.loh.skint.domain.model.Currency
 import io.requery.*
 import org.threeten.bp.LocalDate
 import java.math.BigDecimal
@@ -17,6 +19,7 @@ interface Record : Persistable {
     @get:Convert(BigDecimalConverter::class) var amount: BigDecimal
     @get:Convert(LocalDateConverter::class) var dateOf: LocalDate
     @get:Convert(CategoryConverter::class) var category: Category
+    @get:Convert(CurrencyConverter::class) var currency: Currency
     @get:ManyToOne var account: Account
     @get:Column(value = "", nullable = false) var note: String
     var accountUUID: UUID

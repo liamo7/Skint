@@ -22,11 +22,8 @@ class OverviewCollapse @JvmOverloads constructor(context: Context, attrs: Attrib
     }
 
     fun setOverview(overviewModel: OverviewModel) {
-        val currency = overviewModel.account.currency.symbol
-
         balanceValue.text = overviewModel.account.prettyBalance()
         availableValue.text = overviewModel.account.prettyBalance()
-        lastRecordValue.text = overviewModel.recentRecords.firstOrNull()?.prettyAmount(currency)
-                ?: "N/A"
+        lastRecordValue.text = overviewModel.recentRecords.firstOrNull()?.prettyAmount() ?: "N/A"
     }
 }

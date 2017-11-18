@@ -100,5 +100,6 @@
     <string name="icon_coins">Coins</string>
     <string name="icon_safebox">Safebox</string>
     <string name="title_account_icon_select">Select icon</string>
+    <string name="widget_recent_records_empty">No recent records available.</string>
 
 </resources>

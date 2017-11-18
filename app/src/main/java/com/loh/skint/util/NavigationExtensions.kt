@@ -10,9 +10,11 @@ import com.loh.skint.ui.category.list.CategoryListActivity
 import com.loh.skint.ui.icon.AccountIconListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
 import com.loh.skint.ui.record.list.RecordListActivity
+import org.threeten.bp.LocalDate
 import java.util.*
 
 const val INTENT_ACCOUNT_ID = "ACCOUNT_ID"
+const val INTENT_DATE = "DATE"
 
 fun Context.accountOverview(id: UUID?): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
@@ -20,9 +22,10 @@ fun Context.accountOverview(id: UUID?): Intent {
     }
 }
 
-fun Context.recordsList(id: UUID?): Intent {
+fun Context.recordsList(id: UUID?, date: LocalDate? = null): Intent {
     return Intent(this, RecordListActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
+        putExtra(INTENT_DATE, date)
     }
 }
 

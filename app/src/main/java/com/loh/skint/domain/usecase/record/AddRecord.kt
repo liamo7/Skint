@@ -21,6 +21,7 @@ class AddRecord @Inject constructor(compositeDisposable: CompositeDisposable,
 
         recordEntity.accountUUID = accountEntity.uuid
         recordEntity.account = accountEntity
+        recordEntity.currency = accountEntity.currency
 
         accountEntity.records.add(recordEntity)
 

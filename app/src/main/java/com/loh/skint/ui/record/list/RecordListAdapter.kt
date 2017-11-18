@@ -1,7 +1,5 @@
 package com.loh.skint.ui.record.list
 
-import android.graphics.PorterDuff
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +7,9 @@ import com.loh.skint.R
 import com.loh.skint.domain.model.Record
 import com.loh.skint.injection.scope.FragmentScoped
 import com.loh.skint.util.LONG_DATE_FORMAT
+import com.loh.skint.util.colorize
 import com.loh.skint.util.inflate
+import com.loh.skint.util.tint
 import kotlinx.android.synthetic.main.item_record.view.*
 import javax.inject.Inject
 
@@ -31,10 +31,11 @@ class RecordListAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>
 
         holder.itemView.apply {
             item_record_name.text = context.getString(record.category.nameRes)
-            item_record_amount.text = "£ ${record.amount.toPlainString()}"
+            item_record_amount.text = record.prettyAmount()
+            item_record_amount.colorize(record.colorizeAmount())
             item_record_date.text = record.date.format(LONG_DATE_FORMAT)
             item_record_icon.setImageResource(record.category.iconRes)
-            item_record_icon.setColorFilter(ContextCompat.getColor(context, record.category.colorRes), PorterDuff.Mode.SRC_IN)
+            item_record_icon.tint(record.category.colorRes)
         }
     }
 

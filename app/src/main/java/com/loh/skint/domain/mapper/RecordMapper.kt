@@ -18,7 +18,8 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
                 entity.dateOf,
                 entity.category,
                 entity.note,
-                entity.account.uuid
+                entity.account.uuid,
+                entity.currency
         )
     }
 
@@ -30,6 +31,7 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
             dateOf = domain.date
             category = domain.category
             note = domain.note
+            currency = domain.currency
             accountUUID = domain.accountUUID
         }
     }

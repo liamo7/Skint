@@ -26,7 +26,7 @@ data class Account(val uuid: UUID,
         fun findIconById(id: Int) = ICONS.find { it.id == id } ?: Account.ICONS[0]
     }
 
-    fun prettyBalance() = "${currency.symbol} ${balance.toPlainString()}"
+    fun prettyBalance() = "${currency.symbol}${balance.toPlainString()}"
 }
 
 data class AccountIcon(val id: Int, val iconResId: Int, val nameResId: Int)
