@@ -8,6 +8,7 @@ import com.loh.skint.ui.account.icon.AccountIconListActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.category.list.CategoryListActivity
+import com.loh.skint.ui.goal.list.GoalListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
 import com.loh.skint.ui.record.list.RecordListActivity
 import org.threeten.bp.LocalDate
@@ -30,7 +31,7 @@ fun Context.recordsList(id: UUID?, date: LocalDate? = null): Intent {
 }
 
 fun Context.goalsList(id: UUID?): Intent {
-    return Intent(this, OverviewActivity::class.java).apply {
+    return Intent(this, GoalListActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }

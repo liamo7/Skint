@@ -64,7 +64,6 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), View, AccountVi
         }
         drawerLayout.closeDrawer(Gravity.START)
 
-
         // when user signs out, clear all task history
         if (item.itemId == R.id.nav_sign_out) {
             startActivity(accountListIntent().bringToFront().clearHistory())

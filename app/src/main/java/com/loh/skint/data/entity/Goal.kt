@@ -1,7 +1,9 @@
 package com.loh.skint.data.entity
 
 import com.loh.skint.data.converter.BigDecimalConverter
+import com.loh.skint.data.converter.CurrencyConverter
 import com.loh.skint.data.converter.LocalDateConverter
+import com.loh.skint.domain.model.Currency
 import io.requery.*
 import org.threeten.bp.LocalDate
 import java.math.BigDecimal
@@ -21,6 +23,8 @@ interface Goal : Persistable {
 
     @get:Convert(BigDecimalConverter::class) var savedAmount: BigDecimal
     @get:Convert(BigDecimalConverter::class) var targetAmount: BigDecimal
+
+    @get:Convert(CurrencyConverter::class) var currency: Currency
 
     @get:OneToMany(mappedBy = "goal", cascade = arrayOf(CascadeAction.SAVE, CascadeAction.DELETE))
     val records: MutableList<GoalRecord>

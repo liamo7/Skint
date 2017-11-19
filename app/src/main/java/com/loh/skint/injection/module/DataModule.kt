@@ -24,10 +24,16 @@ class DataModule {
     }
 
     @Provides @Singleton
-    fun bindsAccountRepository(repository: com.loh.skint.data.repository.AccountRepository):
+    fun providesAccountRepository(repository: com.loh.skint.data.repository.AccountRepository):
             com.loh.skint.domain.repository.AccountRepository = repository
 
     @Provides @Singleton
-    fun bindsRecordRepository(repository: com.loh.skint.data.repository.RecordRepository):
+    fun providesRecordRepository(repository: com.loh.skint.data.repository.RecordRepository):
             com.loh.skint.domain.repository.RecordRepository = repository
+
+    @Provides @Singleton
+    fun providesGoalRepository(repository: com.loh.skint.data.repository.GoalRepository):
+            com.loh.skint.domain.repository.GoalRepository {
+        return repository
+    }
 }

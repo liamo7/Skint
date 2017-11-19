@@ -1,7 +1,9 @@
 package com.loh.skint.ui.goal.list
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import com.loh.skint.R
+import com.loh.skint.domain.model.Goal
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
 import com.loh.skint.util.hide
@@ -12,10 +14,13 @@ import javax.inject.Inject
 class GoalListActivity : BaseAccountDrawerActivity(), View {
 
     @Inject lateinit var presenter: Presenter
+    @Inject lateinit var listAdapter: GoalListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.attach(this)
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.adapter = listAdapter
     }
 
     override fun onResume() {
@@ -40,7 +45,8 @@ class GoalListActivity : BaseAccountDrawerActivity(), View {
 
     override fun hideGoals() = recycler_view.hide()
 
-    override fun showGoals() {
+    override fun showGoals(goals: MutableList<Goal>) {
         recycler_view.show()
+        listAdapter.goals = goals
     }
 }
