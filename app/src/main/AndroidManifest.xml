@@ -48,6 +48,14 @@
             android:name=".ui.goal.list.GoalListActivity"
             android:label="@string/title_goals"/>
 
+        <activity
+            android:name=".ui.goal.detail.GoalDetailActivity"
+            android:label="@string/title_goal"/>
+
+        <activity
+            android:name=".ui.goal.create.GoalCreateActivity"
+            android:label="@string/title_goal_add"/>
+
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import com.loh.skint.ui.account.icon.AccountIconListActivity.Companion.INTENT_RE
 import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.util.accountIconSelectorIntent
 import com.loh.skint.util.accountOverview
+import com.loh.skint.util.disable
 import kotlinx.android.synthetic.main.activity_account_create.*
 import javax.inject.Inject
 
@@ -43,7 +44,7 @@ class AccountCreateActivity : BaseActivity(), View {
         }
 
         // disable key listener
-        account_create_currency_input.keyListener = null
+        account_create_currency_input.disable()
         account_create_currency_input.setOnClickListener { presenter.onCurrencyClicked() }
         account_create_currency_action.setOnClickListener { presenter.onCurrencyClicked() }
         account_create_icon.setOnClickListener { presenter.onIconClicked() }

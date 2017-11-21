@@ -10,6 +10,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -38,3 +39,7 @@ fun TextView.colorize(@ColorRes colorResId: Int) = setTextColor(ContextCompat.ge
 
 fun ImageView.tint(@ColorRes colorResId: Int) =
         setColorFilter(ContextCompat.getColor(context, colorResId), PorterDuff.Mode.SRC_IN)
+
+fun EditText.disable() {
+    keyListener = null
+}

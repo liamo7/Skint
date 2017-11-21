@@ -8,6 +8,8 @@ import com.loh.skint.ui.account.icon.AccountIconListActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.category.list.CategoryListActivity
+import com.loh.skint.ui.goal.create.GoalCreateActivity
+import com.loh.skint.ui.goal.detail.GoalDetailActivity
 import com.loh.skint.ui.goal.list.GoalListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
 import com.loh.skint.ui.record.list.RecordListActivity
@@ -16,6 +18,7 @@ import java.util.*
 
 const val INTENT_ACCOUNT_ID = "ACCOUNT_ID"
 const val INTENT_DATE = "DATE"
+const val INTENT_GOAL_UUID = "GOAL_UUID"
 
 fun Context.accountOverview(id: UUID?): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
@@ -78,6 +81,18 @@ fun Context.categoryListIntent(): Intent {
 
 fun Context.accountIconSelectorIntent(): Intent {
     return Intent(this, AccountIconListActivity::class.java)
+}
+
+fun Context.goalCreateIntent(accountUUID: UUID): Intent {
+    return Intent(this, GoalCreateActivity::class.java).apply {
+        putExtra(INTENT_ACCOUNT_ID, accountUUID)
+    }
+}
+
+fun Context.goalDetailIntent(uuid: UUID): Intent {
+    return Intent(this, GoalDetailActivity::class.java).apply {
+        putExtra(INTENT_GOAL_UUID, uuid)
+    }
 }
 
 fun Intent.clearHistory(): Intent {

@@ -48,7 +48,7 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), View, AccountVi
 //        iconView.setImageResource(account.getIconResId(this))
 //    }
 
-    override fun getAccountUUID(): UUID? = intent.extras[INTENT_ACCOUNT_ID] as UUID
+    override fun getAccountUUID(): UUID = intent.extras[INTENT_ACCOUNT_ID] as UUID
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val accountId = getAccountUUID()

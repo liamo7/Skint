@@ -16,6 +16,14 @@ class GoalListPresenter @Inject constructor(private val getGoals: GetGoals) : Ba
         getGoals.execute(Observer(), GetGoals.Params(uuid))
     }
 
+    override fun onGoalClicked(goal: Goal) {
+        getView().navigateToGoal(goal.uuid)
+    }
+
+    override fun onFabClicked() {
+        getView().navigateToGoalCreation()
+    }
+
     override fun cleanUp() {
         getGoals.dispose()
     }

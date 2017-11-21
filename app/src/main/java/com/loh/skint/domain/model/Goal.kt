@@ -12,13 +12,13 @@ data class Goal(val uuid: UUID,
                 var targetDate: LocalDate,
                 var savedAmount: BigDecimal,
                 var targetAmount: BigDecimal,
-                var currency: Currency,
                 var accountUUID: UUID,
+                var currency: Currency? = null,
                 var records: MutableList<GoalRecord> = mutableListOf()) {
 
     fun prettySavedAmount() = prettyAmount(savedAmount)
     fun prettyTargetAmount() = prettyAmount(targetAmount)
-    private fun prettyAmount(amount: BigDecimal) = "${currency.symbol}${amount.toPlainString()}"
+    private fun prettyAmount(amount: BigDecimal) = "${currency?.symbol}${amount.toPlainString()}"
 
     fun progress(): Int = ((100 / targetAmount.toFloat()) * savedAmount.toFloat()).toInt()
 }

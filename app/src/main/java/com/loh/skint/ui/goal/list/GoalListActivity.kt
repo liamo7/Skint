@@ -6,9 +6,12 @@ import com.loh.skint.R
 import com.loh.skint.domain.model.Goal
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.account.BaseAccountDrawerActivity
+import com.loh.skint.util.goalCreateIntent
+import com.loh.skint.util.goalDetailIntent
 import com.loh.skint.util.hide
 import com.loh.skint.util.show
 import kotlinx.android.synthetic.main.activity_goals_list.*
+import java.util.*
 import javax.inject.Inject
 
 class GoalListActivity : BaseAccountDrawerActivity(), View {
@@ -21,6 +24,8 @@ class GoalListActivity : BaseAccountDrawerActivity(), View {
         presenter.attach(this)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = listAdapter
+        listAdapter.clickListener = { goal -> presenter.onGoalClicked(goal) }
+        fab_add_goal.setOnClickListener { presenter.onFabClicked() }
     }
 
     override fun onResume() {
@@ -48,5 +53,13 @@ class GoalListActivity : BaseAccountDrawerActivity(), View {
     override fun showGoals(goals: MutableList<Goal>) {
         recycler_view.show()
         listAdapter.goals = goals
+    }
+
+    override fun navigateToGoal(uuid: UUID) {
+        startActivity(goalDetailIntent(uuid))
+    }
+
+    override fun navigateToGoalCreation() {
+        startActivity(goalCreateIntent(getAccountUUID()))
     }
 }

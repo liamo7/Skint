@@ -13,12 +13,12 @@ import com.loh.skint.ui.category.list.CategoryListActivity.Companion.ARG_SELECTE
 import com.loh.skint.ui.category.list.CategoryListActivity.Companion.INTENT_REQUEST_CODE
 import com.loh.skint.util.INTENT_ACCOUNT_ID
 import com.loh.skint.util.categoryListIntent
+import com.loh.skint.util.disable
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_record_create.*
 import org.threeten.bp.LocalDate
 import java.util.*
 import javax.inject.Inject
-
 
 class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetListener {
 
@@ -50,9 +50,9 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         }
 
         // disable entry
-        record_create_transfer_type_input.keyListener = null
-        record_create_date_input.keyListener = null
-        record_create_location_input.keyListener = null
+        record_create_transfer_type_input.disable()
+        record_create_date_input.disable()
+        record_create_location_input.disable()
 
         // setup click listeners for actions
         record_create_transfer_type_input.setOnClickListener { presenter.onTransferTypeClicked() }
@@ -90,7 +90,7 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
 
     override fun inject(component: ActivityComponent) = component.inject(this)
 
-    override fun getAccountUUID(): UUID? = intent.getSerializableExtra(INTENT_ACCOUNT_ID) as UUID
+    override fun getAccountUUID(): UUID = intent.getSerializableExtra(INTENT_ACCOUNT_ID) as UUID
 
     override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
         presenter.onDateSelected(year, monthOfYear, dayOfMonth)

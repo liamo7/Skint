@@ -16,8 +16,8 @@ class GoalMapper @Inject constructor(private val mapper: GoalRecordMapper) : Map
                 entity.targetDate,
                 entity.savedAmount,
                 entity.targetAmount,
-                entity.currency,
                 entity.account.uuid,
+                entity.currency,
                 mapper.mapEntityToDomain(entity.records)
         )
     }
@@ -32,8 +32,8 @@ class GoalMapper @Inject constructor(private val mapper: GoalRecordMapper) : Map
             targetDate = domain.targetDate
             savedAmount = domain.savedAmount
             targetAmount = domain.targetAmount
-            currency = domain.currency
             accountUUID = domain.accountUUID
+            currency = domain.currency
             records.addAll(0, mapper.mapDomainToEntity(domain.records))
         }
     }

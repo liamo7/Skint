@@ -68,11 +68,8 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
         if (activity is RecordListActivity) (activity as RecordListActivity).viewpager.scrollLeft()
     }
 
-    override fun getAccountUUID(): UUID? {
-        if (activity is BaseAccountDrawerActivity) {
-            return (activity as BaseAccountDrawerActivity).getAccountUUID()
-        }
-        return null
+    override fun getAccountUUID(): UUID {
+        return (activity as BaseAccountDrawerActivity).getAccountUUID()
     }
 
     override fun displayEmptyState() = empty_container.show()
