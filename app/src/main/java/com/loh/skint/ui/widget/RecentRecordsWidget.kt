@@ -10,7 +10,6 @@ import android.widget.TextView
 import com.loh.skint.R
 import com.loh.skint.domain.model.Record
 import com.loh.skint.util.*
-import timber.log.Timber
 
 
 class RecentRecordsWidget @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
@@ -59,8 +58,6 @@ class RecentRecordsWidget @JvmOverloads constructor(context: Context, attrs: Att
 
         var i = 0
         while ((i < records.size) and (i < ITEM_THRESHOLD)) {
-            Timber.d("Inflating Record")
-
             val view = inflate(R.layout.item_recent_record)
             bindRecord(view, records[i])
             listContainer.addView(view)

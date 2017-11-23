@@ -45,21 +45,104 @@
                 android:layout_marginStart="8dp"
                 android:textColor="@color/black"
                 android:textSize="21sp"
-                app:layout_constraintBottom_toBottomOf="@id/goal_icon"
+                app:layout_constraintBottom_toTopOf="@id/goal_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/goal_icon"
                 app:layout_constraintTop_toTopOf="@id/goal_icon"
                 tools:text="New Car"/>
 
-            <ProgressBar
-                android:id="@+id/progressBar"
+            <TextView
+                android:id="@+id/goal_target_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/activity_margin"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/goal_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/goal_icon"
+                app:layout_constraintTop_toBottomOf="@id/goal_name"
+                tools:text="@string/goal_target_amount"/>
+
+            <me.itangqi.waveloadingview.WaveLoadingView
+                android:id="@+id/goal_progress"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:max="100"
-                android:progress="6"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/goal_name"/>
+                app:layout_constraintTop_toBottomOf="@id/goal_target_amount"
+                app:wlv_borderColor="@color/colorAccent"
+                app:wlv_borderWidth="3dp"
+                app:wlv_round_rectangle="true"
+                app:wlv_shapeType="circle"
+                app:wlv_titleBottomColor="@color/black"
+                app:wlv_titleBottomSize="16sp"
+                app:wlv_titleCenterColor="@color/black"
+                app:wlv_titleCenterSize="16sp"
+                app:wlv_titleTopColor="@color/black"
+                app:wlv_titleTopSize="16sp"
+                app:wlv_triangle_direction="north"
+                app:wlv_waveAmplitude="30"
+                app:wlv_waveColor="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/goal_last_amount_added_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Last amount added:"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goal_progress"/>
+
+            <TextView
+                android:id="@+id/goal_last_amount_added"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goal_last_amount_added_label"
+                tools:text="£40.00"/>
+
+            <TextView
+                android:id="@+id/goal_target_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Target Date:"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goal_last_amount_added"/>
+
+            <TextView
+                android:id="@+id/goal_target_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goal_target_date_label"
+                tools:text="20/02/2019"/>
+
+            <Button
+                android:id="@+id/goal_add_amount_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorAccent"
+                android:paddingEnd="24dp"
+                android:paddingStart="24dp"
+                android:text="Add Amount"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goal_target_date"/>
 
         </android.support.constraint.ConstraintLayout>
 

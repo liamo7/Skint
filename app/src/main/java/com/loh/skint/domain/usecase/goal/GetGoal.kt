@@ -16,5 +16,5 @@ class GetGoal @Inject constructor(compositeDisposable: CompositeDisposable,
         return repository.get(params.goalUUID)
     }
 
-    inner class Params(val goalUUID: UUID)
+    data class Params(val goalUUID: UUID)
 }

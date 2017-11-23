@@ -8,6 +8,7 @@ import com.loh.skint.domain.usecase.record.AddRecord
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
 import com.loh.skint.util.LONG_DATE_FORMAT
+import com.loh.skint.util.isValidDecimal
 import io.reactivex.observers.DisposableCompletableObserver
 import org.threeten.bp.LocalDate
 import timber.log.Timber
@@ -84,20 +85,16 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
 
         val amount = getView().getAmount()
         val note = getView().getNote()
+        val category = selectedCategory
+        val transferType = selectedTransferType
+        val date = selectedDate
 
-        // validate input
-        if (accountUUID == null) {
-            showGenericError()
-            return
-        }
-
-        if (selectedCategory == null) {
+        if (category == null) {
             getView().showMessage(R.string.category_select_error)
             return
         }
 
-        val amountRegex = "^[0-9]+(\\.[0-9]{1,2})?$"
-        if (amount.isBlank() || !amount.matches(Regex(amountRegex))) {
+        if (!amount.isValidDecimal()) {
             getView().showMessage(R.string.amount_invalid_error)
             return
         }
@@ -105,10 +102,10 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
         // build record
         val record = Record(
                 UUID.randomUUID(),
-                selectedTransferType,
+                transferType,
                 BigDecimal(amount),
-                selectedDate,
-                selectedCategory!!,
+                date,
+                category,
                 note,
                 accountUUID
         )

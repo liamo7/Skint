@@ -11,6 +11,7 @@ import com.loh.skint.util.goalDetailIntent
 import com.loh.skint.util.hide
 import com.loh.skint.util.show
 import kotlinx.android.synthetic.main.activity_goals_list.*
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -24,7 +25,7 @@ class GoalListActivity : BaseAccountDrawerActivity(), View {
         presenter.attach(this)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = listAdapter
-        listAdapter.clickListener = { goal -> presenter.onGoalClicked(goal) }
+        listAdapter.callback = { goal -> presenter.onGoalClicked(goal) }
         fab_add_goal.setOnClickListener { presenter.onFabClicked() }
     }
 
@@ -56,6 +57,7 @@ class GoalListActivity : BaseAccountDrawerActivity(), View {
     }
 
     override fun navigateToGoal(uuid: UUID) {
+        Timber.d("Goal Detail Activity Start")
         startActivity(goalDetailIntent(uuid))
     }
 

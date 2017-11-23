@@ -7,6 +7,7 @@ import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
 import com.loh.skint.ui.goal.list.GoalIconAdapter
 import com.loh.skint.util.LONG_DATE_FORMAT
+import com.loh.skint.util.isValidDecimal
 import io.reactivex.observers.DisposableCompletableObserver
 import org.threeten.bp.LocalDate
 import timber.log.Timber
@@ -53,28 +54,18 @@ class GoalCreatePresenter @Inject constructor(private val addGoal: AddGoal) : Ba
         val accountUUID = getView().getAccountUUID()
 
         val name = getView().getName()
+        val note = getView().getNote()
         val savedAmount = getView().getSavedAmount()
         val targetAmount = getView().getTargetAmount()
-        val note = getView().getNote()
+        val targetDate = selectedTargetDate
+        val iconRes = selectedIconRes
 
-        // validate input
-        if (accountUUID == null) {
-            showGenericError()
-            return
-        }
-
-        if (selectedIconRes == null) {
+        if (iconRes == null) {
             getView().showMessage(R.string.icon_select_error)
             return
         }
 
-        val amountRegex = Regex("^[0-9]+(\\.[0-9]{1,2})?$")
-        if (savedAmount.isBlank() || !savedAmount.matches(amountRegex)) {
-            getView().showMessage(R.string.amount_invalid_error)
-            return
-        }
-
-        if (targetAmount.isBlank() || !targetAmount.matches(amountRegex)) {
+        if (!savedAmount.isValidDecimal() || !targetAmount.isValidDecimal()) {
             getView().showMessage(R.string.amount_invalid_error)
             return
         }
@@ -83,9 +74,9 @@ class GoalCreatePresenter @Inject constructor(private val addGoal: AddGoal) : Ba
                 UUID.randomUUID(),
                 name,
                 note,
-                selectedIconRes!!,
+                iconRes,
                 LocalDate.now(),
-                selectedTargetDate!!,
+                targetDate,
                 BigDecimal(savedAmount),
                 BigDecimal(targetAmount),
                 accountUUID
@@ -100,8 +91,6 @@ class GoalCreatePresenter @Inject constructor(private val addGoal: AddGoal) : Ba
     }
 
     override fun onRestoreState(state: State) {
-        Timber.d("State: $state")
-
         state.iconResId?.let { selectIcon(it) }
         state.targetDate?.let { selectTargetDate(it) }
     }

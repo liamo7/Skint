@@ -12,7 +12,7 @@ import javax.inject.Inject
 class GoalListPresenter @Inject constructor(private val getGoals: GetGoals) : BasePresenter<View>(), Presenter {
 
     override fun retrieveGoals() {
-        val uuid = getView().getAccountUUID() ?: return
+        val uuid = getView().getAccountUUID()
         getGoals.execute(Observer(), GetGoals.Params(uuid))
     }
 

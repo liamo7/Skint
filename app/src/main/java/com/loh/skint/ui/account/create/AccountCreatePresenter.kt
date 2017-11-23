@@ -7,6 +7,7 @@ import com.loh.skint.domain.model.AccountIcon
 import com.loh.skint.domain.usecase.account.AddAccount
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
+import com.loh.skint.util.isValidDecimal
 import io.reactivex.observers.DisposableSingleObserver
 import org.threeten.bp.LocalDate
 import timber.log.Timber
@@ -45,6 +46,8 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
         // gather input
         val name = getView().getName()
         val initialBalance = getView().getInitialBalance()
+        val icon = selectedIcon
+        val currency = selectedCurrencyIndex?.let { AVAILABLE_CURRENCIES.getOrNull(it) }
 
         // validate input
         if (name.isBlank()) {
@@ -52,23 +55,20 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
             return
         }
 
-        val balanceRegex = "^[0-9]+(\\.[0-9]{1,2})?$"
-        if (initialBalance.isBlank() || !initialBalance.matches(Regex(balanceRegex))) {
+        if (!initialBalance.isValidDecimal()) {
             getView().showMessage(R.string.balance_invalid_error)
             return
         }
 
-        if (selectedCurrencyIndex == null) {
-            getView().showMessage(R.string.category_select_error)
+        if (currency == null) {
+            getView().showMessage(R.string.currency_invalid_error)
             return
         }
 
-        if (selectedIcon == null) {
+        if (icon == null) {
             getView().showMessage(R.string.icon_select_error)
             return
         }
-
-        val currency = AVAILABLE_CURRENCIES[selectedCurrencyIndex!!]
 
         val account = Account(
                 UUID.randomUUID(),
@@ -76,10 +76,9 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
                 BigDecimal(initialBalance),
                 currency,
                 LocalDate.now(),
-                selectedIcon!!
+                icon
         )
 
-        // pass to usecase
         addAccount.execute(Observer(), account)
     }
 

@@ -19,7 +19,7 @@ interface Goal : Persistable {
     var iconResId: Int
 
     @get:Convert(LocalDateConverter::class) var startDate: LocalDate
-    @get:Convert(LocalDateConverter::class) var targetDate: LocalDate
+    @get:[Convert(LocalDateConverter::class) Column(nullable = true)] var targetDate: LocalDate
 
     @get:Convert(BigDecimalConverter::class) var savedAmount: BigDecimal
     @get:Convert(BigDecimalConverter::class) var targetAmount: BigDecimal

@@ -19,7 +19,7 @@ class GoalListAdapter @Inject constructor() : RecyclerView.Adapter<GoalListAdapt
             notifyItemRangeChanged(0, field.size)
         }
 
-    var clickListener: (Goal) -> Unit = {}
+    var callback: (Goal) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(parent.inflate(R.layout.item_goal_list))
@@ -29,7 +29,7 @@ class GoalListAdapter @Inject constructor() : RecyclerView.Adapter<GoalListAdapt
         val goal = goals[position]
 
         holder.itemView.apply {
-            setOnClickListener { clickListener }
+            item_goal_container.setOnClickListener { callback(goal) }
             item_goal_icon.setImageResource(goal.iconResId)
             item_goal_name.text = goal.name
             item_goal_saved_amount.text = goal.prettySavedAmount()

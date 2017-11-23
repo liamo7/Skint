@@ -13,16 +13,10 @@ class RecordListPresenter @Inject constructor(private val getRecords: GetRecords
 
     override fun retrieveRecords() {
         val accountId = getView().getAccountUUID()
-
         val date = getView().getDate()
         val range = getView().getDateRange()
 
         getView().renderDatebar(date, range)
-
-        if (accountId == null) {
-            handleEmptyState()
-            return
-        }
 
         val params = GetRecords.Params(accountId, range, date)
         getRecords.execute(Observer(), params)
@@ -33,8 +27,7 @@ class RecordListPresenter @Inject constructor(private val getRecords: GetRecords
     }
 
     override fun onAddRecord() {
-        val id = getView().getAccountUUID()
-        id?.let { getView().navigateToRecordCreation(it) }
+        getView().navigateToRecordCreation(getView().getAccountUUID())
     }
 
     private fun handleEmptyState() {
