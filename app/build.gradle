@@ -111,8 +111,8 @@ dependencies {
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
 
-    implementation 'com.afollestad.material-dialogs:core:0.9.5.0'
-    implementation 'com.wdullaer:materialdatetimepicker:3.4.0'
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.0.5'
-    implementation 'me.itangqi.waveloadingview:library:0.3.5'
+    implementation deps.datePicker
+    implementation deps.dialogs
+    implementation deps.threeTenAbp
+    implementation deps.waveLoadingView
 }

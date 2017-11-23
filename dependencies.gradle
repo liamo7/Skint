@@ -1,28 +1,32 @@
 ext.versions = [
-        compileSdk  : 26,
-        targetSdk   : 26,
-        minSdk      : 21,
-        buildTools  : '26.0.2',
-        gradlePlugin: '3.0.0',
-        supportLib  : '26.1.0',
-        kotlin      : '1.1.51',
+        compileSdk     : 26,
+        targetSdk      : 26,
+        minSdk         : 21,
+        buildTools     : '26.0.2',
+        gradlePlugin   : '3.0.0',
+        supportLib     : '26.1.0',
+        kotlin         : '1.1.51',
 
-        butterknife : '8.8.1',
-        constraint  : '1.1.0-beta3',
-        dagger      : '2.12',
-        espresso    : '2.2.1',
-        glide       : '4.2.0',
-        leakCanary  : '1.5.4',
-        retrofit    : '2.3.0',
-        requery     : '1.4.1',
-        rxJava      : '2.1.2',
-        rxAndroid   : '2.0.1',
-        timber      : '4.5.1',
-        stetho      : '1.5.0',
+        butterknife    : '8.8.1',
+        constraint     : '1.1.0-beta3',
+        dagger         : '2.12',
+        datePicker     : '3.4.0',
+        dialogs        : '0.9.5.0',
+        espresso       : '2.2.1',
+        glide          : '4.2.0',
+        leakCanary     : '1.5.4',
+        retrofit       : '2.3.0',
+        requery        : '1.4.1',
+        rxJava         : '2.1.2',
+        rxAndroid      : '2.0.1',
+        threeTenAbp    : '1.0.5',
+        timber         : '4.5.1',
+        stetho         : '1.5.0',
+        waveLoadingView: '0.3.5'
 ]
 
 ext.deps = [
-        support    : [
+        support        : [
                 annotations     : "com.android.support:support-annotations:${versions.supportLib}",
                 appCompat       : "com.android.support:appcompat-v7:${versions.supportLib}",
                 cardView        : "com.android.support:cardview-v7:${versions.supportLib}",
@@ -32,51 +36,46 @@ ext.deps = [
                 v4              : "com.android.support:support-v4:${versions.supportLib}",
                 paging          : "android.arch.paging:runtime:1.0.0-alpha3"
         ],
-        kotlin     :
-                "org.jetbrains.kotlin:kotlin-stdlib-jre7:${versions.kotlin}",
-        requery    : [
+        kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${versions.kotlin}",
+        requery        : [
                 core    : "io.requery:requery:${versions.requery}",
                 kotlin  : "io.requery:requery-kotlin:${versions.requery}",
                 android : "io.requery:requery-android:${versions.requery}",
                 compiler: "io.requery:requery-processor:${versions.requery}"
         ],
-        butterknife:
-                [
-                        apt    : "com.jakewharton:butterknife-compiler:${versions.butterknife}",
-                        runtime: "com.jakewharton:butterknife:${versions.butterknife}",
-                ],
-        dagger     :
-                [
-                        processor: "com.google.dagger:dagger-android-processor:${versions.dagger}",
-                        android  : "com.google.dagger:dagger-android-support:${versions.dagger}",
-                        compiler : "com.google.dagger:dagger-compiler:${versions.dagger}",
-                        runtime  : "com.google.dagger:dagger:${versions.dagger}",
-                ],
-        glide      :
-                [
-                        compiler   : "com.github.bumptech.glide:compiler:${versions.glide}",
-                        annotations: "com.github.bumptech.glide:annotations:${versions.glide}",
-                        core       : "com.github.bumptech.glide:glide:${versions.glide}",
-                ],
-        leakCanary :
-                [
-                        debug  : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
-                        release: "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
-                ],
-        rx         :
-                [
-                        'core'   : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
-                        'android': "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
-                ],
-        stetho     :
-                "com.facebook.stetho:stetho:${versions.stetho}",
-        timber     :
-                "com.jakewharton.timber:timber:${versions.timber}",
-        test       :
-                [
-                        espresso: "com.android.support.test.espresso:espresso-core:3.0.0",
-                        junit   : 'junit:junit:4.12',
-                        mockito : 'org.mockito:mockito-core:2.8.47',
-                        runner  : "com.android.support.test:runner:1.0.1",
-                ],
+        butterknife    : [
+                apt    : "com.jakewharton:butterknife-compiler:${versions.butterknife}",
+                runtime: "com.jakewharton:butterknife:${versions.butterknife}",
+        ],
+        dagger         : [
+                processor: "com.google.dagger:dagger-android-processor:${versions.dagger}",
+                android  : "com.google.dagger:dagger-android-support:${versions.dagger}",
+                compiler : "com.google.dagger:dagger-compiler:${versions.dagger}",
+                runtime  : "com.google.dagger:dagger:${versions.dagger}",
+        ],
+        datePicker     : "com.wdullaer:materialdatetimepicker:${versions.datePicker}",
+        dialogs        : "com.afollestad.material-dialogs:core:${versions.dialogs}",
+        glide          : [
+                compiler   : "com.github.bumptech.glide:compiler:${versions.glide}",
+                annotations: "com.github.bumptech.glide:annotations:${versions.glide}",
+                core       : "com.github.bumptech.glide:glide:${versions.glide}",
+        ],
+        leakCanary     : [
+                debug  : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
+                release: "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
+        ],
+        rx             : [
+                'core'   : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+                'android': "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+        ],
+        stetho         : "com.facebook.stetho:stetho:${versions.stetho}",
+        threeTenAbp    : "com.jakewharton.threetenabp:threetenabp:${versions.threeTenAbp}",
+        timber         : "com.jakewharton.timber:timber:${versions.timber}",
+        test           : [
+                espresso: "com.android.support.test.espresso:espresso-core:3.0.0",
+                junit   : 'junit:junit:4.12',
+                mockito : 'org.mockito:mockito-core:2.8.47',
+                runner  : "com.android.support.test:runner:1.0.1",
+        ],
+        waveLoadingView: "me.itangqi.waveloadingview:library:${versions.waveLoadingView}"
 ]
