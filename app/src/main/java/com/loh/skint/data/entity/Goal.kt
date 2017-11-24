@@ -19,12 +19,15 @@ interface Goal : Persistable {
     var iconResId: Int
 
     @get:Convert(LocalDateConverter::class) var startDate: LocalDate
-    @get:[Convert(LocalDateConverter::class) Column(nullable = true)] var targetDate: LocalDate
+    @get:[Convert(LocalDateConverter::class) Column(nullable = true)] var targetDate: LocalDate?
 
     @get:Convert(BigDecimalConverter::class) var savedAmount: BigDecimal
     @get:Convert(BigDecimalConverter::class) var targetAmount: BigDecimal
 
     @get:Convert(CurrencyConverter::class) var currency: Currency
+
+    @get:Column(value = "false") var completed: Boolean
+    @get:[Convert(LocalDateConverter::class) Column(nullable = true, value = "null")] var dateCompleted: LocalDate?
 
     @get:OneToMany(mappedBy = "goal", cascade = arrayOf(CascadeAction.SAVE, CascadeAction.DELETE))
     val records: MutableList<GoalRecord>

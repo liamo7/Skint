@@ -13,6 +13,8 @@ data class Goal(val uuid: UUID,
                 var savedAmount: BigDecimal,
                 var targetAmount: BigDecimal,
                 var accountUUID: UUID,
+                var completed: Boolean = false,
+                var dateReached: LocalDate? = null,
                 var currency: Currency? = null,
                 var records: MutableList<GoalRecord> = mutableListOf()) {
 

@@ -1,6 +1,8 @@
 package com.loh.skint.ui.goal.detail
 
 import android.os.Bundle
+import android.text.InputType
+import com.afollestad.materialdialogs.MaterialDialog
 import com.loh.skint.R
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseActivity
@@ -14,10 +16,21 @@ class GoalDetailActivity : BaseActivity(), View {
 
     @Inject lateinit var presenter: Presenter
 
+    private val savedAmountDialog: MaterialDialog by lazy {
+        MaterialDialog.Builder(this)
+                .title("Amount Saved")
+                .content("Enter how much money you have saved towards your goal.")
+                .inputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL)
+                .input("10.00", null, false, { _, input -> presenter.addAmount(input.toString()) })
+                .build()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBackToolbar(toolbar, R.drawable.ic_arrow_back)
         presenter.attach(this)
+
+        goal_add_amount_button.setOnClickListener { savedAmountDialog.show() }
     }
 
     override fun onResume() {

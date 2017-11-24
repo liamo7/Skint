@@ -1,6 +1,7 @@
 package com.loh.skint.ui.goal.detail
 
 import com.loh.skint.domain.model.Goal
+import com.loh.skint.domain.usecase.goal.AddGoalRecord
 import com.loh.skint.domain.usecase.goal.GetGoal
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
@@ -8,10 +9,13 @@ import com.loh.skint.util.LONG_DATE_FORMAT
 import com.loh.skint.util.isValidDecimal
 import io.reactivex.observers.DisposableSingleObserver
 import timber.log.Timber
+import java.math.BigDecimal
 import javax.inject.Inject
 
 @ActivityScoped
-class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal) : BasePresenter<View>(), Presenter {
+class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal,
+                                              private val addAmount: AddGoalRecord)
+    : BasePresenter<View>(), Presenter {
 
     override fun loadGoal() {
         val uuid = getView().getGoalUUID()
@@ -45,10 +49,13 @@ class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal) : Ba
         }
 
         // execute
+        val params = AddGoalRecord.Params(getView().getGoalUUID(), BigDecimal(amount))
+        addAmount.execute(SavedAmountObserver(), params)
     }
 
     override fun cleanUp() {
         getGoal.dispose()
+        addAmount.dispose()
     }
 
     inner class GetGoalObserver : DisposableSingleObserver<Goal>() {
@@ -58,6 +65,18 @@ class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal) : Ba
 
         override fun onError(e: Throwable) {
             Timber.e(e.message)
+        }
+    }
+
+    inner class SavedAmountObserver : DisposableSingleObserver<Goal>() {
+        override fun onSuccess(goal: Goal) {
+            renderGoal(goal)
+        }
+
+        override fun onError(e: Throwable) {
+            Timber.e(e)
+            Timber.e(e.message)
+            Timber.e(e.cause)
         }
     }
 }

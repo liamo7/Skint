@@ -50,7 +50,13 @@ class GoalRepository @Inject constructor(private val dataStore: KotlinReactiveEn
     }
 
     override fun update(model: com.loh.skint.data.entity.Goal): Single<Goal> {
-        return dataStore.upsert(model)
+        return dataStore.update(model)
                 .map { mapper.mapEntityToDomain(it) }
+    }
+
+    override fun getBlocking(uuid: UUID): com.loh.skint.data.entity.Goal {
+        return dataStore.select(GoalEntity::class)
+                .where(com.loh.skint.data.entity.GoalEntity.UUID.eq(uuid))
+                .get().first()
     }
 }
