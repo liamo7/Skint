@@ -7,6 +7,7 @@ import com.loh.skint.domain.repository.RecordRepository
 import com.loh.skint.util.DateRange
 import com.loh.skint.util.calculateTimespan
 import com.loh.skint.util.timespan
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.requery.Persistable
 import io.requery.reactivex.KotlinReactiveEntityStore
@@ -70,5 +71,11 @@ class RecordRepository @Inject constructor(private val dataStore: KotlinReactive
                 .get().observable()
                 .map { mapper.mapEntityToDomain(it) }
                 .toList()
+    }
+
+    override fun delete(uuid: UUID): Completable {
+        return dataStore.delete(RecordEntity::class)
+                .where(RecordEntity.UUID.eq(uuid))
+                .get().single().toCompletable()
     }
 }

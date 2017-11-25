@@ -2,12 +2,16 @@ package com.loh.skint.ui.goal.detail
 
 import android.os.Bundle
 import android.text.InputType
+import android.view.Menu
+import android.view.MenuItem
 import com.afollestad.materialdialogs.MaterialDialog
 import com.loh.skint.R
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.util.INTENT_ACCOUNT_ID
 import com.loh.skint.util.INTENT_GOAL_UUID
+import com.loh.skint.util.bringToFront
+import com.loh.skint.util.goalsList
 import kotlinx.android.synthetic.main.activity_goal_detail.*
 import java.util.*
 import javax.inject.Inject
@@ -36,6 +40,19 @@ class GoalDetailActivity : BaseActivity(), View {
     override fun onResume() {
         super.onResume()
         presenter.loadGoal()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_goal_detail, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_delete_goal) {
+            presenter.deleteGoal()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
@@ -74,5 +91,10 @@ class GoalDetailActivity : BaseActivity(), View {
 
     override fun displayTargetAmount(targetAmount: String) {
         goal_target_amount.text = getString(R.string.goal_target_amount, targetAmount)
+    }
+
+    override fun navigateBackToGoals() {
+        finish()
+        startActivity(goalsList(getAccountUUID()).bringToFront())
     }
 }

@@ -113,4 +113,5 @@
     <string name="goal_created_success">Goal Successfully Created.</string>
     <string name="goal_target_amount">Target: %1$s</string>
     <string name="currency_invalid_error">Please select a currency.</string>
+    <string name="delete">Delete</string>
 </resources>

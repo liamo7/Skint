@@ -7,6 +7,7 @@ import com.loh.skint.domain.mapper.GoalRecordMapper
 import com.loh.skint.domain.model.Goal
 import com.loh.skint.domain.model.GoalRecord
 import com.loh.skint.domain.repository.GoalRepository
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.requery.Persistable
 import io.requery.reactivex.KotlinReactiveEntityStore
@@ -58,5 +59,11 @@ class GoalRepository @Inject constructor(private val dataStore: KotlinReactiveEn
         return dataStore.select(GoalEntity::class)
                 .where(com.loh.skint.data.entity.GoalEntity.UUID.eq(uuid))
                 .get().first()
+    }
+
+    override fun delete(uuid: UUID): Completable {
+        return dataStore.delete(GoalEntity::class)
+                .where(GoalEntity.UUID.eq(uuid))
+                .get().single().toCompletable()
     }
 }

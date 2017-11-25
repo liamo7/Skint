@@ -20,45 +20,29 @@ const val INTENT_ACCOUNT_ID = "ACCOUNT_ID"
 const val INTENT_DATE = "DATE"
 const val INTENT_GOAL_UUID = "GOAL_UUID"
 
-fun Context.accountOverview(id: UUID?): Intent {
+fun Context.accountOverview(id: UUID): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }
 
-fun Context.recordsList(id: UUID?, date: LocalDate? = null): Intent {
+fun Context.recordsList(id: UUID, date: LocalDate? = null): Intent {
     return Intent(this, RecordListActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
         putExtra(INTENT_DATE, date)
     }
 }
 
-fun Context.goalsList(id: UUID?): Intent {
+fun Context.goalsList(id: UUID): Intent {
     return Intent(this, GoalListActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
 }
 
-fun Context.budgetsList(id: UUID?): Intent {
+fun Context.chartsList(id: UUID): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, id)
     }
-}
-
-fun Context.chartsList(id: UUID?): Intent {
-    return Intent(this, OverviewActivity::class.java).apply {
-        putExtra(INTENT_ACCOUNT_ID, id)
-    }
-}
-
-fun Context.reportsList(id: UUID?): Intent {
-    return Intent(this, OverviewActivity::class.java).apply {
-        putExtra(INTENT_ACCOUNT_ID, id)
-    }
-}
-
-fun Context.settings(): Intent {
-    return Intent(this, OverviewActivity::class.java)
 }
 
 fun Context.accountListIntent(): Intent {
@@ -89,9 +73,10 @@ fun Context.goalCreateIntent(accountUUID: UUID): Intent {
     }
 }
 
-fun Context.goalDetailIntent(uuid: UUID): Intent {
+fun Context.goalDetailIntent(goalUUID: UUID, accountUUID: UUID): Intent {
     return Intent(this, GoalDetailActivity::class.java).apply {
-        putExtra(INTENT_GOAL_UUID, uuid)
+        putExtra(INTENT_GOAL_UUID, goalUUID)
+        putExtra(INTENT_ACCOUNT_ID, accountUUID)
     }
 }
 
@@ -111,7 +96,6 @@ fun Intent.eqClasses(arg1: ComponentName?): Boolean {
 
 fun Intent.isOverview(): Boolean {
     if (component.className != null) {
-//        component?.className?.equals(OverviewActivity::class.java.name)
         return component.className == OverviewActivity::class.java.name
     }
 

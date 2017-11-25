@@ -4,6 +4,7 @@ import com.loh.skint.data.entity.Account
 import com.loh.skint.data.entity.AccountEntity
 import com.loh.skint.domain.mapper.AccountMapper
 import com.loh.skint.domain.repository.AccountRepository
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.requery.Persistable
 import io.requery.reactivex.KotlinReactiveEntityStore
@@ -43,5 +44,11 @@ class AccountRepository @Inject constructor(private val dataStore: KotlinReactiv
         return dataStore.select(AccountEntity::class)
                 .where(AccountEntity.UUID.eq(uuid))
                 .get().first()
+    }
+
+    override fun delete(uuid: UUID): Completable {
+        return dataStore.delete(Account::class)
+                .where(AccountEntity.UUID.eq(uuid))
+                .get().single().toCompletable()
     }
 }

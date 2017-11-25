@@ -13,6 +13,7 @@ interface View : AccountView {
     fun displayTargetAmount(targetAmount: String)
     fun displayTargetDate(targetDate: String)
     fun displayLastAddedAmount(amount: String)
+    fun navigateBackToGoals()
 }
 
 interface Presenter : MvpPresenter<View> {

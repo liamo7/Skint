@@ -2,11 +2,13 @@ package com.loh.skint.ui.goal.detail
 
 import com.loh.skint.domain.model.Goal
 import com.loh.skint.domain.usecase.goal.AddGoalRecord
+import com.loh.skint.domain.usecase.goal.DeleteGoal
 import com.loh.skint.domain.usecase.goal.GetGoal
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
 import com.loh.skint.util.LONG_DATE_FORMAT
 import com.loh.skint.util.isValidDecimal
+import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableSingleObserver
 import timber.log.Timber
 import java.math.BigDecimal
@@ -14,7 +16,8 @@ import javax.inject.Inject
 
 @ActivityScoped
 class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal,
-                                              private val addAmount: AddGoalRecord)
+                                              private val addAmount: AddGoalRecord,
+                                              private val deleteGoal: DeleteGoal)
     : BasePresenter<View>(), Presenter {
 
     override fun loadGoal() {
@@ -38,7 +41,7 @@ class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal,
     }
 
     override fun deleteGoal() {
-        TODO("not implemented")
+        deleteGoal.execute(DeleteGoalObserver(), DeleteGoal.Params(getView().getGoalUUID()))
     }
 
     override fun addAmount(amount: String) {
@@ -56,6 +59,7 @@ class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal,
     override fun cleanUp() {
         getGoal.dispose()
         addAmount.dispose()
+        deleteGoal.dispose()
     }
 
     inner class GetGoalObserver : DisposableSingleObserver<Goal>() {
@@ -75,8 +79,17 @@ class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal,
 
         override fun onError(e: Throwable) {
             Timber.e(e)
-            Timber.e(e.message)
-            Timber.e(e.cause)
         }
+    }
+
+    inner class DeleteGoalObserver : DisposableCompletableObserver() {
+        override fun onComplete() {
+            getView().navigateBackToGoals()
+        }
+
+        override fun onError(e: Throwable) {
+            Timber.e(e)
+        }
+
     }
 }
