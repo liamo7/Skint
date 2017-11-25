@@ -1,7 +1,6 @@
 package com.loh.skint.domain.usecase.goal
 
 import com.loh.skint.data.entity.TransferType
-import com.loh.skint.domain.mapper.GoalMapper
 import com.loh.skint.domain.mapper.GoalRecordMapper
 import com.loh.skint.domain.model.Goal
 import com.loh.skint.domain.model.GoalRecord
@@ -15,7 +14,6 @@ import java.util.*
 import javax.inject.Inject
 
 class AddGoalRecord @Inject constructor(compositeDisposable: CompositeDisposable,
-                                        private val goalMapper: GoalMapper,
                                         private val goalRecordMapper: GoalRecordMapper,
                                         private val goalRepository: GoalRepository)
     : SingleUseCase<Goal, AddGoalRecord.Params>(compositeDisposable) {
