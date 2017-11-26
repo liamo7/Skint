@@ -204,53 +204,6 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <android.support.constraint.ConstraintLayout
-                android:id="@+id/record_create_location_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/create_details_content_padding">
-
-                <ImageView
-                    android:id="@+id/record_create_location_icon"
-                    android:layout_width="@dimen/create_item_icon_size"
-                    android:layout_height="@dimen/create_item_icon_size"
-                    android:src="@drawable/ic_location"
-                    android:tint="@color/dark_grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <EditText
-                    android:id="@+id/record_create_location_input"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/create_item_input_margin_horizontal"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/hint_location"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/record_create_location_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/record_create_location_action"
-                    style="@style/Create.Item.Action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/action_pick_location"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/divider_horizontal_height"
-                    android:layout_marginTop="@dimen/divider_horizontal_margin_top"
-                    android:background="@color/divider"
-                    app:layout_constraintTop_toBottomOf="@id/record_create_location_input"/>
-
-            </android.support.constraint.ConstraintLayout>
-
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>

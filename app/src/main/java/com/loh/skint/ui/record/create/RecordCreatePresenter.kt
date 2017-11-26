@@ -35,11 +35,6 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
         getView().showDateSelector(selectedDate)
     }
 
-    override fun onLocationClicked() {
-        // show location selector
-        getView().showLocationSelector()
-    }
-
     override fun onCategoryIconClicked() {
         // show the category selector
         getView().showCategorySelector()

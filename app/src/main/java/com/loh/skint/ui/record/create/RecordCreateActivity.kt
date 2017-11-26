@@ -52,7 +52,6 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         // disable entry
         record_create_transfer_type_input.disable()
         record_create_date_input.disable()
-        record_create_location_input.disable()
 
         // setup click listeners for actions
         record_create_transfer_type_input.setOnClickListener { presenter.onTransferTypeClicked() }
@@ -60,9 +59,6 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
 
         record_create_date_input.setOnClickListener { presenter.onDateClicked() }
         record_create_date_action.setOnClickListener { presenter.onDateClicked() }
-
-        record_create_location_input.setOnClickListener { presenter.onLocationClicked() }
-        record_create_location_action.setOnClickListener { presenter.onLocationClicked() }
 
         record_create_icon.setOnClickListener { presenter.onCategoryIconClicked() }
 
@@ -108,10 +104,6 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         // month value for local date starts at 1
         val dpd = DatePickerDialog.newInstance(this, date.year, date.monthValue - 1, date.dayOfMonth)
         dpd.show(fragmentManager, "dpd")
-    }
-
-    override fun showLocationSelector() {
-
     }
 
     override fun setCategoryIcon(@DrawableRes iconRes: Int) {

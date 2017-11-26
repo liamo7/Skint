@@ -10,7 +10,6 @@ interface View : AccountView {
     fun showCategorySelector()
     fun showTransferTypeSelector()
     fun showDateSelector(date: LocalDate)
-    fun showLocationSelector()
     fun setCategoryIcon(@DrawableRes iconRes: Int)
     fun setTransferType(transferType: String)
     fun setDate(date: String)
@@ -23,7 +22,6 @@ interface View : AccountView {
 interface Presenter : MvpPresenter<View> {
     fun onTransferTypeClicked()
     fun onDateClicked()
-    fun onLocationClicked()
     fun onCategoryIconClicked()
     fun onCategorySelected(categoryId: Int)
     fun onDateSelected(year: Int, monthOfYear: Int, dayOfMonth: Int)
