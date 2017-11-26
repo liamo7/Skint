@@ -3,31 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/widget_recent_records_card"
+    android:id="@+id/widget_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:parentTag="android.support.v7.widget.CardView">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/widget_recent_records_container"
+        android:id="@+id/widget_upcoming_goals_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/widget_recent_records_title"
+            android:id="@+id/widget_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingEnd="16dp"
             android:paddingStart="16dp"
             android:paddingTop="16dp"
-            android:text="@string/widget_title_recent_records"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@id/widget_recent_records_view_more_action"
+            app:layout_constraintEnd_toStartOf="@id/widget_more_action"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/widget_title_upcoming_goals"/>
 
         <TextView
-            android:id="@+id/widget_recent_records_view_more_action"
+            android:id="@+id/widget_more_action"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -42,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
-            android:id="@+id/widget_recent_records_list"
+            android:id="@+id/widget_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -51,19 +51,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/widget_recent_records_title"
+            app:layout_constraintTop_toBottomOf="@id/widget_title"
             tools:layout_height="120dp"/>
 
         <TextView
-            android:id="@+id/widget_recent_records_empty"
+            android:id="@+id/widget_empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="32dp"
-            android:text="@string/widget_recent_records_empty"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/widget_recent_records_title"/>
+            app:layout_constraintTop_toBottomOf="@id/widget_title"
+            tools:text="@string/widget_upcoming_goals_empty"/>
 
     </android.support.constraint.ConstraintLayout>
 

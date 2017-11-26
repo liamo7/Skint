@@ -57,11 +57,23 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.loh.skint.ui.widget.RecentRecordsWidget
-                    android:id="@+id/recent_records"
+                <com.loh.skint.ui.widget.SkintListWidget
+                    android:id="@+id/recent_records_widget"
                     style="@style/Card.Widget"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:widget_empty_message="@string/widget_recent_records_empty"
+                    app:widget_itemRes="@layout/item_recent_record"
+                    app:widget_title="@string/widget_title_recent_records"/>
+
+                <com.loh.skint.ui.widget.SkintListWidget
+                    android:id="@+id/upcoming_goals_widget"
+                    style="@style/Card.Widget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:widget_empty_message="@string/widget_title_upcoming_goals"
+                    app:widget_itemRes="@layout/item_goal_list"
+                    app:widget_title="@string/widget_title_upcoming_goals"/>
 
             </LinearLayout>
 

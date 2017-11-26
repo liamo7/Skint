@@ -114,4 +114,6 @@
     <string name="goal_target_amount">Target: %1$s</string>
     <string name="currency_invalid_error">Please select a currency.</string>
     <string name="delete">Delete</string>
+    <string name="widget_title_upcoming_goals">Upcoming Goals</string>
+    <string name="widget_upcoming_goals_empty">There are no upcoming goals.</string>
 </resources>
