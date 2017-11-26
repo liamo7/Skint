@@ -14,6 +14,7 @@ data class Record(
         var category: Category,
         var note: String,
         var accountUUID: UUID,
+        var balanceAtTime: BigDecimal? = null,
         var currency: Currency? = null) {
 
     fun prettyAmount(): String {

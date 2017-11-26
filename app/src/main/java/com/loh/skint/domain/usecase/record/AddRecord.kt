@@ -30,6 +30,7 @@ class AddRecord @Inject constructor(compositeDisposable: CompositeDisposable,
             TransferType.EXPENSE -> accountEntity.balance.subtract(recordEntity.amount)
         }
 
+        recordEntity.balanceAtTime = accountEntity.balance
         accountEntity.balance = balance
 
         return accountRepository.update(accountEntity).toCompletable()

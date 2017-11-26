@@ -4,6 +4,7 @@ import android.content.Context
 import com.loh.skint.data.entity.Record
 import com.loh.skint.data.entity.RecordEntity
 import com.loh.skint.injection.qualifier.App
+import java.math.BigDecimal
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,6 +20,7 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
                 entity.category,
                 entity.note,
                 entity.account.uuid,
+                entity.balanceAtTime,
                 entity.currency
         )
     }
@@ -31,6 +33,7 @@ class RecordMapper @Inject constructor(@App val context: Context) : Mapper<com.l
             dateOf = domain.date
             category = domain.category
             note = domain.note
+            balanceAtTime = domain.balanceAtTime ?: BigDecimal.ZERO
             currency = domain.currency
             accountUUID = domain.accountUUID
         }

@@ -17,6 +17,7 @@ interface Record : Persistable {
     @get:Column(unique = true, index = true) var uuid: UUID
     var transferType: TransferType
     @get:Convert(BigDecimalConverter::class) var amount: BigDecimal
+    @get:Convert(BigDecimalConverter::class) var balanceAtTime: BigDecimal
     @get:Convert(LocalDateConverter::class) var dateOf: LocalDate
     @get:Convert(CategoryConverter::class) var category: Category
     @get:Convert(CurrencyConverter::class) var currency: Currency
