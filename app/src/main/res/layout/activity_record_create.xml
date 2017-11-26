@@ -40,7 +40,7 @@
                 android:layout_marginEnd="@dimen/create_main_edittext_margin_end"
                 android:layout_marginStart="@dimen/create_main_edittext_margin_start"
                 android:hint="@string/zero"
-                android:inputType="number|numberDecimal|numberSigned"
+                android:inputType="number|numberDecimal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/record_create_currency"
                 app:layout_constraintStart_toEndOf="@id/record_create_icon"
