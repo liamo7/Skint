@@ -7,10 +7,12 @@ import com.loh.skint.domain.mapper.GoalRecordMapper
 import com.loh.skint.domain.model.Goal
 import com.loh.skint.domain.model.GoalRecord
 import com.loh.skint.domain.repository.GoalRepository
+import com.loh.skint.util.timespan
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.requery.Persistable
 import io.requery.reactivex.KotlinReactiveEntityStore
+import org.threeten.bp.LocalDate
 import java.util.*
 import javax.inject.Inject
 
@@ -65,5 +67,15 @@ class GoalRepository @Inject constructor(private val dataStore: KotlinReactiveEn
         return dataStore.delete(GoalEntity::class)
                 .where(GoalEntity.UUID.eq(uuid))
                 .get().single().toCompletable()
+    }
+
+    // upcoming goals are goals that are nearly reached (<=10%) or the target date is close
+    override fun getUpcoming(accountUUID: UUID, datePair: Pair<LocalDate, LocalDate>, reachedThreshold: Int): Single<MutableList<Goal>> {
+        return dataStore.select(com.loh.skint.data.entity.Goal::class)
+                .where(GoalEntity.ACCOUNT_UUID.eq(accountUUID))
+                .and(GoalEntity.TARGET_DATE.timespan(datePair))
+                    .orderBy(GoalEntity.SAVED_AMOUNT, GoalEntity.TARGET_AMOUNT)
+                .get().observable().toList()
+                .map { mapper.mapEntityToDomain(it) }
     }
 }

@@ -13,12 +13,6 @@ class OverviewPresenter @Inject constructor(private val getOverview: GetOverview
 
     override fun loadAccount() {
         val id = getView().getAccountUUID()
-
-        if (id == null) {
-            getView().handleInvalidAccount()
-            return
-        }
-
         getOverview.execute(Observer(), id)
     }
 
@@ -36,6 +30,7 @@ class OverviewPresenter @Inject constructor(private val getOverview: GetOverview
         override fun onSuccess(model: OverviewModel) {
             getView().renderOverviewCollapse(model)
             getView().renderRecentRecords(model.recentRecords)
+            getView().renderUpcomingGoals(model.upcomingGoals)
         }
 
         override fun onError(e: Throwable) {

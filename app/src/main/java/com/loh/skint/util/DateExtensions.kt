@@ -21,6 +21,7 @@ val MONTH_FORMAT = DateTimeFormatter.ofPattern("LLL yyyy")
 val YEAR_FORMAT = DateTimeFormatter.ofPattern("yyyy")
 
 val LONG_DATE_FORMAT = DateTimeFormatter.ofPattern("E dd MMM YYYY")
+val SHORT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/YYYY")
 
 fun LocalDate.daysBetween(date: LocalDate) = ChronoUnit.DAYS.between(this, date).toInt()
 fun LocalDate.weeksBetween(date: LocalDate) = ChronoUnit.WEEKS.between(this, date).toInt()

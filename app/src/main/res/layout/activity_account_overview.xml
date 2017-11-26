@@ -71,8 +71,8 @@
                     style="@style/Card.Widget"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:widget_empty_message="@string/widget_title_upcoming_goals"
-                    app:widget_itemRes="@layout/item_goal_list"
+                    app:widget_empty_message="@string/widget_upcoming_goals_empty"
+                    app:widget_itemRes="@layout/item_upcoming_goal"
                     app:widget_title="@string/widget_title_upcoming_goals"/>
 
             </LinearLayout>
