@@ -31,7 +31,7 @@ class GoalDetailActivity : BaseActivity(), View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setBackToolbar(toolbar, R.drawable.ic_arrow_back)
+        setBackToolbar(toolbar)
         presenter.attach(this)
 
         goal_add_amount_button.setOnClickListener { savedAmountDialog.show() }

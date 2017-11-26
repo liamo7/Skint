@@ -42,6 +42,7 @@ class GoalCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.attach(this)
+        setBackToolbar(toolbar, R.drawable.ic_close)
 
         if (savedInstanceState != null && savedInstanceState[ARG_STATE] != null) {
             presenter.onRestoreState(savedInstanceState.getSerializable(ARG_STATE) as GoalCreatePresenter.State)

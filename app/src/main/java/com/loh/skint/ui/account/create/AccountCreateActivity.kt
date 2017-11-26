@@ -36,12 +36,7 @@ class AccountCreateActivity : BaseActivity(), View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.attach(this)
-
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_close)
-        }
+        setBackToolbar(toolbar, R.drawable.ic_close)
 
         // disable key listener
         account_create_currency_input.disable()

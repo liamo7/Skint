@@ -5,6 +5,7 @@ import android.support.annotation.DrawableRes
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import com.loh.skint.R
 import com.loh.skint.SkintApp
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.injection.module.ActivityModule
@@ -33,10 +34,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun inject(component: ActivityComponent)
 
-    fun setBackToolbar(toolbar: Toolbar, @DrawableRes iconRes: Int) {
+    fun setBackToolbar(toolbar: Toolbar, @DrawableRes iconRes: Int = R.drawable.ic_arrow_back) {
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(iconRes)
         }
     }
 }
