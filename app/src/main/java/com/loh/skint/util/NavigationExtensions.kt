@@ -4,7 +4,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import com.loh.skint.ui.account.create.AccountCreateActivity
-import com.loh.skint.ui.account.icon.AccountIconListActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
 import com.loh.skint.ui.category.list.CategoryListActivity
@@ -55,10 +54,6 @@ fun Context.recordCreateIntent(accountId: UUID): Intent {
 
 fun Context.categoryListIntent(): Intent {
     return Intent(this, CategoryListActivity::class.java)
-}
-
-fun Context.accountIconSelectorIntent(): Intent {
-    return Intent(this, AccountIconListActivity::class.java)
 }
 
 fun Context.goalCreateIntent(accountUUID: UUID): Intent {

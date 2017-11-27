@@ -23,7 +23,7 @@ interface View : AccountView {
 interface Presenter : MvpPresenter<View> {
     fun openIconSelector()
     fun onTargetDateClicked()
-    fun onIconSelected(id: Int)
+    fun onIconSelected(iconRes: Int)
     fun onTargetDateSelected(year: Int, monthOfYear: Int, dayOfMonth: Int)
 
     fun saveGoal()

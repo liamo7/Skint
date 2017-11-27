@@ -5,7 +5,6 @@ import com.loh.skint.domain.model.Goal
 import com.loh.skint.domain.usecase.goal.AddGoal
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
-import com.loh.skint.ui.goal.list.GoalIconAdapter
 import com.loh.skint.util.LONG_DATE_FORMAT
 import com.loh.skint.util.isValidDecimal
 import io.reactivex.observers.DisposableCompletableObserver
@@ -24,18 +23,13 @@ class GoalCreatePresenter @Inject constructor(private val addGoal: AddGoal) : Ba
 
     override fun openIconSelector() = getView().showIconSelector()
 
-    override fun onIconSelected(id: Int) {
-        val iconRes = GoalIconAdapter.icons[id]
-        selectIcon(iconRes)
+    override fun onIconSelected(iconRes: Int) {
+        getView().setIconSelected(iconRes)
+        selectedIconRes = iconRes
     }
 
     override fun onTargetDateClicked() {
         getView().showTargetDateSelector(LocalDate.now())
-    }
-
-    private fun selectIcon(iconResId: Int) {
-        getView().setIconSelected(iconResId)
-        selectedIconRes = iconResId
     }
 
     override fun onTargetDateSelected(year: Int, monthOfYear: Int, dayOfMonth: Int) {
@@ -91,7 +85,7 @@ class GoalCreatePresenter @Inject constructor(private val addGoal: AddGoal) : Ba
     }
 
     override fun onRestoreState(state: State) {
-        state.iconResId?.let { selectIcon(it) }
+        state.iconResId?.let { onIconSelected(it) }
         state.targetDate?.let { selectTargetDate(it) }
     }
 

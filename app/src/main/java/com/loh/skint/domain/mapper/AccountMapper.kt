@@ -17,7 +17,7 @@ class AccountMapper @Inject constructor(private val recordMapper: RecordMapper,
                 entity.balance,
                 entity.currency,
                 entity.dateCreated,
-                Account.findIconById(entity.id),
+                entity.icon,
                 entity.records.let { recordMapper.mapEntityToDomain(it) },
                 entity.goals.let { goalMapper.mapEntityToDomain(it) }
         )
@@ -30,7 +30,7 @@ class AccountMapper @Inject constructor(private val recordMapper: RecordMapper,
             currency = domain.currency
             balance = domain.balance
             dateCreated = domain.dateCreated
-            iconId = domain.accountIcon.id
+            icon = domain.accountIcon
             records.addAll(0, recordMapper.mapDomainToEntity(domain.records))
             goals.addAll(0, goalMapper.mapDomainToEntity(domain.goals))
         }

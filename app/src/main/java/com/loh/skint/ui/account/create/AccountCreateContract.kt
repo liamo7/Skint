@@ -20,7 +20,7 @@ interface Presenter : MvpPresenter<View> {
     fun onIconClicked()
     fun onCurrencyClicked()
     fun onCurrencySelected(index: Int)
-    fun onIconSelected(iconId: Int)
+    fun onIconSelected(iconResId: Int)
     fun saveAccount()
     fun onSaveState(): AccountCreatePresenter.State
     fun onRestoreState(state: AccountCreatePresenter.State)

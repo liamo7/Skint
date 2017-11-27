@@ -1,25 +1,47 @@
 package com.loh.skint.ui.account.create
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.loh.skint.R
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
 import com.loh.skint.domain.model.Account
 import com.loh.skint.injection.component.ActivityComponent
-import com.loh.skint.ui.account.icon.AccountIconListActivity.Companion.ARG_SELECTED_ICON
-import com.loh.skint.ui.account.icon.AccountIconListActivity.Companion.INTENT_REQUEST_CODE
 import com.loh.skint.ui.base.activity.BaseActivity
-import com.loh.skint.util.accountIconSelectorIntent
+import com.loh.skint.ui.base.adapter.IconAdapter
 import com.loh.skint.util.accountOverview
 import com.loh.skint.util.disable
+import com.loh.skint.util.tint
 import kotlinx.android.synthetic.main.activity_account_create.*
 import javax.inject.Inject
 
 class AccountCreateActivity : BaseActivity(), View {
 
     @Inject lateinit var presenter: Presenter
+
+    private val accountIcons = listOf(
+            R.drawable.ic_coins,
+            R.drawable.ic_credit_card,
+            R.drawable.ic_piggy_bank,
+            R.drawable.ic_money_bag,
+            R.drawable.ic_safebox,
+            R.drawable.ic_wallet,
+            R.drawable.ic_other
+    )
+
+    private val iconAdapter = IconAdapter(accountIcons, {
+        presenter.onIconSelected(it)
+        iconSelectorDialog.hide()
+    })
+
+    private val iconSelectorDialog: MaterialDialog by lazy {
+        MaterialDialog.Builder(this)
+                .title(R.string.icon_select_title)
+                .adapter(iconAdapter, GridLayoutManager(this, 4))
+                .negativeText(R.string.cancel)
+                .build()
+    }
 
     private val currencyDialog: MaterialDialog by lazy {
         MaterialDialog.Builder(this)
@@ -48,15 +70,6 @@ class AccountCreateActivity : BaseActivity(), View {
         fab_save_account.setOnClickListener { presenter.saveAccount() }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == INTENT_REQUEST_CODE && resultCode == RESULT_OK) {
-            data?.extras?.getInt(ARG_SELECTED_ICON)?.let {
-                presenter.onIconSelected(it)
-            }
-        }
-    }
-
     override fun onDestroy() {
         presenter.detach()
         super.onDestroy()
@@ -67,7 +80,7 @@ class AccountCreateActivity : BaseActivity(), View {
     override fun inject(component: ActivityComponent) = component.inject(this)
 
     override fun navigateToIconSelector() {
-        startActivityForResult(accountIconSelectorIntent(), INTENT_REQUEST_CODE)
+        iconSelectorDialog.show()
     }
 
     override fun navigateToAccount(account: Account) {
@@ -85,6 +98,7 @@ class AccountCreateActivity : BaseActivity(), View {
 
     override fun setIcon(iconResId: Int) {
         account_create_icon.setImageResource(iconResId)
+        account_create_icon.tint(R.color.white)
     }
 
     override fun getName(): String = account_create_name.text.toString()

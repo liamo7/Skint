@@ -3,7 +3,6 @@ package com.loh.skint.ui.account.create
 import com.loh.skint.R
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
 import com.loh.skint.domain.model.Account
-import com.loh.skint.domain.model.AccountIcon
 import com.loh.skint.domain.usecase.account.AddAccount
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
@@ -19,7 +18,7 @@ import javax.inject.Inject
 @ActivityScoped
 class AccountCreatePresenter @Inject constructor(private val addAccount: AddAccount) : BasePresenter<View>(), Presenter {
 
-    private var selectedIcon: AccountIcon? = null
+    private var selectedIcon: Int? = null
     private var selectedCurrencyIndex: Int? = null
 
     override fun onIconClicked() {
@@ -36,10 +35,9 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
         selectedCurrencyIndex = index
     }
 
-    override fun onIconSelected(iconId: Int) {
-        val icon = Account.findIconById(iconId)
-        selectedIcon = icon
-        getView().setIcon(icon.iconResId)
+    override fun onIconSelected(iconResId: Int) {
+        getView().setIcon(iconResId)
+        selectedIcon = iconResId
     }
 
     override fun saveAccount() {
@@ -91,14 +89,14 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
 
     override fun onRestoreState(state: State) {
         state.currencyIndex?.let { onCurrencySelected(it) }
-        state.icon?.let { onIconSelected(it.id) }
+        state.iconResId?.let { onIconSelected(it) }
     }
 
     override fun cleanUp() {
         addAccount.dispose()
     }
 
-    data class State(val icon: AccountIcon?,
+    data class State(val iconResId: Int?,
                      val accountName: String,
                      val currencyIndex: Int?,
                      val initialBalance: String) : Serializable
