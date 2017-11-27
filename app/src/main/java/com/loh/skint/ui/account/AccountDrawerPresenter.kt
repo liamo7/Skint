@@ -13,11 +13,6 @@ class AccountDrawerPresenter @Inject constructor(private val getAccount: GetAcco
 
     override fun loadAccount() {
         val id = getView().getAccountUUID()
-        if (id == null) {
-            Timber.e("Invalid Account ID")
-            return
-        }
-
         getAccount.execute(Observer(), id)
     }
 
