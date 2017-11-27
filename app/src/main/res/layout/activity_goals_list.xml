@@ -73,7 +73,7 @@
                     android:layout_marginEnd="@dimen/empty_text_margin_horizontal"
                     android:layout_marginStart="@dimen/empty_text_margin_horizontal"
                     android:layout_marginTop="@dimen/empty_subtitle_margin_top"
-                    android:text="You have not added any goals.\nTry adding some now."
+                    android:text="@string/goals_empty_message"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

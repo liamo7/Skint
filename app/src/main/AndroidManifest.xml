@@ -1,15 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.loh.skint">
 
     <uses-permission android:name="android.permission.REORDER_TASKS"/>
 
     <application
         android:name=".SkintApp"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Skint">
+        android:theme="@style/Skint"
+        tools:ignore="GoogleAppIndexingWarning">
 
         <activity
             android:name=".ui.account.list.AccountListActivity">

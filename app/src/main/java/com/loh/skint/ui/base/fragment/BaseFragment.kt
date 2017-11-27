@@ -14,7 +14,7 @@ import com.loh.skint.util.inflate
 
 abstract class BaseFragment : Fragment() {
 
-    val fragmentComponent: FragmentComponent by lazy {
+    private val fragmentComponent: FragmentComponent by lazy {
         (activity as BaseActivity).activityComponent.plus(FragmentModule(this))
     }
 

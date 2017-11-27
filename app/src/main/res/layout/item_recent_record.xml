@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@mipmap/ic_launcher_round"/>
+        tools:src="@drawable/ic_salary"/>
 
     <TextView
         android:id="@+id/item_recent_record_name"

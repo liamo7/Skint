@@ -51,9 +51,5 @@ data class Category(
         fun findCategoryById(id: Int): Category {
             return getCategories().first { it.id == id }
         }
-
-        fun findCategoryByDrawableRes(@DrawableRes id: Int): Category {
-            return getCategories().first { it.iconRes == id }
-        }
     }
 }
