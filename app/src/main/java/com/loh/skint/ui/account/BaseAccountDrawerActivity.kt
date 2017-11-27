@@ -55,11 +55,7 @@ abstract class BaseAccountDrawerActivity : BaseDrawerActivity(), View, AccountVi
         val intent = when (item.itemId) {
             R.id.nav_overview -> accountOverview(accountId)
             R.id.nav_records -> recordsList(accountId)
-            //R.id.nav_budgets -> budgetsList(accountId)
             R.id.nav_goals -> goalsList(accountId)
-            R.id.nav_charts -> chartsList(accountId)
-            //R.id.nav_reports -> reportsList(accountId)
-            //R.id.nav_settings -> settings()
             else -> null
         }
         drawerLayout.closeDrawer(Gravity.START)

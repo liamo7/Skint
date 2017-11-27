@@ -24,10 +24,10 @@
             android:icon="@drawable/ic_bullseye"
             android:title="@string/title_goals"/>
 
-        <item
-            android:id="@+id/nav_charts"
-            android:icon="@drawable/ic_pie_chart"
-            android:title="@string/title_charts"/>
+        <!--<item-->
+        <!--android:id="@+id/nav_charts"-->
+        <!--android:icon="@drawable/ic_pie_chart"-->
+        <!--android:title="@string/title_charts"/>-->
 
         <!--<item-->
         <!--android:id="@+id/nav_reports"-->

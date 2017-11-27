@@ -39,12 +39,6 @@ fun Context.goalsList(id: UUID): Intent {
     }
 }
 
-fun Context.chartsList(id: UUID): Intent {
-    return Intent(this, OverviewActivity::class.java).apply {
-        putExtra(INTENT_ACCOUNT_ID, id)
-    }
-}
-
 fun Context.accountListIntent(): Intent {
     return Intent(this, AccountListActivity::class.java)
 }
