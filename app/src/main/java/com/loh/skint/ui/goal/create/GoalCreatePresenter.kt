@@ -54,6 +54,11 @@ class GoalCreatePresenter @Inject constructor(private val addGoal: AddGoal) : Ba
         val targetDate = selectedTargetDate
         val iconRes = selectedIconRes
 
+        if (name.isBlank()) {
+            getView().showMessage(R.string.name_invalid_error)
+            return
+        }
+
         if (iconRes == null) {
             getView().showMessage(R.string.icon_select_error)
             return

@@ -29,7 +29,10 @@ class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal,
         val prettyDate = goal.targetDate?.format(LONG_DATE_FORMAT) ?: "N/A"
 
         // TODO: Actually look at last record
-        val lastRecordAmount = goal.records.getOrNull(0)?.amount?.toPlainString() ?: "N/A"
+        val lastRecordAmount = goal.records.getOrNull(0)
+
+        val lastRecordDisplay = if (lastRecordAmount == null) "N/A"
+        else "${goal.currency?.symbol ?: ""}${lastRecordAmount.amount.toPlainString()}"
 
         getView().displayName(goal.name)
         getView().displayIcon(goal.iconResId)
@@ -37,7 +40,7 @@ class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal,
         getView().displayProgress(goal.progress(), goal.prettySavedAmount())
         getView().displayTargetAmount(goal.prettyTargetAmount())
         getView().displayTargetDate(prettyDate)
-        getView().displayLastAddedAmount(lastRecordAmount)
+        getView().displayLastAddedAmount(lastRecordDisplay)
     }
 
     override fun deleteGoal() {
