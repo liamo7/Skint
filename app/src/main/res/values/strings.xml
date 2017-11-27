@@ -122,4 +122,5 @@
     <string name="no">No</string>
     <string name="goal_dialog_title">Amount Saved</string>
     <string name="goal_dialog_content">Enter how much money you have saved towards your goal.</string>
+    <string name="goals_empty_title">No goals have been set</string>
 </resources>

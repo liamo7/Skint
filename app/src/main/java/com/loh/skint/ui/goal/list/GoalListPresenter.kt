@@ -28,16 +28,24 @@ class GoalListPresenter @Inject constructor(private val getGoals: GetGoals) : Ba
         getGoals.dispose()
     }
 
+    private fun renderEmptyState() {
+        getView().hideGoals()
+        getView().showEmptyState()
+    }
+
     inner class Observer : DisposableSingleObserver<MutableList<Goal>>() {
         override fun onError(e: Throwable) {
             Timber.e("${e.message}")
-            getView().hideGoals()
-            getView().showEmptyState()
+            renderEmptyState()
         }
 
         override fun onSuccess(goals: MutableList<Goal>) {
-            getView().hideEmptyState()
-            getView().showGoals(goals)
+            if (goals.isEmpty()) {
+                renderEmptyState()
+            } else {
+                getView().hideEmptyState()
+                getView().showGoals(goals)
+            }
         }
     }
 }
