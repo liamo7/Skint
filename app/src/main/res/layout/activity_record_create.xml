@@ -42,18 +42,8 @@
                 android:hint="@string/zero"
                 android:inputType="number|numberDecimal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/record_create_currency"
-                app:layout_constraintStart_toEndOf="@id/record_create_icon"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <TextView
-                android:id="@+id/record_create_currency"
-                style="@style/Create.Main.Currency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GBP"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/record_create_icon"
                 app:layout_constraintTop_toTopOf="parent"/>
 
         </android.support.constraint.ConstraintLayout>
