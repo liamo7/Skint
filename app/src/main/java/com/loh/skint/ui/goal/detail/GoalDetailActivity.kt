@@ -10,8 +10,6 @@ import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseActivity
 import com.loh.skint.util.INTENT_ACCOUNT_ID
 import com.loh.skint.util.INTENT_GOAL_UUID
-import com.loh.skint.util.bringToFront
-import com.loh.skint.util.goalsList
 import kotlinx.android.synthetic.main.activity_goal_detail.*
 import java.util.*
 import javax.inject.Inject
@@ -104,6 +102,5 @@ class GoalDetailActivity : BaseActivity(), View {
 
     override fun navigateBackToGoals() {
         finish()
-        startActivity(goalsList(getAccountUUID()).bringToFront())
     }
 }
