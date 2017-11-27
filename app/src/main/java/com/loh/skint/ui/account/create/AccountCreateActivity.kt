@@ -30,6 +30,7 @@ class AccountCreateActivity : BaseActivity(), View {
                     true
                 })
                 .positiveText(R.string.choose)
+                .negativeText(R.string.cancel)
                 .build()
     }
 
@@ -75,7 +76,7 @@ class AccountCreateActivity : BaseActivity(), View {
     }
 
     override fun showCurrencySelector() {
-        if (!currencyDialog.isShowing) currencyDialog.show()
+        currencyDialog.show()
     }
 
     override fun setCurrency(currency: String) {

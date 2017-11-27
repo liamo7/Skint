@@ -116,4 +116,10 @@
     <string name="delete">Delete</string>
     <string name="widget_title_upcoming_goals">Upcoming Goals</string>
     <string name="widget_upcoming_goals_empty">There are no upcoming goals.</string>
+    <string name="dialog_delete_goal">Delete Goal</string>
+    <string name="dialog_delete_goal_message">Are you sure you would like to delete this goal?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="goal_dialog_title">Amount Saved</string>
+    <string name="goal_dialog_content">Enter how much money you have saved towards your goal.</string>
 </resources>

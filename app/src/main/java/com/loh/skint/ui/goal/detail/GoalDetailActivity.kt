@@ -22,10 +22,20 @@ class GoalDetailActivity : BaseActivity(), View {
 
     private val savedAmountDialog: MaterialDialog by lazy {
         MaterialDialog.Builder(this)
-                .title("Amount Saved")
-                .content("Enter how much money you have saved towards your goal.")
+                .title(R.string.goal_dialog_title)
+                .content(R.string.goal_dialog_content)
                 .inputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL)
                 .input("10.00", null, false, { _, input -> presenter.addAmount(input.toString()) })
+                .build()
+    }
+
+    private val deleteGoalDialog: MaterialDialog by lazy {
+        MaterialDialog.Builder(this)
+                .title(R.string.dialog_delete_goal)
+                .content(R.string.dialog_delete_goal_message)
+                .positiveText(R.string.yes)
+                .negativeText(R.string.no)
+                .onPositive({ _, _ -> presenter.deleteGoal() })
                 .build()
     }
 
@@ -33,7 +43,6 @@ class GoalDetailActivity : BaseActivity(), View {
         super.onCreate(savedInstanceState)
         setBackToolbar(toolbar)
         presenter.attach(this)
-
         goal_add_amount_button.setOnClickListener { savedAmountDialog.show() }
     }
 
@@ -49,7 +58,7 @@ class GoalDetailActivity : BaseActivity(), View {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_delete_goal) {
-            presenter.deleteGoal()
+            deleteGoalDialog.show()
             return true
         }
         return super.onOptionsItemSelected(item)

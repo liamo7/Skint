@@ -35,7 +35,6 @@ class GoalCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetListe
                 .title(R.string.icon_select_title)
                 .adapter(iconAdapter, GridLayoutManager(this, 4))
                 .negativeText(R.string.cancel)
-                .onNegative({ _, _ -> iconSelectorDialog.hide() })
                 .build()
     }
 
