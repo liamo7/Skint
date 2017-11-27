@@ -27,7 +27,7 @@ class SkintApp : Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
             Stetho.initializeWithDefaults(this)
-            deleteDatabase("skint.db")
+//            deleteDatabase("skint.db")
         }
     }
 }
