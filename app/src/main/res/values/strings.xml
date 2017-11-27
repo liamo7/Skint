@@ -1,5 +1,5 @@
 <resources>
-    <string name="empty_accounts_list_empty">You have no accounts here</string>
+    <string name="empty_accounts_list_empty">You have no accounts</string>
     <string name="empty_accounts_list_subtitle">Tap the \'+\' button below on the right to add a new account.</string>
     <string name="title_account_list">Your Accounts</string>
     <string name="title_account_overview">Overview</string>
@@ -68,7 +68,7 @@
     <string name="category_phone">Phone</string>
     <string name="category_savings">Savings</string>
 
-    <string name="title_records_create">Add</string>
+    <string name="title_records_create">Add New Record</string>
     <string name="title_category_list">Categories</string>
     <string name="action_pick_location">Choose Location</string>
     <string name="hint_location">Location</string>
@@ -102,7 +102,7 @@
     <string name="title_account_icon_select">Select icon</string>
     <string name="widget_recent_records_empty">No recent records available.</string>
     <string name="title_goal">Goal</string>
-    <string name="title_goal_add">Add</string>
+    <string name="title_goal_add">Add Goal</string>
     <string name="goal">Goal</string>
     <string name="hint_target_date">Target Date</string>
     <string name="hint_start_date">Start Date</string>
