@@ -11,6 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Skint"
+        tools:replace="android:allowBackup"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity

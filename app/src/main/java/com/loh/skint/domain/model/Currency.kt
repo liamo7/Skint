@@ -1,6 +1,10 @@
 package com.loh.skint.domain.model
 
-data class Currency(val code: String, val name: String, val symbol: String, var iconResId: Int?)
+data class Currency(val code: String, val name: String, val symbol: String, var iconResId: Int?) {
+    override fun toString(): String {
+        return name
+    }
+}
 
 val AVAILABLE_CURRENCIES = arrayListOf(
         Currency("GBP", "British Pound", "£", null),

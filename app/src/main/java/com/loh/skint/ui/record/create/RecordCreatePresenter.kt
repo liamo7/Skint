@@ -121,7 +121,7 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
     override fun onRestoreState(state: State) {
         // Restore our custom state that are not stored via view components internal state mechanisms
         onCategorySelected(state.categoryId)
-        onDateSelected(state.date.year, state.date.monthValue, state.date.dayOfMonth)
+        onDateSelected(state.date.year, state.date.monthValue - 1, state.date.dayOfMonth)
         onTransferTypeSelected(state.transferType.ordinal)
     }
 
