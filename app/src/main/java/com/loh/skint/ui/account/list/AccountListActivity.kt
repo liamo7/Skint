@@ -1,11 +1,14 @@
 package com.loh.skint.ui.account.list
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.loh.skint.R
 import com.loh.skint.domain.model.Account
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseActivity
+import com.loh.skint.ui.onboard.OnboardActivity
 import com.loh.skint.util.accountCreateIntent
 import com.loh.skint.util.accountOverview
 import com.loh.skint.util.hide
@@ -22,6 +25,13 @@ class AccountListActivity : BaseActivity(), View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter.attach(this)
+
+        val sp = getSharedPreferences("com.loh.skint.prefs", Context.MODE_PRIVATE)
+        if (sp.getBoolean("first_time", true)) {
+            sp.edit().putBoolean("first_time", false).apply()
+            startActivity(Intent(this, OnboardActivity::class.java))
+        }
+
         setSupportActionBar(toolbar)
         supportActionBar?.setTitle(R.string.title_account_list)
         setupList()

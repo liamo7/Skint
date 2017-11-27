@@ -46,5 +46,6 @@
     <color name="dark_grey">#263238</color>
 
     <color name="create_item_action">#00CC6A</color>
+    <color name="black_trans80">#80000000</color>
 
 </resources>
