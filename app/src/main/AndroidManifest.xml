@@ -43,10 +43,6 @@
             android:label="@string/title_records_create"/>
 
         <activity
-            android:name=".ui.category.list.CategoryListActivity"
-            android:label="@string/title_category_list"/>
-
-        <activity
             android:name=".ui.goal.list.GoalListActivity"
             android:label="@string/title_goals"/>
 

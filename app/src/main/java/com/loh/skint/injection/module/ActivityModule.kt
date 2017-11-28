@@ -8,7 +8,6 @@ import com.loh.skint.ui.account.create.AccountCreatePresenter
 import com.loh.skint.ui.account.list.AccountListPresenter
 import com.loh.skint.ui.account.overview.OverviewPresenter
 import com.loh.skint.ui.account.overview.Presenter
-import com.loh.skint.ui.category.list.CategoryListPresenter
 import com.loh.skint.ui.goal.create.GoalCreatePresenter
 import com.loh.skint.ui.goal.detail.GoalDetailPresenter
 import com.loh.skint.ui.goal.list.GoalListPresenter
@@ -41,11 +40,6 @@ class ActivityModule constructor(private val activity: AppCompatActivity) {
 
     @Provides @ActivityScoped
     fun provideRecordCreatePresenter(presenter: RecordCreatePresenter): com.loh.skint.ui.record.create.Presenter {
-        return presenter
-    }
-
-    @Provides @ActivityScoped
-    fun provideCategoryListPresenter(presenter: CategoryListPresenter): com.loh.skint.ui.category.list.Presenter {
         return presenter
     }
 

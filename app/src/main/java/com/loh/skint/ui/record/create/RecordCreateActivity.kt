@@ -1,18 +1,15 @@
 package com.loh.skint.ui.record.create
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.DrawableRes
 import android.support.annotation.StringRes
+import android.support.v7.widget.GridLayoutManager
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
 import com.loh.skint.R
 import com.loh.skint.injection.component.ActivityComponent
 import com.loh.skint.ui.base.activity.BaseActivity
-import com.loh.skint.ui.category.list.CategoryListActivity.Companion.ARG_SELECTED_CATEGORY
-import com.loh.skint.ui.category.list.CategoryListActivity.Companion.INTENT_REQUEST_CODE
 import com.loh.skint.util.INTENT_ACCOUNT_ID
-import com.loh.skint.util.categoryListIntent
 import com.loh.skint.util.disable
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_record_create.*
@@ -37,6 +34,19 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
                     true
                 })
                 .positiveText(R.string.choose)
+                .build()
+    }
+
+    private val categoryAdapter = CategoryAdapter({
+        presenter.onCategorySelected(it)
+        categoryDialog.hide()
+    })
+
+    private val categoryDialog: MaterialDialog by lazy {
+        MaterialDialog.Builder(this)
+                .title(R.string.category_select)
+                .adapter(categoryAdapter, GridLayoutManager(this, 4))
+                .negativeText(R.string.cancel)
                 .build()
     }
 
@@ -65,13 +75,6 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
         fab_save_record.setOnClickListener { presenter.saveRecord() }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == INTENT_REQUEST_CODE && resultCode == RESULT_OK) {
-            data?.extras?.getInt(ARG_SELECTED_CATEGORY)?.let { presenter.onCategorySelected(it) }
-        }
-    }
-
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
         outState?.putSerializable(ARG_STATE, presenter.onSaveState())
@@ -93,11 +96,11 @@ class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetLis
     }
 
     override fun showCategorySelector() {
-        startActivityForResult(categoryListIntent(), INTENT_REQUEST_CODE)
+        categoryDialog.show()
     }
 
     override fun showTransferTypeSelector() {
-        if (!transferTypeDialog.isShowing) transferTypeDialog.show()
+        transferTypeDialog.show()
     }
 
     override fun showDateSelector(date: LocalDate) {

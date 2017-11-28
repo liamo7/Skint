@@ -22,8 +22,8 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
 
     // we will save our custom states. Edit texts', etc will store their own and we will pull from there
     private var selectedCategory: Category? = null
-    private var selectedTransferType: TransferType = TransferType.INCOME
-    private var selectedDate = LocalDate.now()
+    private var selectedTransferType: TransferType? = null
+    private var selectedDate: LocalDate? = null
 
     override fun onTransferTypeClicked() {
         // show the transfer type selector
@@ -32,7 +32,7 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
 
     override fun onDateClicked() {
         // show date selector
-        getView().showDateSelector(selectedDate)
+        getView().showDateSelector(selectedDate ?: LocalDate.now())
     }
 
     override fun onCategoryIconClicked() {
@@ -40,12 +40,7 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
         getView().showCategorySelector()
     }
 
-    override fun onCategorySelected(categoryId: Int) {
-        if (categoryId == Category.UNINITALISED_CATEGORY.id) return
-
-        // find the category via its id
-        val category = Category.findCategoryById(categoryId)
-
+    override fun onCategorySelected(category: Category) {
         // set the category icon
         getView().setCategoryIcon(category.iconRes)
 
@@ -58,8 +53,10 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
         selectedDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth)
 
         // format and set date
-        val prettyDate = selectedDate.format(LONG_DATE_FORMAT)
-        getView().setDate(prettyDate)
+        selectedDate?.let {
+            val prettyDate = it.format(LONG_DATE_FORMAT)
+            getView().setDate(prettyDate)
+        }
     }
 
     override fun onTransferTypeSelected(itemIndex: Int) {
@@ -89,6 +86,16 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
             return
         }
 
+        if (date == null) {
+            getView().showMessage(R.string.date_invalid_error)
+            return
+        }
+
+        if (transferType == null) {
+            getView().showMessage(R.string.transfer_type_select_error)
+            return
+        }
+
         if (!amount.isValidDecimal()) {
             getView().showMessage(R.string.amount_invalid_error)
             return
@@ -113,16 +120,16 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
     }
 
     override fun onSaveState(): State {
-        return State(selectedCategory?.id ?: Category.UNINITALISED_CATEGORY.id,
+        return State(selectedCategory,
                 selectedTransferType,
                 selectedDate)
     }
 
     override fun onRestoreState(state: State) {
         // Restore our custom state that are not stored via view components internal state mechanisms
-        onCategorySelected(state.categoryId)
-        onDateSelected(state.date.year, state.date.monthValue - 1, state.date.dayOfMonth)
-        onTransferTypeSelected(state.transferType.ordinal)
+        state.category?.let { onCategorySelected(it) }
+        state.date?.let { onDateSelected(it.year, it.monthValue - 1, it.dayOfMonth) }
+        state.transferType?.let { onTransferTypeSelected(it.ordinal) }
     }
 
     private fun determineTransferType(index: Int): TransferType {
@@ -152,7 +159,7 @@ class RecordCreatePresenter @Inject constructor(private val addRecord: AddRecord
         }
     }
 
-    data class State(val categoryId: Int,
-                     val transferType: TransferType,
-                     val date: LocalDate) : Serializable
+    data class State(val category: Category?,
+                     val transferType: TransferType?,
+                     val date: LocalDate?) : Serializable
 }

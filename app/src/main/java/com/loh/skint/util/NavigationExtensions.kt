@@ -6,7 +6,6 @@ import android.content.Intent
 import com.loh.skint.ui.account.create.AccountCreateActivity
 import com.loh.skint.ui.account.list.AccountListActivity
 import com.loh.skint.ui.account.overview.OverviewActivity
-import com.loh.skint.ui.category.list.CategoryListActivity
 import com.loh.skint.ui.goal.create.GoalCreateActivity
 import com.loh.skint.ui.goal.detail.GoalDetailActivity
 import com.loh.skint.ui.goal.list.GoalListActivity
@@ -50,10 +49,6 @@ fun Context.recordCreateIntent(accountId: UUID): Intent {
     return Intent(this, RecordCreateActivity::class.java).apply {
         putExtra(INTENT_ACCOUNT_ID, accountId)
     }
-}
-
-fun Context.categoryListIntent(): Intent {
-    return Intent(this, CategoryListActivity::class.java)
 }
 
 fun Context.goalCreateIntent(accountUUID: UUID): Intent {
