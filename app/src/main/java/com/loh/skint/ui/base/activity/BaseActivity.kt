@@ -12,6 +12,8 @@ import com.loh.skint.injection.module.ActivityModule
 
 abstract class BaseActivity : AppCompatActivity() {
 
+    internal val ARG_STATE = "STATE"
+
     val activityComponent: ActivityComponent by lazy {
         (application as SkintApp).appComponent.plus(ActivityModule(this))
     }

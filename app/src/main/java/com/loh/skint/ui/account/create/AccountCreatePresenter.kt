@@ -3,6 +3,7 @@ package com.loh.skint.ui.account.create
 import com.loh.skint.R
 import com.loh.skint.domain.model.AVAILABLE_CURRENCIES
 import com.loh.skint.domain.model.Account
+import com.loh.skint.domain.model.Currency
 import com.loh.skint.domain.usecase.account.AddAccount
 import com.loh.skint.injection.scope.ActivityScoped
 import com.loh.skint.ui.base.presenter.BasePresenter
@@ -18,8 +19,11 @@ import javax.inject.Inject
 @ActivityScoped
 class AccountCreatePresenter @Inject constructor(private val addAccount: AddAccount) : BasePresenter<View>(), Presenter {
 
+    //private var selectedIcon: Int? = null
+    //private var selectedCurrencyIndex: Int? = null
+
     private var selectedIcon: Int? = null
-    private var selectedCurrencyIndex: Int? = null
+    private var selectedCurrency: Currency? = null
 
     override fun onIconClicked() {
         getView().navigateToIconSelector()
@@ -30,9 +34,14 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
     }
 
     override fun onCurrencySelected(index: Int) {
-        val currency = AVAILABLE_CURRENCIES[index]
+        val currency = AVAILABLE_CURRENCIES.getOrNull(index)
+        currency?.let { onCurrencySelected(it) }
+    }
+
+    private fun onCurrencySelected(currency: Currency) {
         getView().setCurrency(currency.name)
-        selectedCurrencyIndex = index
+        selectedCurrency = currency
+
     }
 
     override fun onIconSelected(iconResId: Int) {
@@ -45,7 +54,7 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
         val name = getView().getName()
         val initialBalance = getView().getInitialBalance()
         val icon = selectedIcon
-        val currency = selectedCurrencyIndex?.let { AVAILABLE_CURRENCIES.getOrNull(it) }
+        val currency = selectedCurrency
 
         // validate input
         if (name.isBlank()) {
@@ -82,13 +91,11 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
 
     override fun onSaveState(): State {
         return State(selectedIcon,
-                getView().getName(),
-                selectedCurrencyIndex,
-                getView().getInitialBalance())
+                selectedCurrency)
     }
 
     override fun onRestoreState(state: State) {
-        state.currencyIndex?.let { onCurrencySelected(it) }
+        state.currency?.let { onCurrencySelected(it) }
         state.iconResId?.let { onIconSelected(it) }
     }
 
@@ -97,9 +104,7 @@ class AccountCreatePresenter @Inject constructor(private val addAccount: AddAcco
     }
 
     data class State(val iconResId: Int?,
-                     val accountName: String,
-                     val currencyIndex: Int?,
-                     val initialBalance: String) : Serializable
+                     val currency: Currency?) : Serializable
 
     inner class Observer : DisposableSingleObserver<Account>() {
         override fun onSuccess(account: Account) {

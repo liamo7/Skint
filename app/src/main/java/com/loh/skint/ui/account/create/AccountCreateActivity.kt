@@ -61,6 +61,10 @@ class AccountCreateActivity : BaseActivity(), View {
         presenter.attach(this)
         setBackToolbar(toolbar, R.drawable.ic_close)
 
+        if (savedInstanceState != null && savedInstanceState[ARG_STATE] != null) {
+            presenter.onRestoreState(savedInstanceState.getSerializable(ARG_STATE) as AccountCreatePresenter.State)
+        }
+
         // disable key listener
         account_create_currency_input.disable()
         account_create_currency_input.setOnClickListener { presenter.onCurrencyClicked() }
@@ -68,6 +72,11 @@ class AccountCreateActivity : BaseActivity(), View {
         account_create_icon.setOnClickListener { presenter.onIconClicked() }
 
         fab_save_account.setOnClickListener { presenter.saveAccount() }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putSerializable(ARG_STATE, presenter.onSaveState())
     }
 
     override fun onDestroy() {

@@ -19,10 +19,6 @@ import javax.inject.Inject
 
 class RecordCreateActivity : BaseActivity(), View, DatePickerDialog.OnDateSetListener {
 
-    companion object {
-        @JvmStatic val ARG_STATE = "STATE"
-    }
-
     @Inject lateinit var presenter: Presenter
 
     private val transferTypeDialog: MaterialDialog by lazy {
