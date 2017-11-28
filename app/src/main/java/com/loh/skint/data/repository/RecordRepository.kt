@@ -67,7 +67,7 @@ class RecordRepository @Inject constructor(private val dataStore: KotlinReactive
         return dataStore.select(RecordEntity::class)
                 .where(RecordEntity.ACCOUNT_UUID.eq(accountUUID))
                 .and(RecordEntity.DATE_OF.timespan(date, LocalDate.now()))
-                .orderBy(RecordEntity.DATE_OF.desc())
+                .orderBy(RecordEntity.DATE_OF.desc(), RecordEntity.ID.desc())
                 .get().observable()
                 .map { mapper.mapEntityToDomain(it) }
                 .toList()
