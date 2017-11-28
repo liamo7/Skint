@@ -13,7 +13,7 @@
     <dimen name="empty_icon_size">120dp</dimen>
     <dimen name="empty_title_size">18sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="overview_sub_title_margin_vertical">16dp</dimen>
+    <dimen name="overview_sub_title_margin_vertical">8dp</dimen>
     <dimen name="overview_value_margin_vertical">8dp</dimen>
     <dimen name="overview_value_size">28sp</dimen>
     <dimen name="overview_sub_value_size">20sp</dimen>

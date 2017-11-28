@@ -15,7 +15,7 @@
         android:text="@string/overview_current_balance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/overview_balance_value"
@@ -23,10 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/overview_value_margin_vertical"
-        tools:text="£4050.00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overview_balance_label" />
+        app:layout_constraintTop_toBottomOf="@id/overview_balance_label"
+        tools:text="£4050.00"/>
 
     <View
         android:id="@+id/divider"
@@ -38,7 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/overview_available_label" />
+        app:layout_constraintTop_toTopOf="@id/overview_available_label"/>
 
     <TextView
         android:id="@+id/overview_available_label"
@@ -49,7 +49,7 @@
         android:text="@string/overview_available_balance"
         app:layout_constraintEnd_toStartOf="@id/divider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overview_balance_value" />
+        app:layout_constraintTop_toBottomOf="@id/overview_balance_value"/>
 
     <TextView
         android:id="@+id/overview_last_record_label"
@@ -60,7 +60,7 @@
         android:text="@string/overview_last_record"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/divider"
-        app:layout_constraintTop_toBottomOf="@id/overview_balance_value" />
+        app:layout_constraintTop_toBottomOf="@id/overview_balance_value"/>
 
     <TextView
         android:id="@+id/overview_available_value"
@@ -68,12 +68,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/overview_value_margin_vertical"
-        android:layout_marginTop="@dimen/overview_value_margin_vertical"
-        tools:text="£4050.00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/divider"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overview_available_label" />
+        app:layout_constraintTop_toBottomOf="@id/overview_available_label"
+        tools:text="£4050.00"/>
 
     <TextView
         android:id="@+id/overview_last_record_value"
@@ -81,11 +80,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/overview_value_margin_vertical"
-        android:layout_marginTop="@dimen/overview_value_margin_vertical"
-        tools:text="N/A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/divider"
-        app:layout_constraintTop_toBottomOf="@id/overview_last_record_label" />
+        app:layout_constraintTop_toBottomOf="@id/overview_last_record_label"
+        tools:text="N/A"/>
 
 </merge>
