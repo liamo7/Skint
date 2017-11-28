@@ -41,7 +41,7 @@ class GoalDetailActivity : BaseActivity(), View {
         super.onCreate(savedInstanceState)
         setBackToolbar(toolbar)
         presenter.attach(this)
-        goal_add_amount_button.setOnClickListener { savedAmountDialog.show() }
+        fab_add_amount.setOnClickListener { savedAmountDialog.show() }
     }
 
     override fun onResume() {
@@ -79,7 +79,9 @@ class GoalDetailActivity : BaseActivity(), View {
         goal_name.text = name
     }
 
-    override fun displayNote(note: String) {}
+    override fun displayNote(note: String) {
+        goal_note.text = note
+    }
 
     override fun displayProgress(progress: Int, savedAmount: String) {
         goal_progress.progressValue = progress
@@ -98,6 +100,10 @@ class GoalDetailActivity : BaseActivity(), View {
 
     override fun displayTargetAmount(targetAmount: String) {
         goal_target_amount.text = getString(R.string.goal_target_amount, targetAmount)
+    }
+
+    override fun displayStatus(status: Int) {
+        goal_status.setText(status)
     }
 
     override fun navigateBackToGoals() {

@@ -41,6 +41,7 @@ class GoalDetailPresenter @Inject constructor(private val getGoal: GetGoal,
         getView().displayTargetAmount(goal.prettyTargetAmount())
         getView().displayTargetDate(prettyDate)
         getView().displayLastAddedAmount(lastRecordDisplay)
+        getView().displayStatus(goal.status())
     }
 
     override fun deleteGoal() {

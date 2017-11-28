@@ -88,6 +88,27 @@
                 app:wlv_waveColor="@color/colorAccent"/>
 
             <TextView
+                android:id="@+id/goal_status_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/goal_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goal_progress"/>
+
+            <TextView
+                android:id="@+id/goal_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goal_status_label"
+                tools:text="Reached"/>
+
+            <TextView
                 android:id="@+id/goal_last_amount_added_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +116,7 @@
                 android:text="@string/goal_last_amount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/goal_progress"/>
+                app:layout_constraintTop_toBottomOf="@id/goal_status"/>
 
             <TextView
                 android:id="@+id/goal_last_amount_added"
@@ -129,23 +150,39 @@
                 app:layout_constraintTop_toBottomOf="@id/goal_target_date_label"
                 tools:text="20/02/2019"/>
 
-            <Button
-                android:id="@+id/goal_add_amount_button"
+            <TextView
+                android:id="@+id/goal_note_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorAccent"
-                android:paddingEnd="24dp"
-                android:paddingStart="24dp"
-                android:text="@string/goal_add_saved_amount"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:layout_marginTop="16dp"
+                android:text="@string/hint_note"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/goal_target_date"/>
 
+            <TextView
+                android:id="@+id/goal_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/goal_note_label"
+                tools:text="This is a note."/>
+
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

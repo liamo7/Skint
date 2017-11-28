@@ -1,5 +1,6 @@
 package com.loh.skint.ui.goal.detail
 
+import android.support.annotation.StringRes
 import com.loh.skint.ui.base.AccountView
 import com.loh.skint.ui.base.presenter.MvpPresenter
 import java.util.*
@@ -14,6 +15,7 @@ interface View : AccountView {
     fun displayTargetDate(targetDate: String)
     fun displayLastAddedAmount(amount: String)
     fun navigateBackToGoals()
+    fun displayStatus(@StringRes status: Int)
 }
 
 interface Presenter : MvpPresenter<View> {

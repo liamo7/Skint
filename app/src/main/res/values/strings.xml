@@ -132,4 +132,9 @@
     <string name="category_select">Select a category</string>
     <string name="date_invalid_error">Please select a valid date</string>
     <string name="record_deleted">Record has been deleted</string>
+    <string name="goal_status">Status</string>
+    <string name="status_goal_reached">Goal Reached</string>
+    <string name="status_goal_exceeded">Goal Exceeded</string>
+    <string name="status_goal_in_progress">In Progress</string>
+    <string name="status_goal_failed">Failed to reach goal</string>
 </resources>
