@@ -113,8 +113,7 @@ dependencies {
 
     implementation deps.datePicker
     implementation deps.dialogs
+    implementation deps.onboard
     implementation deps.threeTenAbp
     implementation deps.waveLoadingView
-
-    implementation 'com.ramotion.paperonboarding:paper-onboarding:1.1.1'
 }

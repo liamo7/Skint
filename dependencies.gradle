@@ -15,6 +15,7 @@ ext.versions = [
         espresso       : '2.2.1',
         glide          : '4.2.0',
         leakCanary     : '1.5.4',
+        onboard        : '1.1.1',
         retrofit       : '2.3.0',
         requery        : '1.4.1',
         rxJava         : '2.1.2',
@@ -64,6 +65,7 @@ ext.deps = [
                 debug  : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}",
                 release: "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakCanary}"
         ],
+        onboard        : "com.ramotion.paperonboarding:paper-onboarding:${versions.onboard}",
         rx             : [
                 'core'   : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
                 'android': "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
