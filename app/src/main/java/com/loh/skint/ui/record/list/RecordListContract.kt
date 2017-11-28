@@ -16,10 +16,11 @@ interface View : AccountView {
     fun getDateRange(): DateRange
     fun getDate(): LocalDate
     fun navigateToRecordCreation(accountUUID: UUID)
+    fun navigateToRecord(uuid: UUID, accountUUID: UUID)
 }
 
 interface Presenter : MvpPresenter<View> {
     fun retrieveRecords()
-    fun onRecordClicked()
+    fun onRecordClicked(record: Record)
     fun onAddRecord()
 }

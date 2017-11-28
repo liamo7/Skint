@@ -10,6 +10,7 @@ import com.loh.skint.ui.goal.create.GoalCreateActivity
 import com.loh.skint.ui.goal.detail.GoalDetailActivity
 import com.loh.skint.ui.goal.list.GoalListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
+import com.loh.skint.ui.record.detail.RecordDetailActivity
 import com.loh.skint.ui.record.list.RecordListActivity
 import dagger.Subcomponent
 
@@ -25,6 +26,7 @@ interface ActivityComponent {
     fun inject(activity: GoalListActivity)
     fun inject(activity: GoalCreateActivity)
     fun inject(activity: GoalDetailActivity)
+    fun inject(activity: RecordDetailActivity)
 
     fun plus(module: FragmentModule): FragmentComponent
 }

@@ -4,7 +4,6 @@ import android.app.Application
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.loh.skint.injection.component.AppComponent
-import com.loh.skint.injection.component.DaggerAppComponent
 import com.loh.skint.injection.module.AppModule
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber

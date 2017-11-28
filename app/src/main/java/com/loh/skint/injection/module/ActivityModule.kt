@@ -12,6 +12,7 @@ import com.loh.skint.ui.goal.create.GoalCreatePresenter
 import com.loh.skint.ui.goal.detail.GoalDetailPresenter
 import com.loh.skint.ui.goal.list.GoalListPresenter
 import com.loh.skint.ui.record.create.RecordCreatePresenter
+import com.loh.skint.ui.record.detail.RecordDetailPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -60,6 +61,11 @@ class ActivityModule constructor(private val activity: AppCompatActivity) {
 
     @Provides @ActivityScoped
     fun provideGoalCreatePresenter(presenter: GoalCreatePresenter): com.loh.skint.ui.goal.create.Presenter {
+        return presenter
+    }
+
+    @Provides @ActivityScoped
+    fun provideRecordDetailPresenter(presenter: RecordDetailPresenter): com.loh.skint.ui.record.detail.Presenter {
         return presenter
     }
 }

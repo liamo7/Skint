@@ -118,6 +118,8 @@
     <string name="widget_upcoming_goals_empty">There are no upcoming goals.</string>
     <string name="dialog_delete_goal">Delete Goal</string>
     <string name="dialog_delete_goal_message">Are you sure you would like to delete this goal?</string>
+    <string name="dialog_delete_record">Delete Record</string>
+    <string name="dialog_delete_record_message">Are you sure you would like to delete this record?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="goal_dialog_title">Amount Saved</string>
@@ -129,4 +131,5 @@
     <string name="goals_empty_message">You have not added any goals. Try adding some now.</string>
     <string name="category_select">Select a category</string>
     <string name="date_invalid_error">Please select a valid date</string>
+    <string name="record_deleted">Record has been deleted</string>
 </resources>

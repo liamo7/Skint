@@ -14,8 +14,9 @@ import kotlinx.android.synthetic.main.item_record.view.*
 import javax.inject.Inject
 
 @FragmentScoped
-class RecordListAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>() {
+class RecordListAdapter @Inject constructor() : RecyclerView.Adapter<RecordListAdapter.ViewHolder>() {
 
+    var callback: (Record) -> Unit = {}
     var records = listOf<Record>()
         set(value) {
             field = value
@@ -30,6 +31,7 @@ class RecordListAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>
         val record = records[position]
 
         holder.itemView.apply {
+            setOnClickListener { callback(record) }
             item_record_name.text = context.getString(record.category.nameRes)
             item_record_amount.text = record.prettyAmount()
             item_record_amount.colorize(record.colorizeAmount())
@@ -40,6 +42,7 @@ class RecordListAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>
     }
 
     override fun getItemCount() = records.size
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
 
-class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

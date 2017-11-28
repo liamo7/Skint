@@ -25,7 +25,7 @@ class OverviewActivity : BaseAccountDrawerActivity(), View {
         presenter.attach(this)
         fab_add_record.setOnClickListener { presenter.onFabClicked() }
         recent_records_widget.itemClickListener = { item ->
-            startActivity(recordsList(getAccountUUID(), (item as Record).date))
+            startActivity(recordDetailIntent((item as Record).uuid, getAccountUUID()))
         }
         recent_records_widget.moreAction = { startActivity(recordsList(getAccountUUID())) }
 

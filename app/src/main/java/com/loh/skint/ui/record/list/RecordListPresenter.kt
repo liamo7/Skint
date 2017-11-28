@@ -22,8 +22,8 @@ class RecordListPresenter @Inject constructor(private val getRecords: GetRecords
         getRecords.execute(Observer(), params)
     }
 
-    override fun onRecordClicked() {
-        TODO("not implemented")
+    override fun onRecordClicked(record: Record) {
+        getView().navigateToRecord(record.uuid, record.accountUUID)
     }
 
     override fun onAddRecord() {

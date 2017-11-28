@@ -10,6 +10,7 @@ import com.loh.skint.ui.goal.create.GoalCreateActivity
 import com.loh.skint.ui.goal.detail.GoalDetailActivity
 import com.loh.skint.ui.goal.list.GoalListActivity
 import com.loh.skint.ui.record.create.RecordCreateActivity
+import com.loh.skint.ui.record.detail.RecordDetailActivity
 import com.loh.skint.ui.record.list.RecordListActivity
 import org.threeten.bp.LocalDate
 import java.util.*
@@ -17,6 +18,7 @@ import java.util.*
 const val INTENT_ACCOUNT_ID = "ACCOUNT_ID"
 const val INTENT_DATE = "DATE"
 const val INTENT_GOAL_UUID = "GOAL_UUID"
+const val INTENT_RECORD_ID = "RECORD_ID"
 
 fun Context.accountOverview(id: UUID): Intent {
     return Intent(this, OverviewActivity::class.java).apply {
@@ -60,6 +62,13 @@ fun Context.goalCreateIntent(accountUUID: UUID): Intent {
 fun Context.goalDetailIntent(goalUUID: UUID, accountUUID: UUID): Intent {
     return Intent(this, GoalDetailActivity::class.java).apply {
         putExtra(INTENT_GOAL_UUID, goalUUID)
+        putExtra(INTENT_ACCOUNT_ID, accountUUID)
+    }
+}
+
+fun Context.recordDetailIntent(recordUUID: UUID, accountUUID: UUID): Intent {
+    return Intent(this, RecordDetailActivity::class.java).apply {
+        putExtra(INTENT_RECORD_ID, recordUUID)
         putExtra(INTENT_ACCOUNT_ID, accountUUID)
     }
 }

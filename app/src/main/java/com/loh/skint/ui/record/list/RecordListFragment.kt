@@ -43,6 +43,7 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
         recycler_view.adapter = listAdapter
         recycler_view.addItemDecoration(DividerItemDecoration(activity, VERTICAL))
         datebar.setActionListener(this)
+        listAdapter.callback = { presenter.onRecordClicked(it) }
         fab_add_record.setOnClickListener { presenter.onAddRecord() }
     }
 
@@ -97,5 +98,9 @@ class RecordListFragment : BaseFragment(), ActionListener, com.loh.skint.ui.reco
 
     override fun navigateToRecordCreation(accountUUID: UUID) {
         startActivity(activity?.recordCreateIntent(accountUUID))
+    }
+
+    override fun navigateToRecord(uuid: UUID, accountUUID: UUID) {
+        startActivity(activity?.recordDetailIntent(uuid, accountUUID))
     }
 }
